@@ -5739,6 +5739,8 @@ typescript@^3.2.4:
   version: 0.0.0-use.local
   resolution: "typings@workspace:packages/typings"
   dependencies:
+    "@types/react": ^17
+    react: ^17.0.2
     typescript: ^4.2.4
   languageName: unknown
   linkType: soft
