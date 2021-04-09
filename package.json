@@ -10,8 +10,12 @@
     "url": "https://github.com/astahmer/pastable.git"
   },
   "author": "Alexandre Stahmer <alexandre.stahmer@gmail.com>",
+  "scripts": {
+    "plop": "plop"
+  },
   "devDependencies": {
     "@types/prettier": "^2",
+    "plop": "^2.7.4",
     "prettier": "^2.2.1",
     "prettier-plugin-sorted": "^2.0.0"
   },
