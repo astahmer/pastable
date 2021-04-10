@@ -1,5 +1,5 @@
 {
-    "name": "@pastable/{{packageName}}",
+    "name": "@pastable/scripts",
     "source": "src/index.ts",
     "main": "dist/index.js",
     "exports": "./dist/index.modern.js",
@@ -16,7 +16,9 @@
         "test": "uvu -r @swc-node/register -r tsconfig-paths/register src",
         "tw": "yarn test && watchlist src -- yarn test",
         "coverage": "c8 --all yarn test",
-        "coverage:open": "node -r @swc-node/register -r tsconfig-paths/register src/openFileInBrowser",
+        "scripts:openFileInBrowser": "node -r @swc-node/register -r tsconfig-paths/register src/openFileInBrowser --",
+        "scripts:openCoverageInBrowser": "node -r @swc-node/register -r tsconfig-paths/register src/openCoverageInBrowser --",
+        "coverage:open": "yarn scripts:openCoverageInBrowser",
         "coverage:view": "c8 --reporter=lcov --all yarn test"
     },
     "devDependencies": {

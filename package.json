@@ -19,6 +19,7 @@
     "devDependencies": {
         "@swc-node/register": "^1.0.5",
         "@types/prettier": "^2",
+        "c8": "^7.7.1",
         "plop": "^2.7.4",
         "prettier": "^2.2.1",
         "prettier-plugin-sorted": "^2.0.0",
