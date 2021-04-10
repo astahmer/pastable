@@ -20,7 +20,7 @@
       "@pastable/use-query-params": ["./use-query-params/src"],
       "@pastable/utils": ["./utils/src"]
     },
-    "types": ["react", "react-dom"]
+    "types": ["react", "react-dom", "node"]
   },
   "exclude": ["**/node_modules/**", "packages/*/dist"]
 }
