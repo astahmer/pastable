@@ -1,32 +1,39 @@
 {
-  "name": "pastable",
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/astahmer/pastable.git"
-  },
-  "author": "Alexandre Stahmer <alexandre.stahmer@gmail.com>",
-  "scripts": {
-    "plop": "plop"
-  },
-  "devDependencies": {
-    "@types/prettier": "^2",
-    "plop": "^2.7.4",
-    "prettier": "^2.2.1",
-    "prettier-plugin-sorted": "^2.0.0"
-  },
-  "importSort": {
-    ".js, jsx, .ts, .tsx": {
-      "options": {
-        "ignoreTsConfig": true,
-        "extraAliases": [
-          "@pastable/*"
+    "name": "pastable",
+    "workspaces": {
+        "packages": [
+            "packages/*"
         ]
-      }
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/astahmer/pastable.git"
+    },
+    "author": "Alexandre Stahmer <alexandre.stahmer@gmail.com>",
+    "scripts": {
+        "test:all": "uvu -r @swc-node/register -r tsconfig-paths/register packages 'tests|.+.test.ts'",
+        "tw:all": "yarn test:all && watchlist packages -i dist node_modules -- yarn test:all",
+        "plop": "plop"
+    },
+    "devDependencies": {
+        "@swc-node/register": "^1.0.5",
+        "@types/prettier": "^2",
+        "plop": "^2.7.4",
+        "prettier": "^2.2.1",
+        "prettier-plugin-sorted": "^2.0.0",
+        "tsconfig-paths": "^3.9.0",
+        "typescript": "^4.2.4",
+        "uvu": "^0.5.1",
+        "watchlist": "^0.2.3"
+    },
+    "importSort": {
+        ".js, jsx, .ts, .tsx": {
+            "options": {
+                "ignoreTsConfig": true,
+                "extraAliases": [
+                    "@pastable/*"
+                ]
+            }
+        }
     }
-  }
 }
