@@ -34,7 +34,7 @@ export function omit<T extends ObjectLiteral, K extends keyof T>(object: T, keys
     return result as Omit<T, K>;
 }
 
-export type Formater<Value = ObjectLiteral, Return = ObjectLiteral> = (value: Value, key: string) => Return;
+export type Formater<Value = any, Return = any, Key extends any = string> = (value: Value, key: Key) => Return;
 /** Keep only truthy values & format them using a given method */
 export const format = <Return = ObjectLiteral, Method extends Function = Formater, From = ObjectLiteral>(
     obj: From,
