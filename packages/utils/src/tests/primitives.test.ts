@@ -61,3 +61,5 @@ test("limit a number between min/max", () => {
     assert.equal(limit(100, [0, 100]), 100);
     assert.equal(limit(101, [0, 100]), 100);
 });
+
+test.run();
