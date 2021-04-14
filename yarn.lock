@@ -1390,6 +1390,7 @@ __metadata:
     "@types/react": ^17
     "@types/react-router-dom": ^5.1.7
     "@types/react-test-renderer": ^17
+    c8: ^7.7.1
     microbundle: ^0.13.0
     react: ^17.0.2
     react-router-dom: ^5.2.0
@@ -1404,22 +1405,6 @@ __metadata:
 "@pastable/utils@workspace:packages/utils":
   version: 0.0.0-use.local
   resolution: "@pastable/utils@workspace:packages/utils"
-  dependencies:
-    "@swc-node/register": ^1.0.5
-    "@types/node": ^14.14.37
-    c8: ^7.7.1
-    microbundle: ^0.13.0
-    simple-spy: ^3.0.1
-    tsconfig-paths: ^3.9.0
-    typescript: ^4.2.4
-    uvu: ^0.5.1
-    watchlist: ^0.2.3
-  languageName: unknown
-  linkType: soft
-
-"@pastable/yep@workspace:packages/yep":
-  version: 0.0.0-use.local
-  resolution: "@pastable/yep@workspace:packages/yep"
   dependencies:
     "@swc-node/register": ^1.0.5
     "@types/node": ^14.14.37
