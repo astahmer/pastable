@@ -1,5 +1,6 @@
 {
     "name": "@pastable/utils",
+    "description": "A collection of pastable code gathered from past projects.",
     "version": "0.0.1",
     "source": "src/index.ts",
     "main": "dist/index.js",
@@ -23,7 +24,7 @@
         "prebuild": "rimraf dist",
         "prepare": "yarn build",
         "prepublishOnly": "yarn test",
-        "release-publish": "npm release && npm publish && git push --follow-tags origin main"
+        "release-publish": "npm publish && git push --follow-tags origin main"
     },
     "devDependencies": {
         "@swc-node/register": "^1.0.5",
@@ -41,5 +42,22 @@
     },
     "publishConfig": {
         "access": "public"
-    }
+    },
+    "files": [
+        "dist",
+        "src"
+    ],
+    "engines": {
+        "node": "^14.x"
+    },
+    "keywords": [
+        "pastable",
+        "snippets",
+        "reusable",
+        "utils",
+        "tiny",
+        "lodash",
+        "gists",
+        "typescript"
+    ]
 }
