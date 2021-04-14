@@ -1,7 +1,7 @@
 import { ObjectLiteral } from "@pastable/typings";
 
-import { getUnion } from "./array";
 import { isDate, isObject, isObjectLiteral } from "./asserts";
+import { getSetUnion } from "./set";
 
 export function set<Value = any, From = ObjectLiteral>(obj: From, path: string, value: Value) {
     let target = obj as any;
@@ -68,7 +68,7 @@ export function deepMerge<T extends ObjectLiteral[]>(
 
             if (Array.isArray(targetValue) && Array.isArray(sourceValue)) {
                 target[key] = options?.withUniqueArrayValues
-                    ? getUnion(targetValue, sourceValue)
+                    ? Array.from(getSetUnion(new Set(targetValue), new Set(sourceValue)))
                     : targetValue.concat(sourceValue);
             } else if (isObject(targetValue) && isObject(sourceValue)) {
                 target[key] = deepMergeInner(Object.assign({}, targetValue), sourceValue, options);
