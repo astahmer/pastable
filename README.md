@@ -4,7 +4,7 @@ _A collection of pastable code gathered from past projects._
 
 ## Motivations
 
-In every project I've been a part of, I've always ended up copy/pasting some part of a previous project that I had made generic, and I just kept pasting it over and over.
+In every project I've been a part of, I've always ended up copy/pasting some part of a previous project that I had made generic, and moving from one project to another I just kept pasting it over and over.
 
 So here we are, I made yet another multi-purpose-utils package !
 
@@ -20,4 +20,4 @@ Feel free to contribute if you think there is space for one of your previous pro
 
 The repo is a Yarn 2 monorepo for now, that might change since it doesn't support ESM, idk yet.
 
-Packages are built with [https://github.com/developit/microbundle](microbundle) & tested with [https://github.com/lukeed/uvu](uvu), special thanks to their authors for those priceless gems !
+Packages are built with https://github.com/developit/microbundle & tested with https://github.com/lukeed/uvu, special thanks to their authors for those priceless gems !
