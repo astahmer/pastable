@@ -1,3 +1,6 @@
+export type PrimitiveValue = string | number | boolean;
+export type Primitive = PrimitiveValue | Array<PrimitiveValue>;
+
 export type ObjectLiteral<T = any> = Record<string, T>;
 export type JsonObject = Record<string | number, string | number | boolean>;
 

@@ -13,7 +13,9 @@
     "scripts": {
         "test:all": "uvu -r @swc-node/register -r tsconfig-paths/register packages 'tests|.+.test.ts'",
         "tw:all": "yarn test:all && watchlist packages -i dist node_modules -- yarn test:all",
-        "coverage": "c8 --all yarn test:all",
+        "coverage": "c8 --include packages yarn test:all",
+        "coverage:open": "yarn scripts:openCoverageInBrowser",
+        "coverage:view": "c8 --reporter=lcov --include packages yarn test:all && yarn coverage:open",
         "plop": "plop"
     },
     "devDependencies": {
