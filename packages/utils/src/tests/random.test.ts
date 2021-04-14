@@ -3,7 +3,15 @@ import assert from "uvu/assert";
 
 import { group } from "../_uvu";
 import { getIntersection, hasAll, makeArrayOf, uniques } from "../array";
-import { getRandomIntInt, getRandomString, pickMultipleUnique, pickOne, pickOneBut, pickOneInEnum } from "../random";
+import {
+    getRandomIntInt,
+    getRandomString,
+    makeArrayOfRandIn,
+    pickMultipleUnique,
+    pickOne,
+    pickOneBut,
+    pickOneInEnum,
+} from "../random";
 
 test("getRandomString", () => {
     assert.is(getRandomString().length === 10, true);
@@ -87,3 +95,10 @@ test("pickOneInEnum", () => {
     assert.is(hasAll(results, ["third", "five"]), false);
     assert.is(hasAll(results, ["first", "second", "four"]), true);
 });
+
+test("makeArrayOf", () => {
+    const arr = makeArrayOfRandIn(5, 10);
+    assert.is(arr.length >= 5 && arr.length <= 10, true);
+});
+
+test.run();

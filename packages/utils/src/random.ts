@@ -1,4 +1,4 @@
-import { exclude } from "./array";
+import { exclude, makeArrayOf } from "./array";
 
 export const getRandomString = (length = 10) =>
     [...Array(length)].map(() => (~~(Math.random() * 36)).toString(36)).join("");
@@ -39,3 +39,6 @@ export const pickOneBut = <T = any>(arr: T[], excluded: T | T[]) => {
 export function pickOneInEnum<T>(anEnum: T, excluded?: T[keyof T][]): T[keyof T] {
     return pickOneBut(Object.values(anEnum), excluded);
 }
+
+/** Make an array of [min, max] empty elements */
+export const makeArrayOfRandIn = (x: number = 5, y?: number) => makeArrayOf(getRandomIntInt(x, y));

@@ -17,7 +17,6 @@ import {
     isEqualArrays,
     last,
     makeArrayOf,
-    makeArrayOfRandIn,
     pluck,
     sortBy,
     uniques,
@@ -205,11 +204,6 @@ test("flatMap", () => {
 
 test("makeArrayOf", () => {
     assert.equal(makeArrayOf(5), [0, 0, 0, 0, 0]);
-});
-
-test("makeArrayOf", () => {
-    const arr = makeArrayOfRandIn(5, 10);
-    assert.is(arr.length >= 5 && arr.length <= 10, true);
 });
 
 test("chunk", () => {

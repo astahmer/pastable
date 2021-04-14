@@ -1,7 +1,6 @@
 import { PrimitiveValue } from "@pastable/typings";
 
 import { get } from "./nested";
-import { getRandomIntInt } from "./random";
 import { getSetDifference, getSetIntersection, getSetUnion, getSymmetricDifference, isSuperset } from "./set";
 
 /**
@@ -95,9 +94,6 @@ export function flatMap<T, U>(array: T[], callbackfn: (value: T, index: number, 
 
 /** Make an array of {count} empty elements */
 export const makeArrayOf = (count: number) => Array(count).fill(0);
-
-/** Make an array of [min, max] empty elements */
-export const makeArrayOfRandIn = (x: number = 5, y?: number) => makeArrayOf(getRandomIntInt(x, y));
 
 /** Split an array in chunk of given size */
 export const chunk = <T = any>(arr: T[], size: number): T[] =>
