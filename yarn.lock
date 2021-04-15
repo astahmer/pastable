@@ -1385,16 +1385,20 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@pastable/use-query-params@workspace:packages/use-query-params"
   dependencies:
+    "@pastable/utils": "workspace:packages/utils"
     "@swc-node/register": ^1.0.5
     "@testing-library/react-hooks": ^5.1.1
     "@types/react": ^17
     "@types/react-router-dom": ^5.1.7
     "@types/react-test-renderer": ^17
+    "@types/rimraf": ^3
     c8: ^7.7.1
     microbundle: ^0.13.0
     react: ^17.0.2
     react-router-dom: ^5.2.0
     react-test-renderer: ^17.0.2
+    rimraf: ^3.0.2
+    standard-version: ^9.2.0
     tsconfig-paths: ^3.9.0
     typescript: ^4.2.4
     uvu: ^0.5.1

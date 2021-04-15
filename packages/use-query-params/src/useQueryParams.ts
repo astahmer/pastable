@@ -15,7 +15,9 @@ export const useQueryParams = <QP = ObjectLiteral>(props: UseQueryParamsProps<QP
 };
 
 export interface UseQueryParamsProps<QP = ObjectLiteral> extends Pick<UseSetQueryParamsProps, "toPath"> {
+    /** Getter used to parse query params as object from query string */
     getterFormater?: Formater<QP[keyof QP], any, keyof QP>;
+    /** Setter used to serialize query string from query param object */
     setterFormater?: Formater<QP[keyof QP], any, keyof QP>;
 }
 
