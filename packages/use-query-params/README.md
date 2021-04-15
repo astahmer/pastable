@@ -3,6 +3,18 @@
 Hooks to handle query params state with react-router.
 Please check the tests folder if you need more detailed examples.
 
+## Install
+
+```sh
+yarn add @pastable/use-query-params
+```
+
+or
+
+```sh
+npm i @pastable/use-query-params
+```
+
 ## Usage
 
 ### useQueryParams
@@ -42,7 +54,7 @@ const [page, setPage] = useQueryParamsState("page");
 ### useCurrentQueryParams
 
 Get parsed query params, might be formated using given method.
-Is used by `useQueryParams`(#useQueryParams).
+Is used by [`useQueryParams`](#useQueryParams).
 
 ```ts
 const queryParams = useCurrentQueryParams();
@@ -54,7 +66,7 @@ Only mandatory prop is `getterFormater` from [`UseQueryParamsProps`](#UseQueryPa
 ### useSetQueryParams
 
 Update page history by merging current queryParams with values.
-Is used by `useQueryParams`(#useQueryParams).
+Is used by [`useQueryParams`](#useQueryParams).
 
 ```ts
 const setQueryParams = useSetQueryParams();
