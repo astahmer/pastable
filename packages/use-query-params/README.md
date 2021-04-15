@@ -43,6 +43,15 @@ interface UseQueryParamsProps<QP = ObjectLiteral> {
 }
 ```
 
+#### Formater
+
+```ts
+type Formater<Value = any, Return = any, Key extends any = string> = (value: Value, key: Key) => Return;
+```
+
+So basically, you get the raw value as first argument and must return the formated value however you want.
+The key is passed as second argument since you're less likely to need it to format the value.
+
 ### useQueryParamsState
 
 Control a queryParam from its key like a useState. First prop is the query param key, second (optional) key is [`UseQueryParamsProps`](#UseQueryParamsProps).
