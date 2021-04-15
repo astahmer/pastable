@@ -3,6 +3,10 @@
 Hooks to handle query params state with react-router.
 Please check the tests folder if you need more detailed examples.
 
+## Dependencies
+
+-   react / react-router-dom
+
 ## Install
 
 ```sh
