@@ -20,7 +20,7 @@
         "coverage": "c8 --all yarn test",
         "coverage:open": "yarn scripts:openCoverageInBrowser",
         "coverage:view": "c8 --reporter=lcov --all yarn test && yarn coverage:open",
-        "release": "standard-version",
+        "release": "standard-version -t @pastable/use-query-params\\@",
         "prebuild": "rimraf dist",
         "prepare": "yarn build",
         "prepublishOnly": "yarn test",
