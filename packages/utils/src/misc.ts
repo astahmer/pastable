@@ -45,8 +45,8 @@ export function getInheritanceTree(entity: Function): Function[] {
 }
 
 // Shorthand
-export const on = <K extends keyof HTMLElementEventMap>(
-    obj: HTMLElement | Document,
+export const on = <K extends keyof HTMLElementEventMap | keyof WindowEventMap>(
+    obj: HTMLElement | Document | Window,
     type: K,
     listener: AnyFunction,
     options?: boolean | AddEventListenerOptions
@@ -55,8 +55,8 @@ export const on = <K extends keyof HTMLElementEventMap>(
 
     return () => off(obj, type, listener, options);
 };
-export const off = <K extends keyof HTMLElementEventMap>(
-    obj: HTMLElement | Document,
+export const off = <K extends keyof HTMLElementEventMap | keyof WindowEventMap>(
+    obj: HTMLElement | Document | Window,
     type: K,
     listener: AnyFunction,
     options?: boolean | EventListenerOptions
