@@ -40,15 +40,18 @@ export const format = <Return = ObjectLiteral, Method extends Function = Formate
     obj: From,
     method: Method = (getSelf as any) as Method
 ): Return =>
+    Object.keys(obj).reduce((acc, key) => ({ ...acc, [key]: method(obj[key as keyof typeof obj], key) }), {}) as Return;
+
+export const removeUndefineds = <Value = ObjectLiteral>(obj: Value) =>
     Object.keys(obj).reduce(
         (acc, key) => ({
             ...acc,
             ...(isDefined(obj[key as keyof typeof obj]) && {
-                [key]: method(obj[key as keyof typeof obj], key),
+                [key]: obj[key as keyof typeof obj],
             }),
         }),
         {}
-    ) as Return;
+    );
 
 // https://github.com/preactjs/preact-compat/blob/7c5de00e7c85e2ffd011bf3af02899b63f699d3a/src/index.js#L349
 export function hasShallowDiff(a: Record<any, any>, b: Record<any, any>) {

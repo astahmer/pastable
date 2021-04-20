@@ -11,6 +11,7 @@ import {
     pick,
     pickBy,
     pickDefined,
+    removeUndefineds,
 } from "../pick";
 
 test("pick", () => {
@@ -36,28 +37,26 @@ test("omit", () => {
     assert.equal(omit(base, ["aaa", "bbb", "ddd"]), { ccc: "333" });
 });
 
-group("format", (test) => {
-    test("keep only truthy values", () => {
-        const obj = { a: 123, b: "bbb", c: null as any, d: false, e: true, f: () => {}, g: undefined as any };
-        const keys = Object.keys(format(obj));
-        const definedKeys = ["a", "b", "d", "e", "f"];
+test("removeUndefineds - keep only truthy values", () => {
+    const obj = { a: 123, b: "bbb", c: null as any, d: false, e: true, f: () => {}, g: undefined as any };
+    const keys = Object.keys(removeUndefineds(obj));
+    const definedKeys = ["a", "b", "d", "e", "f"];
 
-        assert.equal(definedKeys, keys);
-        assert.equal(definedKeys, Object.keys(format(obj)));
-    });
+    assert.equal(definedKeys, keys);
+    assert.equal(definedKeys, Object.keys(removeUndefineds(obj)));
+});
 
-    test("can use a custom formater", () => {
-        const obj = { a: 111, b: 222, c: "333" };
+test("format - use a custom formater for object values", () => {
+    const obj = { a: 111, b: 222, c: "333" };
 
-        assert.equal(
-            format(obj, (value) => "id-" + value),
-            {
-                a: "id-111",
-                b: "id-222",
-                c: "id-333",
-            }
-        );
-    });
+    assert.equal(
+        format(obj, (value) => "id-" + value),
+        {
+            a: "id-111",
+            b: "id-222",
+            c: "id-333",
+        }
+    );
 });
 
 test("hasShallowDiff", () => {
