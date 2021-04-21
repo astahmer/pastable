@@ -27,15 +27,21 @@
         "release-publish": "npm publish && git push --follow-tags origin main"
     },
     "devDependencies": {
-        "@pastable/utils": "workspace:packages/utils",
+        "@pastable/test-utils": "workspace:packages/test-utils",
         "@swc-node/register": "^1.0.5",
+        "@testing-library/react": "^11.2.6",
         "@testing-library/react-hooks": "^5.1.1",
+        "@types/jsdom": "^16",
         "@types/react": "^17",
-        "@types/react-router-dom": "^5.1.7",
+        "@types/react-dom": "^17",
         "@types/react-test-renderer": "^17",
         "@types/rimraf": "^3",
         "c8": "^7.7.1",
+        "global-jsdom": "^8.0.0",
+        "history": "^5.0.0",
+        "jsdom": "^16.5.3",
         "microbundle": "^0.13.0",
+        "react-dom": "^17.0.2",
         "react-test-renderer": "^17.0.2",
         "rimraf": "^3.0.2",
         "standard-version": "^9.2.0",
@@ -45,8 +51,10 @@
         "watchlist": "^0.2.3"
     },
     "dependencies": {
-        "react": "^17.0.2",
-        "react-router-dom": "^5.2.0"
+        "@pastable/use-event": "workspace:packages/use-event",
+        "@pastable/use-force-update": "workspace:packages/use-force-update",
+        "@pastable/utils": "workspace:packages/utils",
+        "react": "^17.0.2"
     },
     "publishConfig": {
         "access": "public"

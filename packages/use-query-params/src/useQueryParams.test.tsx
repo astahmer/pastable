@@ -1,14 +1,11 @@
 import { act, renderHook, suppressErrorOutput } from "@testing-library/react-hooks";
-import React from "react";
-import { MemoryRouter, Route, RouteComponentProps } from "react-router-dom";
 import { test } from "uvu";
 import assert from "uvu/assert";
 
-import { WithChildren } from "@pastable/typings";
+import { setupJSDOM } from "@pastable/test-utils";
 import { parseStringAsBoolean } from "@pastable/utils";
 
 import {
-    UseQueryParamsState,
     formatObjToQueryString,
     useCurrentQueryParams,
     useQueryParamsMerger,
@@ -21,22 +18,16 @@ test("formatObjToQueryString", () => {
 });
 
 test("useCurrentQueryParams returns parsed query params", () => {
-    const wrapper = ({ children }: WithChildren) => (
-        <MemoryRouter initialEntries={["/test?abc=123&xyz=string"]}>
-            <Route path="*">{children}</Route>
-        </MemoryRouter>
-    );
+    const cleanup = setupJSDOM({ url: "/test?abc=123&xyz=string" });
 
-    const { result } = renderHook(() => useCurrentQueryParams(), { wrapper });
+    const { result } = renderHook(() => useCurrentQueryParams());
     assert.equal(result.current, { abc: "123", xyz: "string" });
+
+    cleanup();
 });
 
 test("useCurrentQueryParams format parsed query params using given method", () => {
-    const wrapper = ({ children }: WithChildren) => (
-        <MemoryRouter initialEntries={["/test?abc=123,456&xyz=string&bool=true&otherBool=0"]}>
-            <Route path="*">{children}</Route>
-        </MemoryRouter>
-    );
+    const cleanup = setupJSDOM({ url: "/test?abc=123,456&xyz=string&bool=true&otherBool=0" });
 
     const formater = (value: any) => {
         if (value.includes(",")) return value.split(",");
@@ -44,44 +35,34 @@ test("useCurrentQueryParams format parsed query params using given method", () =
         return typeof bool === "boolean" ? bool : value;
     };
 
-    const { result } = renderHook(() => useCurrentQueryParams(formater), { wrapper });
+    const { result } = renderHook(() => useCurrentQueryParams(formater));
     assert.equal(result.current, {
         abc: ["123", "456"],
         xyz: "string",
         bool: true,
         otherBool: false,
     });
+
+    cleanup();
 });
 
 test("useQueryParamsMerger merges current parsed query params with values", () => {
-    const wrapper = ({ children }: WithChildren) => (
-        <MemoryRouter initialEntries={["/test?abc=123&xyz=string"]}>
-            <Route path="*">{children}</Route>
-        </MemoryRouter>
-    );
+    const cleanup = setupJSDOM({ url: "/test?abc=123&xyz=string" });
 
-    const { result } = renderHook(() => useQueryParamsMerger(), { wrapper });
+    const { result } = renderHook(() => useQueryParamsMerger());
     const merged = result.current({ newParam: "NEW" });
     assert.equal(merged, formatObjToQueryString({ abc: "123", xyz: "string", newParam: "NEW" }));
+
+    cleanup();
 });
 
 test("useSetQueryParams updates current query params with values", () => {
     const restoreConsole = suppressErrorOutput();
+    const cleanup = setupJSDOM({ url: "/test?abc=123&xyz=string" });
 
-    let testLocation: RouteComponentProps["location"];
-    const wrapper = ({ children }: WithChildren) => (
-        <MemoryRouter initialEntries={["/test?abc=123&xyz=string"]}>
-            <Route
-                path="*"
-                render={({ location }) => {
-                    testLocation = location;
-                    return children;
-                }}
-            />
-        </MemoryRouter>
-    );
+    const testLocation = window.location;
 
-    const { result } = renderHook(() => useSetQueryParams(), { wrapper });
+    const { result } = renderHook(() => useSetQueryParams());
 
     act(() => {
         result.current({ newParam: "NEW" });
@@ -89,37 +70,26 @@ test("useSetQueryParams updates current query params with values", () => {
 
     assert.equal(testLocation.search, "?abc=123&xyz=string&newParam=NEW");
     restoreConsole();
+    cleanup();
 });
 
 test("useQueryParamsState allows controlling a query param state from its key", async () => {
     const restoreConsole = suppressErrorOutput();
+    const cleanup = setupJSDOM({ url: "/test?abc=123&xyz=string" });
 
-    let testLocation: RouteComponentProps["location"];
-    const wrapper = ({ children }: WithChildren) => (
-        <MemoryRouter initialEntries={["/test?abc=123&xyz=string"]}>
-            <Route
-                path="*"
-                render={({ location }) => {
-                    testLocation = location;
-                    return children;
-                }}
-            />
-        </MemoryRouter>
-    );
+    const testLocation = window.location;
 
-    const { result } = renderHook(
-        () =>
-            useQueryParamsState<ExampleQueryParams>("abc", {
-                getterFormater: (value, key) => (key === "abc" ? Number(value) : value),
-            }),
-        { wrapper }
+    const { result, rerender } = renderHook(() =>
+        useQueryParamsState<number>("abc", {
+            getterFormater: (value, key) => (key === "abc" ? Number(value) : value),
+        })
     );
 
     interface ExampleQueryParams {
         abc: number;
         xyz: string;
     }
-    const [state, setState] = result.current as UseQueryParamsState<ExampleQueryParams["abc"]>;
+    const [state, setState] = result.current;
     assert.is(state, 123);
     assert.is(typeof setState === "function", true);
     assert.equal(testLocation.search, "?abc=123&xyz=string");
@@ -127,45 +97,36 @@ test("useQueryParamsState allows controlling a query param state from its key", 
     act(() => {
         setState(456);
     });
+
+    rerender();
 
     const [updatedState] = result.current;
     assert.equal(updatedState, 456);
     assert.equal(testLocation.search, "?abc=456&xyz=string");
 
     restoreConsole();
+    cleanup();
 });
 
 test("useQueryParamsState can pass options", async () => {
     const restoreConsole = suppressErrorOutput();
+    const cleanup = setupJSDOM({ url: "/test?abc=123&xyz=string" });
 
-    let testLocation: RouteComponentProps["location"];
-    const wrapper = ({ children }: WithChildren) => (
-        <MemoryRouter initialEntries={["/test?abc=123&xyz=string"]}>
-            <Route
-                path="*"
-                render={({ location }) => {
-                    testLocation = location;
-                    return children;
-                }}
-            />
-        </MemoryRouter>
-    );
+    const testLocation = window.location;
 
-    const { result } = renderHook(
-        () =>
-            useQueryParamsState<ExampleQueryParams>("abc", {
-                getterFormater: (value, key) => (key === "abc" ? Number(value) : value),
-                setterFormater: (value, key) => (key === "abc" ? Number(value) + 111 : value),
-                toPath: "/newPathname",
-            }),
-        { wrapper }
+    const { result, rerender } = renderHook(() =>
+        useQueryParamsState<number>("abc", {
+            getterFormater: (value, key) => (key === "abc" ? Number(value) : value),
+            setterFormater: (value, key) => (key === "abc" ? Number(value) + 111 : value),
+            toPath: "/newPathname",
+        })
     );
 
     interface ExampleQueryParams {
         abc: number;
         xyz: string;
     }
-    const [state, setState] = result.current as UseQueryParamsState<ExampleQueryParams["abc"]>;
+    const [state, setState] = result.current;
     assert.is(state, 123);
     assert.is(typeof setState === "function", true);
     assert.equal(testLocation.search, "?abc=123&xyz=string");
@@ -173,6 +134,8 @@ test("useQueryParamsState can pass options", async () => {
     act(() => {
         setState(456);
     });
+
+    rerender();
 
     const [updatedState] = result.current;
     assert.equal(updatedState, 567);
@@ -180,6 +143,7 @@ test("useQueryParamsState can pass options", async () => {
     assert.equal(testLocation.pathname, "/newPathname");
 
     restoreConsole();
+    cleanup();
 });
 
 test.run();

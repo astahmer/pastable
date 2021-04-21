@@ -1,11 +1,7 @@
-# use-query-params
+# @pastable/use-query-params
 
 Hooks to handle query params state with react-router.
 Please check the tests folder if you need more detailed examples.
-
-## Dependencies
-
--   react / react-router-dom
 
 ## Install
 
@@ -26,8 +22,12 @@ npm i @pastable/use-query-params
 Allows you to get/set page history with query params, usable like a useState.
 Is used by [`useQueryParamsState`](#useQueryParamsState).
 
+`setQueryParams` merges (using `useQueryParamsMerger`) the current query params with the values you provide it.
+So if you want to remove a query param you must set the key with a undefined or null as value.
+Ex: `setQueryParams({ ding: "aaa", count: undefined })` will remove the `count` query param and add a `ding` query param but leave the rest (if any) untouched.
+
 ```ts
-const [queryParams, setQueryParams] = useQueryParams();
+const [queryParams, setQueryParams, resetQueryParams] = useQueryParams();
 ```
 
 #### UseQueryParamsProps
@@ -44,6 +44,8 @@ interface UseQueryParamsProps<QP = ObjectLiteral> {
      * Either pass a static toPath or a function that will be given basePath as argument
      */
     toPath?: string;
+    /** Set default values for keys not yet in query params */
+    defaultValues?: QP;
 }
 ```
 
@@ -58,7 +60,7 @@ The key is passed as second argument since you're less likely to need it to form
 
 ### useQueryParamsState
 
-Control a queryParam from its key like a useState. First prop is the query param key, second (optional) key is [`UseQueryParamsProps`](#UseQueryParamsProps).
+Control a queryParam from its key like a useState. First prop is the query param key, second (optional) key is almost the same as [`UseQueryParamsProps`](#UseQueryParamsProps) but it trades `defaultValues` for `defaultValue`.
 
 ```ts
 const [page, setPage] = useQueryParamsState("page");
