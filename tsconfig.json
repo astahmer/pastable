@@ -1,26 +1,24 @@
 {
-  "compilerOptions": {
-    "jsx": "react",
-    "target": "ES2020",
-    "module": "ES2020",
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,
-    "noUnusedParameters": true,
-    "noImplicitAny": true,
-    "downlevelIteration": true,
-    "resolveJsonModule": true,
-    "baseUrl": "./packages",
-    "paths": {
-      "@pastable/typings": ["./typings/src"],
-      "@pastable/use-query-params": ["./use-query-params/src"],
-      "@pastable/utils": ["./utils/src"]
+    "compilerOptions": {
+        "jsx": "react",
+        "target": "ES2020",
+        "module": "ES2020",
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+        "skipLibCheck": true,
+        "noUnusedParameters": true,
+        "noImplicitAny": true,
+        "downlevelIteration": true,
+        "resolveJsonModule": true,
+        "baseUrl": "./packages",
+        "paths": {
+            "@pastable/*": ["./*/src"]
+        },
+        "types": ["react", "react-dom", "node"]
     },
-    "types": ["react", "react-dom", "node"]
-  },
-  "exclude": ["**/node_modules/**", "packages/*/dist"]
+    "exclude": ["**/node_modules/**", "packages/*/dist"]
 }
