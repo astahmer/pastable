@@ -19,7 +19,7 @@
         "coverage": "c8 --all yarn test",
         "coverage:open": "node -r @swc-node/register -r tsconfig-paths/register src/openFileInBrowser",
         "coverage:view": "c8 --reporter=lcov --all yarn test",
-        "release": "standard-version -t @pastable/typings\\@",
+        "release": "standard-version -t @pastable/typings\\@ --path .",
         "prebuild": "rimraf dist",
         "prepare": "yarn build",
         "prepublishOnly": "yarn test",
