@@ -2,6 +2,7 @@
     "name": "pastable",
     "workspaces": {
         "packages": [
+            "demo",
             "packages/*"
         ]
     },
