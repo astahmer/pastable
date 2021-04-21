@@ -28,6 +28,9 @@
     },
     "devDependencies": {
         "@pastable/test-utils": "workspace:packages/test-utils",
+        "@pastable/use-event": "workspace:packages/use-event",
+        "@pastable/use-force-update": "workspace:packages/use-force-update",
+        "@pastable/utils": "workspace:packages/utils",
         "@swc-node/register": "^1.0.5",
         "@testing-library/react": "^11.2.6",
         "@testing-library/react-hooks": "^5.1.1",
@@ -51,9 +54,6 @@
         "watchlist": "^0.2.3"
     },
     "dependencies": {
-        "@pastable/use-event": "workspace:packages/use-event",
-        "@pastable/use-force-update": "workspace:packages/use-force-update",
-        "@pastable/utils": "workspace:packages/utils",
         "react": "^17.0.2"
     },
     "publishConfig": {
