@@ -18,7 +18,12 @@
         "tw": "yarn test && watchlist src -- yarn test",
         "coverage": "c8 --all yarn test",
         "coverage:open": "node -r @swc-node/register -r tsconfig-paths/register src/openFileInBrowser",
-        "coverage:view": "c8 --reporter=lcov --all yarn test"
+        "coverage:view": "c8 --reporter=lcov --all yarn test",
+        "release": "standard-version -t @pastable/{{packageName}}\\@",
+        "prebuild": "rimraf dist",
+        "prepare": "yarn build",
+        "prepublishOnly": "yarn test",
+        "release-publish": "npm publish && git push --follow-tags origin main"
     },
     "devDependencies": {
         "@swc-node/register": "^1.0.5",
@@ -30,5 +35,29 @@
         "typescript": "^4.2.4",
         "uvu": "^0.5.1",
         "watchlist": "^0.2.3"
-    }
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "files": [
+        "dist",
+        "src"
+    ],
+    "engines": {
+        "node": "^14.x"
+    },
+    "keywords": [
+        "pastable",
+        "snippets",
+        "reusable",
+        "utils",
+        "tiny",
+        "lodash",
+        "gists",
+        "typescript",
+        "react",
+        "hook",
+        "custom",
+        "state"
+    ]
 }

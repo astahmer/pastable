@@ -18,7 +18,12 @@
         "tw": "yarn test && watchlist src -- yarn test",
         "coverage": "c8 --all yarn test",
         "coverage:open": "node -r @swc-node/register -r tsconfig-paths/register src/openFileInBrowser",
-        "coverage:view": "c8 --reporter=lcov --all yarn test"
+        "coverage:view": "c8 --reporter=lcov --all yarn test",
+        "release": "standard-version -t @pastable/use-force-update\\@",
+        "prebuild": "rimraf dist",
+        "prepare": "yarn build",
+        "prepublishOnly": "yarn test",
+        "release-publish": "npm publish && git push --follow-tags origin main"
     },
     "devDependencies": {
         "@swc-node/register": "^1.0.5",
@@ -26,10 +31,13 @@
         "@types/node": "^14.14.37",
         "@types/react": "^17",
         "@types/react-test-renderer": "^17",
+        "@types/rimraf": "^3",
         "c8": "^7.7.1",
         "microbundle": "^0.13.0",
         "react-test-renderer": "^17.0.2",
+        "rimraf": "^3.0.2",
         "simple-spy": "^3.0.1",
+        "standard-version": "^9.2.0",
         "tsconfig-paths": "^3.9.0",
         "typescript": "^4.2.4",
         "uvu": "^0.5.1",
@@ -37,5 +45,34 @@
     },
     "dependencies": {
         "react": "^17.0.2"
-    }
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "files": [
+        "dist",
+        "src"
+    ],
+    "engines": {
+        "node": "^14.x"
+    },
+    "keywords": [
+        "pastable",
+        "snippets",
+        "reusable",
+        "utils",
+        "tiny",
+        "lodash",
+        "gists",
+        "typescript",
+        "react",
+        "rerender",
+        "render",
+        "force",
+        "update",
+        "query-param",
+        "hook",
+        "custom",
+        "state"
+    ]
 }
