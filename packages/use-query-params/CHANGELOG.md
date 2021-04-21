@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/astahmer/pastable/compare/@pastable/use-query-params@0.0.2...@pastable/use-query-params@0.0.3) (2021-04-21)
+
+
+### Bug Fixes
+
+* **useQueryParams:** import patch ([5b7c239](https://github.com/astahmer/pastable/commit/5b7c2397bac2608ef9702830b9d5e4f26bc7132f))
+
 ### 0.0.2 (2021-04-15)
 
 
