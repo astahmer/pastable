@@ -26,6 +26,7 @@
         "release-publish": "npm publish && git push --follow-tags origin main"
     },
     "devDependencies": {
+        "@pastable/use-is-mounted": "workspace:packages/use-is-mounted",
         "@swc-node/register": "^1.0.5",
         "@testing-library/react": "^11.2.6",
         "@types/node": "^14.14.37",
@@ -44,7 +45,6 @@
         "watchlist": "^0.2.3"
     },
     "dependencies": {
-        "@pastable/use-is-mounted": "workspace:packages/use-is-mounted",
         "react": "^17.0.2"
     },
     "publishConfig": {
