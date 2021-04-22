@@ -26,8 +26,12 @@
         "release-publish": "npm publish && git push --follow-tags origin main"
     },
     "devDependencies": {
+        "@pastable/react": "workspace:packages/react",
+        "@pastable/typings": "workspace:packages/typings",
+        "@pastable/utils": "workspace:packages/utils",
         "@swc-node/register": "^1.0.5",
         "@types/node": "^14.14.37",
+        "@types/react": "^17",
         "@types/rimraf": "^3",
         "c8": "^7.7.1",
         "microbundle": "^0.13.0",
@@ -40,9 +44,7 @@
         "watchlist": "^0.2.3"
     },
     "dependencies": {
-        "@pastable/react": "workspace:packages/react",
-        "@pastable/typings": "workspace:packages/typings",
-        "@pastable/utils": "workspace:packages/utils"
+        "react": "^17.0.2"
     },
     "publishConfig": {
         "access": "public"
