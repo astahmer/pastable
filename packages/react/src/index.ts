@@ -1,3 +1,4 @@
+export * from "@pastable/use-click-away";
 export * from "@pastable/use-event";
 export * from "@pastable/use-force-update";
 export * from "@pastable/use-is-mounted";
