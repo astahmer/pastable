@@ -1,5 +1,4 @@
-import { findByText, fireEvent, getByText, render } from "@testing-library/react";
-import { renderHook } from "@testing-library/react-hooks";
+import { findByText, fireEvent, render } from "@testing-library/react";
 import React, { useRef, useState } from "react";
 import { test } from "uvu";
 import assert from "uvu/assert";
