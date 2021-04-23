@@ -20,8 +20,9 @@ _A collection of pastable code gathered from past projects._
 -   [use-event](./packages/use-event/README.md): Define an event listener on window or a given element declaratively
 -   [use-force-update](./packages/use-force-update/README.md): One liner to force a re-render when needed
 -   [use-is-mounted](./packages/use-is-mounted/README.md): Keep track of a component mounted using ref/state.
--   [use-query-params](./packages/use-click-away/README.md): Allows you to get/set page history with query params, usable like a useState.
--   [use-selection](./packages/use-click-away/README.md): Like if useState had a child with Array. Makes it easy to work with an array of objects with all the actions available.
+-   [use-query-params](./packages/use-query-params/README.md): Allows you to get/set page history with query params, usable like a useState.
+-   [use-selection](./packages/use-selection/README.md): Like if useState had a child with Array. Makes it easy to work with an array of objects with all the actions available.
+-   [use-update-effect](./packages/use-update-effect/README.md): React effect hook that invokes only on update. (taken from chakra-ui)
 
 ## Motivations
 
