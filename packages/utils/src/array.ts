@@ -37,13 +37,19 @@ export const getIntersection = <T = any>(ding: Array<T>, dong: Array<T>) =>
  * @example hasAll([1, 2, 3, 4, 5], [1, 4, 5]) = true
  */
 export const hasAll = <T = any>(inArray: Array<T>, items: Array<T>) => isSuperset(new Set(inArray), new Set(items));
+
+/** Return uniques/de-duplicated values in array */
 export const uniques = <T = any>(ding: Array<T>) => Array.from(new Set(ding));
 
+/** Exclude items in array */
 export const exclude = <T = any>(arr: T[], excluded: T[]) => arr.filter((item) => !excluded.includes(item));
+
+/** Find an item/index from its value using a property path in the array (can be nested using a dot delimited syntax) */
 export const findBy = <T = any, V = any>(arr: T[], path: string, value: V, index?: boolean) =>
     arr[index ? "findIndex" : "find"]((item) => get(item, path) === value);
 
 export type SortDirection = "asc" | "desc";
+/** Sort an array of objects by a common key in given direction (asc|desc, defaults to asc) */
 export function sortBy<T extends ObjectLiteral, K extends keyof T & string>(
     arr: T[],
     key: K,
@@ -89,7 +95,9 @@ export function isEqualArrays(arr1: PrimitiveValue[], arr2: PrimitiveValue[]) {
 export const combineUniqueValues = <T extends PrimitiveValue>(arr1: T[] = [], ...arr2: T[][]) =>
     arr2.reduce((acc, nextArr) => Array.from(new Set(acc.concat(nextArr))), arr1);
 
+/** Get first item of array */
 export const first = <T>(value: T[]) => value[0];
+/** Get last item of array */
 export const last = <T>(value: T[]) => value[value.length - 1];
 
 /** Polyfill Array.flatMap */

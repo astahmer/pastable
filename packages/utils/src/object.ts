@@ -3,9 +3,11 @@ import { CType, NonFunctionKeys, ObjectLiteral } from "@pastable/typings";
 import { get } from "./nested";
 import { format } from "./pick";
 
+/** Map an object to another using given schema, can use a dot delimited path for mapping to nested properties */
 export const mapper = <Schema = ObjectLiteral, Values = ObjectLiteral>(schema: Schema, obj: Values) =>
     format(Object.entries(schema).reduce((acc, [toKey, fromKey]) => ({ ...acc, [toKey]: get(obj, fromKey) }), {}));
 
+/** Reverse an object from its schema */
 export const reverse = <Schema = ObjectLiteral>(schema: Schema) =>
     Object.entries(schema).reduce((acc, [fromKey, toKey]) => ({ ...acc, [toKey]: fromKey }), {});
 

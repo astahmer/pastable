@@ -26,7 +26,9 @@ export function pickMultipleUnique<T = any>(arr: T[], n: number, excluded: T[] =
     return result;
 }
 
+/** Returns a random element in given array */
 export const pickOne = <T = any>(arr: T[]) => arr[Math.floor(Math.random() * arr.length)];
+/** Returns a random element in given array but not of the excluded */
 export const pickOneBut = <T = any>(arr: T[], excluded: T | T[]) => {
     const excludedArr = Array.isArray(excluded) ? excluded : [excluded];
     let current;
@@ -36,6 +38,7 @@ export const pickOneBut = <T = any>(arr: T[], excluded: T | T[]) => {
     return current;
 };
 
+/** Like pickOne but for typescript enums */
 export function pickOneInEnum<T>(anEnum: T, excluded?: T[keyof T][]): T[keyof T] {
     return pickOneBut(Object.values(anEnum), excluded);
 }

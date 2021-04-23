@@ -3,6 +3,7 @@ import { ObjectLiteral } from "@pastable/typings";
 import { isDate, isObject, isObjectLiteral } from "./asserts";
 import { getSetUnion } from "./set";
 
+/** Sets a nested property value from a dot-delimited path */
 export function set<Value = any, From = ObjectLiteral>(obj: From, path: string, value: Value) {
     let target = obj as any;
     const props = path.split(".");
@@ -51,6 +52,7 @@ export function remove<From = ObjectLiteral>(obj: From, path: string) {
 
 type TUnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (k: infer I) => void ? I : never;
 
+/** Deep merge arrays from left into right, can use unique array values for merged properties */
 export function deepMerge<T extends ObjectLiteral[]>(
     inputs: Partial<T>,
     options?: DeepMergeOptions
@@ -94,6 +96,7 @@ export type DeepMergeOptions = { withUniqueArrayValues?: boolean };
 const defaultSortFn = (a: string, b: string) => a.localeCompare(b);
 export type ComparatorFn = (a: string, b: string) => number;
 
+/** Deeply sort an object's properties using given sort function */
 export function deepSort<T>(src: T, comparator: ComparatorFn = defaultSortFn): T {
     function deepSortInner(src: ObjectLiteral, comparator: ComparatorFn): ObjectLiteral | ObjectLiteral[] {
         if (Array.isArray(src)) {

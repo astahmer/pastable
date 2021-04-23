@@ -2,6 +2,27 @@
 
 _A collection of pastable code gathered from past projects._
 
+## Package list
+
+### Bundle packages:
+
+-   [core](./packages/core/README.md): Re-exports all `pastable` packages.
+-   [react](./packages/react/README.md): Re-exports all `pastable` react related packages.
+
+### Common packages :
+
+-   [typings](./packages/typings/README.md): A bunch of utility types. Some are react related.
+-   [utils](./packages/utils/README.md): A collection of very short utils functions for about anything, without depenencies. Something like a (very) tiny (incomplete) nicely typed lodash.
+
+### React packages
+
+-   [use-click-away](./packages/use-click-away/README.md): Detect and invoke a callback when clicking away of target element.
+-   [use-event](./packages/use-event/README.md): Define an event listener on window or a given element declaratively
+-   [use-force-update](./packages/use-force-update/README.md): One liner to force a re-render when needed
+-   [use-is-mounted](./packages/use-is-mounted/README.md): Keep track of a component mounted using ref/state.
+-   [use-query-params](./packages/use-click-away/README.md): Allows you to get/set page history with query params, usable like a useState.
+-   [use-selection](./packages/use-click-away/README.md): Like if useState had a child with Array. Makes it easy to work with an array of objects with all the actions available.
+
 ## Motivations
 
 In every project I've been a part of, I've always ended up copy/pasting some part of a previous project that I had made generic, and moving from one project to another I just kept pasting it over and over.

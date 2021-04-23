@@ -2,6 +2,7 @@ import { AnyFunction } from "@pastable/typings";
 
 export const getEnv = () => process.env.NODE_ENV;
 
+/** Returns a callback that will call all functions passed with the same arguments */
 export const callAll = <Args = any, Fns extends Function = AnyFunction<Args>>(...fns: Fns[]) => (...args: Args[]) =>
     fns.forEach((fn) => fn?.(...args));
 

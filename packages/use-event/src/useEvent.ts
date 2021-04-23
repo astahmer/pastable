@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import { useIsMountedRef } from "@pastable/use-is-mounted";
 import { on } from "@pastable/utils";
 
+/** Define an event listener on window or a given element declaratively */
 export function useEvent<Data = unknown, Event extends keyof HTMLElementEventMap = any>(
     event: Event,
     callback: (data: Data) => void,

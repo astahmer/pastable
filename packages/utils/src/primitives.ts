@@ -1,6 +1,7 @@
 const truthyRegex = /^(true|1)$/i;
 const falsyRegex = /^(false|0)$/i;
 
+/** Parse 'true' and 1 as true, 'false' and 0 as false */
 export function parseStringAsBoolean(str: string) {
     if (truthyRegex.test(str)) {
         return true;
@@ -20,7 +21,6 @@ export const camelToKebab = (str: string) =>
 
 export const uncapitalize = (str: string) => str.charAt(0).toLowerCase() + str.slice(1);
 export const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
-
 
 /** Limit a number between a [min,max] */
 export const limit = (nb: number, [min, max]: [number, number]) => Math.min(Math.max(nb, min), max);
