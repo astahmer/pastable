@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/astahmer/pastable/compare/@pastable/react@0.0.5...@pastable/react@0.0.6) (2021-04-23)
+
+
+### Features
+
+* **react:** add useClickAway ([3a4c63c](https://github.com/astahmer/pastable/commit/3a4c63cb48a0a734f0b0797d02014674e8728eb4))
+
 ### [0.0.5](https://github.com/astahmer/pastable/compare/@pastable/react@0.0.4...@pastable/react@0.0.5) (2021-04-23)
 
 
