@@ -1613,6 +1613,50 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@pastable/use-selection@workspace:packages/use-selection":
+  version: 0.0.0-use.local
+  resolution: "@pastable/use-selection@workspace:packages/use-selection"
+  dependencies:
+    "@pastable/use-is-mounted": "workspace:packages/use-is-mounted"
+    "@pastable/use-update-effect": "workspace:packages/use-update-effect"
+    "@swc-node/register": ^1.0.5
+    "@testing-library/react-hooks": ^5.1.2
+    "@types/node": ^14.14.37
+    "@types/react": ^17
+    "@types/react-dom": ^17
+    "@types/react-test-renderer": ^17
+    c8: ^7.7.1
+    microbundle: ^0.13.0
+    react: ^17.0.2
+    react-dom: ^17.0.2
+    react-test-renderer: ^17.0.2
+    simple-spy: ^3.0.1
+    tsconfig-paths: ^3.9.0
+    typescript: ^4.2.4
+    uvu: ^0.5.1
+    watchlist: ^0.2.3
+  languageName: unknown
+  linkType: soft
+
+"@pastable/use-update-effect@workspace:packages/use-update-effect":
+  version: 0.0.0-use.local
+  resolution: "@pastable/use-update-effect@workspace:packages/use-update-effect"
+  dependencies:
+    "@pastable/use-is-mounted": "workspace:packages/use-is-mounted"
+    "@swc-node/register": ^1.0.5
+    "@types/node": ^14.14.37
+    "@types/react": ^17
+    c8: ^7.7.1
+    microbundle: ^0.13.0
+    react: ^17.0.2
+    simple-spy: ^3.0.1
+    tsconfig-paths: ^3.9.0
+    typescript: ^4.2.4
+    uvu: ^0.5.1
+    watchlist: ^0.2.3
+  languageName: unknown
+  linkType: soft
+
 "@pastable/utils@workspace:packages/utils":
   version: 0.0.0-use.local
   resolution: "@pastable/utils@workspace:packages/utils"
