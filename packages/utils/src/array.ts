@@ -1,4 +1,4 @@
-import { PrimitiveValue } from "@pastable/typings";
+import { ObjectLiteral, PrimitiveValue } from "@pastable/typings";
 
 import { get } from "./nested";
 import { getSetDifference, getSetIntersection, getSetUnion, getSymmetricDifference, isSuperset } from "./set";
@@ -44,10 +44,15 @@ export const findBy = <T = any, V = any>(arr: T[], path: string, value: V, index
     arr[index ? "findIndex" : "find"]((item) => get(item, path) === value);
 
 export type SortDirection = "asc" | "desc";
-export function sortBy<T extends object, K extends keyof T & string>(arr: T[], key: K, dir: SortDirection = "asc") {
+export function sortBy<T extends ObjectLiteral, K extends keyof T & string>(
+    arr: T[],
+    key: K,
+    dir: SortDirection = "asc"
+) {
     let aProp;
     let bProp;
-    arr.sort(function (ding, dong) {
+    const clone = [...arr];
+    clone.sort(function (ding, dong) {
         aProp = get(ding, key) || "";
         aProp = aProp.toLowerCase ? aProp.toLowerCase() : aProp;
         bProp = get(dong, key) || "";
@@ -66,7 +71,7 @@ export function sortBy<T extends object, K extends keyof T & string>(arr: T[], k
         }
     });
 
-    return arr;
+    return clone;
 }
 
 /** Compare arrays & return true if all members are included (order doesn't matter) */
