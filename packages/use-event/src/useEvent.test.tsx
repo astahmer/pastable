@@ -97,27 +97,4 @@ test("useEvent can be used on a custom element", async () => {
     cleanup();
 });
 
-// let count = 0;
-// const callback = () => count++;
-// const element = <span>ding</span>;
-// const { result } = renderHook(() => useEvent("click", callback, element));
-// console.log(result.current);
-
-// assert.equal(result.current.current, true);
-// unmount();
-// assert.equal(result.current.current, false);
-// cleanup();
-
-// test("useEvent", () => {
-//     let isMountedStates: boolean[] = [];
-//     const { result } = renderHook(() => {
-//         const isMounted = useEvent();
-//         isMountedStates.push(isMounted);
-//         return isMounted;
-//     });
-
-//     assert.equal(isMountedStates, [false, true]);
-//     assert.equal(result.current, true);
-// });
-
 test.run();
