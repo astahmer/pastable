@@ -1511,6 +1511,24 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@pastable/use-click-away@workspace:packages/use-click-away":
+  version: 0.0.0-use.local
+  resolution: "@pastable/use-click-away@workspace:packages/use-click-away"
+  dependencies:
+    "@pastable/test-utils": "workspace:packages/test-utils"
+    "@swc-node/register": ^1.0.5
+    "@testing-library/react": ^11.2.6
+    "@types/node": ^14.14.37
+    c8: ^7.7.1
+    microbundle: ^0.13.0
+    simple-spy: ^3.0.1
+    tsconfig-paths: ^3.9.0
+    typescript: ^4.2.4
+    uvu: ^0.5.1
+    watchlist: ^0.2.3
+  languageName: unknown
+  linkType: soft
+
 "@pastable/use-event@workspace:packages/use-event":
   version: 0.0.0-use.local
   resolution: "@pastable/use-event@workspace:packages/use-event"
