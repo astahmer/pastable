@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/astahmer/pastable/compare/@pastable/utils@0.0.3...@pastable/utils@0.0.4) (2021-04-23)
+
+
+### Bug Fixes
+
+* **utils:** sortBy clone array to avoid mutating it ([e374391](https://github.com/astahmer/pastable/commit/e3743915fd8d7eda8dd62d0cca4538166550bbfe))
+
 ### [0.0.3](https://github.com/astahmer/pastable/compare/@pastable/utils@0.0.2...@pastable/utils@0.0.3) (2021-04-21)
 
 ### 0.0.2 (2021-04-15)
