@@ -6,6 +6,7 @@ import {
     camelToKebab,
     camelToSnake,
     capitalize,
+    kebabToCamel,
     limit,
     parseStringAsBoolean,
     snakeToCamel,
@@ -30,6 +31,11 @@ group("parseStringAsBoolean", (test) => {
 test("snakeToCamel", () => {
     const base = "aaa_bbb_ccc-dddEeeFFF";
     assert.equal(snakeToCamel(base), "aaaBbbCcc-dddEeeFFF");
+});
+
+test("kebabToCamel", () => {
+    const base = "aaa-bbb-ccc_dddEeeFFF";
+    assert.equal(kebabToCamel(base), "aaaBbbCcc_dddEeeFFF");
 });
 
 test("camelToSnake", () => {

@@ -13,6 +13,7 @@ export function parseStringAsBoolean(str: string) {
 }
 
 export const snakeToCamel = (str: string) => str.replace(/(_\w)/g, (group) => group[1].toUpperCase());
+export const kebabToCamel = (str: string) => str.replace(/(-\w)/g, (group) => group[1].toUpperCase());
 export const camelToSnake = (str: string) =>
     str.replace(/[\w]([A-Z])/g, (group) => group[0] + "_" + group[1]).toLowerCase();
 

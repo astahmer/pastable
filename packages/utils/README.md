@@ -88,6 +88,7 @@ A collection of very short utils functions for about anything, without depenenci
 
 -   `parseStringAsBoolean`: Parse 'true' and 1 as true, 'false' and 0 as false
 -   `snakeToCamel`
+-   `kebabToCamel`
 -   `camelToSnake`
 -   `camelToKebab`
 -   `uncapitalize`
