@@ -30,6 +30,7 @@
         "@swc-node/register": "^1.0.5",
         "@testing-library/react": "^11.2.6",
         "@types/node": "^14.14.37",
+        "@types/react": "^17",
         "@types/rimraf": "^3",
         "c8": "^7.7.1",
         "microbundle": "^0.13.0",
@@ -64,5 +65,8 @@
         "hook",
         "custom",
         "state"
-    ]
+    ],
+    "dependencies": {
+        "react": "^17.0.2"
+    }
 }
