@@ -2,6 +2,11 @@
 
 _A collection of pastable code gathered from past projects._
 
+## TL;DR
+
+`npm i @pastable/utils @pastable/react` (or just `npm i @pastable/core` which is almost the same)
+And you get access to lots of cool things
+
 ## Package list
 
 ### Bundle packages:
@@ -12,7 +17,7 @@ _A collection of pastable code gathered from past projects._
 ### Common packages :
 
 -   [typings](./packages/typings/README.md): A bunch of utility types. Some are react related.
--   [utils](./packages/utils/README.md): A collection of very short utils functions for about anything, without depenencies. Something like a (very) tiny (incomplete) nicely typed lodash.
+-   [utils](./packages/utils/README.md): A collection of very short utils functions for about anything, without dependencies. Something like a (very) tiny (incomplete) nicely typed lodash. Contains utils for : `array`, `asserts`, `getters`, `misc`, `nested`, `object`, `pick`, `primitives`, `random`, `set`
 
 ### React packages
 
