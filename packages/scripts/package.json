@@ -19,7 +19,8 @@
         "scripts:openFileInBrowser": "node -r @swc-node/register -r tsconfig-paths/register src/openFileInBrowser --",
         "scripts:openCoverageInBrowser": "node -r @swc-node/register -r tsconfig-paths/register src/openCoverageInBrowser --",
         "coverage:open": "yarn scripts:openCoverageInBrowser",
-        "coverage:view": "c8 --reporter=lcov --all yarn test"
+        "coverage:view": "c8 --reporter=lcov --all yarn test",
+        "scripts:buildAll": "node -r @swc-node/register -r tsconfig-paths/register src/buildAll"
     },
     "devDependencies": {
         "@swc-node/register": "^1.0.5",

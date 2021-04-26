@@ -12,6 +12,7 @@
     },
     "author": "Alexandre Stahmer <alexandre.stahmer@gmail.com>",
     "scripts": {
+        "build:all": "yarn scripts:buildAll",
         "test:all": "uvu -r @swc-node/register -r tsconfig-paths/register packages 'tests|.+.test.ts'",
         "tw:all": "yarn test:all && watchlist packages -i dist node_modules -- yarn test:all",
         "coverage": "c8 --include packages yarn test:all",
