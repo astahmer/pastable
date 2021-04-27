@@ -1,5 +1,4 @@
 import { act, renderHook } from "@testing-library/react-hooks";
-import React from "react";
 import { test } from "uvu";
 import assert from "uvu/assert";
 
@@ -127,11 +126,12 @@ test("can find an item in selection by id", async () => {
     assert.equal(actions.findById(initial[2].id), initial[2]);
 });
 
-test("can find an item in selection by index", async () => {
+test("can find an item & return its index", async () => {
     const { result } = renderHook(() => useSelection({ getId, initial }));
     const [current, actions] = result.current;
 
-    assert.equal(actions.findIndex(initial[2]), 2);
+    assert.equal(actions.find(initial[2], true), 2);
+    assert.equal(actions.findById(initial[2].id, true), 2);
 });
 
 test("can check that selection has item", async () => {

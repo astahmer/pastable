@@ -47,7 +47,7 @@ export function useSelection<T = any, Id = string | number>({
         (indexOrItem: number | T) => {
             let index = indexOrItem;
             if (typeof indexOrItem !== "number") {
-                index = findIndex(indexOrItem);
+                index = find(indexOrItem, true);
             }
 
             const clone = [...selected];
@@ -58,23 +58,27 @@ export function useSelection<T = any, Id = string | number>({
     );
     const clear = useCallback(() => set([]), []);
 
-    const find = useCallback((item: T) => selected.find((selectedItem) => getId(selectedItem) === getId(item)), [
-        selected,
-    ]);
-    const findById = useCallback(
-        (id: ReturnType<UseSelectionProps<T, Id>["getId"]>) =>
-            selected.find((selectedItem) => getId(selectedItem) === id),
+    const find = useCallback(
+        <ReturnIndex extends boolean = false>(
+            item: T,
+            returnIndex?: ReturnIndex
+        ): ReturnIndex extends true ? number : T =>
+            selected[returnIndex ? "findIndex" : "find"]((selectedItem) => getId(selectedItem) === getId(item)) as any,
         [selected]
     );
-    const findIndex = useCallback(
-        (item: T) => selected.findIndex((selectedItem) => getId(selectedItem) === getId(item)),
+    const findById = useCallback(
+        <ReturnIndex extends boolean = false>(
+            id: ReturnType<UseSelectionProps<T, Id>["getId"]>,
+            returnIndex?: ReturnIndex
+        ): ReturnIndex extends true ? number : T =>
+            selected[returnIndex ? "findIndex" : "find"]((selectedItem) => getId(selectedItem) === id) as any,
         [selected]
     );
 
     const has = useCallback((item: T) => find(item) !== undefined, [selected]);
     const update = (item: T) => {
         set((items) => {
-            const index = findIndex(item);
+            const index = find(item, true);
             const clone = [...items];
             clone[index] = item;
             return clone;
@@ -121,7 +125,7 @@ export function useSelection<T = any, Id = string | number>({
 
     return [
         sorted,
-        { get, set, clear, reset, add, remove, find, findById, findIndex, has, toggle, update, upsert, sortBy: sortBy },
+        { get, set, clear, reset, add, remove, find, findById, has, toggle, update, upsert, sortBy: sortBy },
     ];
 }
 
@@ -151,9 +155,14 @@ export type SelectionActions<T = any, Id = any> = {
     reset: () => void;
     add: (item: T | T[]) => void;
     remove: (indexOrItem: number | T) => void;
-    find: (item: T) => T;
-    findById: (id: ReturnType<UseSelectionProps<T, Id>["getId"]>) => T;
-    findIndex: (item: T) => number;
+    find: <ReturnIndex extends boolean = false>(
+        item: T,
+        returnIndex?: ReturnIndex
+    ) => ReturnIndex extends true ? number : T;
+    findById: <ReturnIndex extends boolean = false>(
+        id: ReturnType<UseSelectionProps<T, Id>["getId"]>,
+        returnIndex?: ReturnIndex
+    ) => ReturnIndex extends true ? number : T;
     has: (item: T) => boolean;
     toggle: (item: T) => boolean;
     update: (item: T) => void;
