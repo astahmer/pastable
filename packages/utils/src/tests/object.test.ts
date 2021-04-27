@@ -1,7 +1,7 @@
 import { test } from "uvu";
 import assert from "uvu/assert";
 
-import { fromEntries, makeInstance, mapper, reverse, sortObjectKeys } from "../object";
+import { fromEntries, hash, makeInstance, mapper, reverse, sortObjectKeys } from "../object";
 
 test("mapper", () => {
     const schema = {
@@ -72,6 +72,22 @@ test("sortObjectKeys", () => {
     const expected = { aaa: 222, ccc: 444, ddd: 333, eee: 555, zzz: 111 };
 
     assert.equal(sortObjectKeys(base), expected);
+});
+
+test("hash returns the value into a stable hash", () => {
+    const sorted = { aaa: 222, ccc: 444, ddd: 333, eee: 555, zzz: 111 };
+    const unsorted = { zzz: 111, aaa: 222, ddd: 333, ccc: 444, eee: 555 };
+
+    assert.equal(hash(sorted), '{"aaa":222,"ccc":444,"ddd":333,"eee":555,"zzz":111}');
+    assert.equal(hash(sorted), hash(unsorted));
+
+    const primitivesArray = ["a", "b", "c"];
+    const objArray = [sorted, unsorted];
+    const withNested = { zzz: 999, obj: { yyy: 888, nested: { primitivesArray, objArray } } };
+    assert.equal(
+        hash(withNested),
+        `{"obj":{"nested":{"objArray":[{"aaa":222,"ccc":444,"ddd":333,"eee":555,"zzz":111},{"aaa":222,"ccc":444,"ddd":333,"eee":555,"zzz":111}],"primitivesArray":["a","b","c"]},"yyy":888},"zzz":999}`
+    );
 });
 
 test.run();

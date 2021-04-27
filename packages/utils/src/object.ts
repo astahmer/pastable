@@ -1,5 +1,6 @@
 import { CType, NonFunctionKeys, ObjectLiteral } from "@pastable/typings";
 
+import { isObjectLiteral } from "./asserts";
 import { get } from "./nested";
 import { format } from "./pick";
 
@@ -37,3 +38,11 @@ export const sortObjectKeys = (obj: ObjectLiteral) =>
     Object.keys(obj)
         .sort()
         .reduce((acc, key) => ((acc[key] = obj[key]), acc), {} as ObjectLiteral);
+
+/**
+ * Hashes the value into a stable hash.
+ * @see Adapted from https://github.com/tannerlinsley/react-query/blob/e42cbc32dfcd9add24cadd06135e42af1dbbc8ad/src/core/utils.ts
+ */
+export function hash<T extends ObjectLiteral = ObjectLiteral>(value: T): string {
+    return JSON.stringify(value, (_, val) => (isObjectLiteral(val) ? sortObjectKeys(val) : val));
+}
