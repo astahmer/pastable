@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/astahmer/pastable/compare/@pastable/utils@0.0.5...@pastable/utils@0.0.6) (2021-04-27)
+
+
+### Features
+
+* **utils:** add object/hash fn ([78b73fc](https://github.com/astahmer/pastable/commit/78b73fc88a16345daad17346a4f96dc5fe71fcef))
+
 ### [0.0.5](https://github.com/astahmer/pastable/compare/@pastable/utils@0.0.4...@pastable/utils@0.0.5) (2021-04-26)
 
 
