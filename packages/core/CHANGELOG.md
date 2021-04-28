@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/astahmer/pastable/compare/@pastable/core@0.0.6...@pastable/core@0.0.7) (2021-04-28)
+
+
+### Features
+
+* **utils:** uniquesByProp/combineUniqueValuesByProps ([30da6be](https://github.com/astahmer/pastable/commit/30da6be2b51a8880577ba5fa92f268c7a50e59ed))
+
 ### [0.0.6](https://github.com/astahmer/pastable/compare/@pastable/core@0.0.5...@pastable/core@0.0.6) (2021-04-27)
 
 
