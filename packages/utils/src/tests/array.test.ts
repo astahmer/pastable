@@ -5,6 +5,7 @@ import { group } from "../_uvu";
 import {
     chunk,
     combineUniqueValues,
+    combineUniqueValuesByProps,
     exclude,
     findBy,
     first,
@@ -20,7 +21,9 @@ import {
     pluck,
     sortBy,
     uniques,
+    uniquesByProp,
 } from "../array";
+import { get } from "../nested";
 
 test("getDiff should return the difference between 2 arrays", () => {
     const ding = [1, 2, 3, 4, 5];
@@ -66,6 +69,27 @@ test("uniques", () => {
     const ding = [1, 2, 3, 4, 5];
     const dong = [6, 7, 1, 2, 9];
     assert.equal(uniques(ding.concat(dong)), [1, 2, 3, 4, 5, 6, 7, 9]);
+});
+
+test("uniquesByProp", () => {
+    const base = [
+        { id: 1, aaa: 111, bbb: { nested: "aaa" } },
+        { id: 2, aaa: 222, bbb: { nested: "bbb" } },
+        { id: 3, aaa: 333, bbb: { nested: "ccc" } },
+        { id: 4, aaa: 444, bbb: { nested: "ddd" } },
+    ];
+
+    // on id
+    const firstItemVariant = { ...base[0], id: 1, aaa: 0 };
+    assert.equal(uniquesByProp(base.concat(firstItemVariant), "id"), base);
+    assert.equal(uniquesByProp([firstItemVariant].concat(base), "id"), [firstItemVariant].concat(base.slice(1)));
+    assert.equal(uniquesByProp(base.concat(base), "id"), base);
+
+    // on bbb.nested
+    const secondItemVariant = { ...base[1], bbb: { nested: "eee" } };
+    const secondItemVariantWithDiffId = { ...base[1], id: 999 };
+    assert.equal(uniquesByProp(base.concat(secondItemVariant), "bbb.nested"), base.concat(secondItemVariant));
+    assert.equal(uniquesByProp(base.concat(secondItemVariantWithDiffId), "bbb.nested"), base);
 });
 
 test("exclude should return base array without excluded items", () => {
@@ -175,6 +199,29 @@ test("combineUniqueValues should merge every passed array without duplicates", (
     assert.equal(combineUniqueValues(ding, ding), ding);
     assert.equal(combineUniqueValues(ding, dong), [1, 2, 3, 4, 5, 6, 7, 9]);
     assert.equal(combineUniqueValues(ding, dong, dang), [1, 2, 3, 4, 5, 6, 7, 9, 11, 19, 24]);
+});
+
+test("combineUniqueValuesByProps should merge every passed array of objects without duplicates using the given property as identifier", () => {
+    const ding = [
+        { id: 1, aaa: 111, bbb: { nested: "aaa" } },
+        { id: 2, aaa: 222, bbb: { nested: "bbb" } },
+        { id: 3, aaa: 333, bbb: { nested: "ccc" } },
+        { id: 4, aaa: 444, bbb: { nested: "ddd" } },
+    ];
+    const dong = [
+        { id: 9, aaa: 111, bbb: { nested: "zzz" } },
+        { id: 2, aaa: 222, bbb: { nested: "yyy" } },
+        { id: 3, aaa: 333, bbb: { nested: "ccc" } },
+        { id: 8, aaa: 444, bbb: { nested: "ddd" } },
+    ];
+
+    // on id
+    assert.equal(combineUniqueValuesByProps([ding, ding], "id"), ding);
+    assert.equal(combineUniqueValuesByProps([ding, dong], "id"), ding.concat(dong[0], dong.slice(-1)));
+
+    // on bbb.nested
+    assert.equal(combineUniqueValuesByProps([ding, ding], "bbb.nested"), ding);
+    assert.equal(combineUniqueValuesByProps([ding, dong], "bbb.nested"), ding.concat(dong[0], dong[1]));
 });
 
 test("first", () => {

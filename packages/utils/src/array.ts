@@ -41,6 +41,13 @@ export const hasAll = <T = any>(inArray: Array<T>, items: Array<T>) => isSuperse
 /** Return uniques/de-duplicated values in array */
 export const uniques = <T = any>(ding: Array<T>) => Array.from(new Set(ding));
 
+/** Return uniques/de-duplicated values in array of objects using the given propPath as unique identifier */
+export const uniquesByProp = <T = any>(arr: T[], propPath: string): T[] =>
+    arr.reduce(
+        (acc, item) => (acc.find((current) => get(current, propPath) === get(item, propPath)) ? acc : acc.concat(item)),
+        []
+    );
+
 /** Exclude items in array */
 export const exclude = <T = any>(arr: T[], excluded: T[]) => arr.filter((item) => !excluded.includes(item));
 
@@ -94,6 +101,10 @@ export function isEqualArrays(arr1: PrimitiveValue[], arr2: PrimitiveValue[]) {
 /** Combine one or more array into the first one while pushing only distinct unique values */
 export const combineUniqueValues = <T extends PrimitiveValue>(arr1: T[] = [], ...arr2: T[][]) =>
     arr2.reduce((acc, nextArr) => Array.from(new Set(acc.concat(nextArr))), arr1);
+
+/** Combine one or more array of objects into the first one while pushing only distinct unique objects using the given propPath as unique identifier */
+export const combineUniqueValuesByProps = <T extends ObjectLiteral = any>(arrays: Array<T[]>, propPath: string) =>
+    arrays.reduce((acc, nextArr) => uniquesByProp(acc.concat(nextArr), propPath), []);
 
 /** Get first item of array */
 export const first = <T>(value: T[]) => value[0];
