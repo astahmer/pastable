@@ -13,7 +13,7 @@
     },
     "author": "Alexandre Stahmer <alexandre.stahmer@gmail.com>",
     "scripts": {
-        "build": "microbundle build --tsconfig tsconfig.build.json",
+        "build": "microbundle build --tsconfig tsconfig.build.json --external react",
         "dev": "microbundle watch",
         "test": "uvu -r @swc-node/register -r tsconfig-paths/register src",
         "tw": "yarn test && watchlist src -- yarn test",
@@ -27,9 +27,6 @@
         "release-publish": "npm publish && git push --follow-tags origin main"
     },
     "devDependencies": {
-        "@pastable/react": "workspace:packages/react",
-        "@pastable/typings": "workspace:packages/typings",
-        "@pastable/utils": "workspace:packages/utils",
         "@swc-node/register": "^1.0.5",
         "@types/node": "^14.14.37",
         "@types/react": "^17",
@@ -45,6 +42,9 @@
         "watchlist": "^0.2.3"
     },
     "dependencies": {
+        "@pastable/react": "workspace:packages/react",
+        "@pastable/typings": "workspace:packages/typings",
+        "@pastable/utils": "workspace:packages/utils",
         "react": "^17.0.2"
     },
     "publishConfig": {
