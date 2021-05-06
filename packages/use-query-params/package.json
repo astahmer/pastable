@@ -1,7 +1,7 @@
 {
     "name": "@pastable/use-query-params",
     "description": "A collection of pastable code gathered from past projects.",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "source": "src/index.ts",
     "main": "dist/index.js",
     "exports": "./dist/index.modern.js",
