@@ -1435,6 +1435,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@pastable/react@workspace:packages/react"
   dependencies:
+    "@pastable/use-click-away": "workspace:packages/use-click-away"
     "@pastable/use-event": "workspace:packages/use-event"
     "@pastable/use-force-update": "workspace:packages/use-force-update"
     "@pastable/use-is-mounted": "workspace:packages/use-is-mounted"
