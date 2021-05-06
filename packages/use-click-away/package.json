@@ -5,14 +5,15 @@
     "main": "dist/index.js",
     "exports": "./dist/index.modern.js",
     "module": "dist/index.module.js",
-    "unpkg": "dist/index.umd.js",
+    "types": "dist/index.d.ts",
+    "typings": "dist/index.d.ts",
     "repository": {
         "type": "git",
         "url": "https://github.com/astahmer/pastable.git"
     },
     "author": "Alexandre Stahmer <alexandre.stahmer@gmail.com>",
     "scripts": {
-        "build": "microbundle",
+        "build": "microbundle build --tsconfig tsconfig.build.json",
         "dev": "microbundle watch",
         "test": "uvu -r @swc-node/register -r tsconfig-paths/register src",
         "tw": "yarn test && watchlist src -- yarn test",
