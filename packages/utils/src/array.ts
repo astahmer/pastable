@@ -120,7 +120,7 @@ export function flatMap<T, U>(array: T[], callbackfn: (value: T, index: number, 
 export const makeArrayOf = (count: number) => Array(count).fill(0);
 
 /** Split an array in chunk of given size */
-export const chunk = <T = any>(arr: T[], size: number): T[] =>
+export const chunk = <T = any>(arr: T[], size: number): Array<T[]> =>
     arr.reduce((chunks, el, i) => (i % size ? chunks[chunks.length - 1].push(el) : chunks.push([el])) && chunks, []);
 
 /** Array of picked property */
