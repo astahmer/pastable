@@ -1,6 +1,6 @@
 {
     "name": "@pastable/use-is-mounted",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "source": "src/index.ts",
     "main": "dist/index.js",
     "exports": "./dist/index.modern.js",
