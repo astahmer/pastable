@@ -20,7 +20,7 @@ function patchHistoryMethod(method: "pushState" | "replaceState") {
 
 if (isBrowser()) {
     // if (isBrowser() && (import.meta as any).hot.data?.patchState !== "patched") {
-    console.log("patching");
+    // console.log("patching");
     patchHistoryMethod("pushState");
     patchHistoryMethod("replaceState");
     // (import.meta as any).hot.data.patchState = "patched";
