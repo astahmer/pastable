@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.12](https://github.com/astahmer/pastable/compare/@pastable/core@0.0.11...@pastable/core@0.0.12) (2021-05-07)
+
 ### [0.0.11](https://github.com/astahmer/pastable/compare/@pastable/core@0.0.10...@pastable/core@0.0.11) (2021-05-06)
 
 ### [0.0.10](https://github.com/astahmer/pastable/compare/@pastable/core@0.0.9...@pastable/core@0.0.10) (2021-05-06)
