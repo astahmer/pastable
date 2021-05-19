@@ -44,6 +44,7 @@ And you get access to lots of cool things.
 
 ### ⚛️ React packages
 
+-   [atom-with-toggle](./packages/atom-with-toggle/README.md): [Jotai](https://github.com/pmndrs/jotai) specific. Like if useToggle & useAtom & useLocalStorage had a child.
 -   [use-click-away](./packages/use-click-away/README.md): Detect and invoke a callback when clicking away of target element.
 -   [use-event](./packages/use-event/README.md): Define an event listener on window or a given element declaratively
 -   [use-force-update](./packages/use-force-update/README.md): One liner to force a re-render when needed
