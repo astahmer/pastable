@@ -24,7 +24,7 @@
     "devDependencies": {
         "@swc-node/register": "^1.0.5",
         "@types/prettier": "^2",
-        "@types/react": "^17",
+        "@types/react": "^17.0.6",
         "@types/react-dom": "^17",
         "c8": "^7.7.1",
         "plop": "^2.7.4",
