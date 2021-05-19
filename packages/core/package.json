@@ -1,6 +1,6 @@
 {
     "name": "@pastable/core",
-    "version": "0.0.12",
+    "version": "0.0.13",
     "source": "src/index.ts",
     "main": "dist/index.js",
     "exports": "./dist/index.modern.js",

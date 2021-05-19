@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.13](https://github.com/astahmer/pastable/compare/@pastable/core@0.0.12...@pastable/core@0.0.13) (2021-05-19)
+
+
+### Features
+
+* **atomWithToggle:** init pkg ([fed495a](https://github.com/astahmer/pastable/commit/fed495a703ca775bfeefd63d1c4363658e7f1d3f))
+* **core:** add jotai ([bf8d785](https://github.com/astahmer/pastable/commit/bf8d785f6a368927777e5c8b595fdadc354c6095))
+* **react:** add @pastable/atom-with-toggle/jotai ([2a89bab](https://github.com/astahmer/pastable/commit/2a89babfd89bc8fe554e1edb190325fa1cc2edd6))
+
+
+### Bug Fixes
+
+* **react:** types & tsconfig base url ([5787c6e](https://github.com/astahmer/pastable/commit/5787c6ee23567c63f8b6d14f2bbe4f6c557118e7))
+
 ### [0.0.12](https://github.com/astahmer/pastable/compare/@pastable/core@0.0.11...@pastable/core@0.0.12) (2021-05-07)
 
 ### [0.0.11](https://github.com/astahmer/pastable/compare/@pastable/core@0.0.10...@pastable/core@0.0.11) (2021-05-06)
