@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.13](https://github.com/astahmer/pastable/compare/@pastable/react@0.0.12...@pastable/react@0.0.13) (2021-05-19)
+
+
+### Features
+
+* **react:** add @pastable/atom-with-toggle/jotai ([2a89bab](https://github.com/astahmer/pastable/commit/2a89babfd89bc8fe554e1edb190325fa1cc2edd6))
+
 ### [0.0.12](https://github.com/astahmer/pastable/compare/@pastable/react@0.0.11...@pastable/react@0.0.12) (2021-05-07)
 
 ### [0.0.11](https://github.com/astahmer/pastable/compare/@pastable/react@0.0.10...@pastable/react@0.0.11) (2021-05-06)
