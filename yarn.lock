@@ -1407,6 +1407,27 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@pastable/atom-with-toggle@workspace:packages/atom-with-toggle":
+  version: 0.0.0-use.local
+  resolution: "@pastable/atom-with-toggle@workspace:packages/atom-with-toggle"
+  dependencies:
+    "@swc-node/register": ^1.0.5
+    "@testing-library/react": ^11.2.7
+    "@types/node": ^14.14.37
+    "@types/rimraf": ^3
+    c8: ^7.7.1
+    jotai: ^0.16.5
+    microbundle: ^0.13.0
+    rimraf: ^3.0.2
+    simple-spy: ^3.0.1
+    standard-version: ^9.2.0
+    tsconfig-paths: ^3.9.0
+    typescript: ^4.2.4
+    uvu: ^0.5.1
+    watchlist: ^0.2.3
+  languageName: unknown
+  linkType: soft
+
 "@pastable/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@pastable/core@workspace:packages/core"
@@ -1997,6 +2018,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@testing-library/react@npm:^11.2.7":
+  version: 11.2.7
+  resolution: "@testing-library/react@npm:11.2.7"
+  dependencies:
+    "@babel/runtime": ^7.12.5
+    "@testing-library/dom": ^7.28.1
+  peerDependencies:
+    react: "*"
+    react-dom: "*"
+  checksum: 389c9f3e83f59677f5283783788d18f8cd499342a0e5c1f67821c292860afe5f282ff8b5ced795b9c2f7d78132005d8b6b33e1b3e3a9004e240e3569f8e168ef
+  languageName: node
+  linkType: hard
+
 "@tootallnate/once@npm:1":
   version: 1.1.2
   resolution: "@tootallnate/once@npm:1.1.2"
@@ -2246,6 +2280,17 @@ __metadata:
     "@types/scheduler": "*"
     csstype: ^3.0.2
   checksum: 5bcaabadc90a23ad9008540eae98a5819b638c4cf1b968adc67be47d6a8dc8cb100061d877dae97618fb275e405dc484b37154080c7ac0ea7df5efcdd8f98c24
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:^17.0.6":
+  version: 17.0.6
+  resolution: "@types/react@npm:17.0.6"
+  dependencies:
+    "@types/prop-types": "*"
+    "@types/scheduler": "*"
+    csstype: ^3.0.2
+  checksum: dcd8e559f758de7c856bd24136d9005e2b6fbae3d6d81704ba33c6a8ba787874f738b7aae8cfffd89ee35f05658800c43d7fdb9493b79c06a3bcdc1e37ea4635
   languageName: node
   linkType: hard
 
@@ -6113,6 +6158,31 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
+"jotai@npm:^0.16.5":
+  version: 0.16.5
+  resolution: "jotai@npm:0.16.5"
+  peerDependencies:
+    immer: "*"
+    optics-ts: "*"
+    react: ">=16.8"
+    react-query: "*"
+    valtio: "*"
+    xstate: "*"
+  peerDependenciesMeta:
+    immer:
+      optional: true
+    optics-ts:
+      optional: true
+    react-query:
+      optional: true
+    valtio:
+      optional: true
+    xstate:
+      optional: true
+  checksum: 0d3e99e3cb393354b33d5a553b6fbcc1cc31f848a0521a958acb5c5ad1bc5b17d957e2e4a94b4d1bc1608e971a88b283acf64aa7afe896a3a8be0054a71652f2
+  languageName: node
+  linkType: hard
+
 "js-tokens@npm:^3.0.0 || ^4.0.0, js-tokens@npm:^4.0.0":
   version: 4.0.0
   resolution: "js-tokens@npm:4.0.0"
@@ -7595,7 +7665,7 @@ fsevents@~2.3.1:
   dependencies:
     "@swc-node/register": ^1.0.5
     "@types/prettier": ^2
-    "@types/react": ^17
+    "@types/react": ^17.0.6
     "@types/react-dom": ^17
     c8: ^7.7.1
     plop: ^2.7.4
