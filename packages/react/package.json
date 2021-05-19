@@ -13,7 +13,7 @@
     },
     "author": "Alexandre Stahmer <alexandre.stahmer@gmail.com>",
     "scripts": {
-        "build": "microbundle build --tsconfig tsconfig.build.json --external react",
+        "build": "microbundle build --tsconfig tsconfig.build.json --external react,jotai",
         "dev": "microbundle watch",
         "test": "uvu -r @swc-node/register -r tsconfig-paths/register src",
         "tw": "yarn test && watchlist src -- yarn test",
@@ -42,11 +42,13 @@
         "watchlist": "^0.2.3"
     },
     "dependencies": {
+        "@pastable/atom-with-toggle": "workspace:packages/atom-with-toggle",
         "@pastable/use-click-away": "workspace:packages/use-click-away",
         "@pastable/use-event": "workspace:packages/use-event",
         "@pastable/use-force-update": "workspace:packages/use-force-update",
         "@pastable/use-is-mounted": "workspace:packages/use-is-mounted",
         "@pastable/use-query-params": "workspace:packages/use-query-params",
+        "jotai": "^0.16.5",
         "react": "^17.0.2"
     },
     "publishConfig": {

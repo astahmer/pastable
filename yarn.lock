@@ -1456,6 +1456,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@pastable/react@workspace:packages/react"
   dependencies:
+    "@pastable/atom-with-toggle": "workspace:packages/atom-with-toggle"
     "@pastable/use-click-away": "workspace:packages/use-click-away"
     "@pastable/use-event": "workspace:packages/use-event"
     "@pastable/use-force-update": "workspace:packages/use-force-update"
@@ -1466,6 +1467,7 @@ __metadata:
     "@types/react": ^17
     "@types/rimraf": ^3
     c8: ^7.7.1
+    jotai: ^0.16.5
     microbundle: ^0.13.0
     react: ^17.0.2
     rimraf: ^3.0.2
