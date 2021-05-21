@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/astahmer/pastable/compare/@pastable/atom-with-toggle@0.0.4...@pastable/atom-with-toggle@0.0.5) (2021-05-21)
+
 ### [0.0.4](https://github.com/astahmer/pastable/compare/@pastable/atom-with-toggle@0.0.3...@pastable/atom-with-toggle@0.0.4) (2021-05-21)
 
 ### [0.0.3](https://github.com/astahmer/pastable/compare/@pastable/atom-with-toggle@0.0.2...@pastable/atom-with-toggle@0.0.3) (2021-05-19)
