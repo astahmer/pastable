@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.15](https://github.com/astahmer/pastable/compare/@pastable/react@0.0.14...@pastable/react@0.0.15) (2021-05-21)
+
 ### [0.0.14](https://github.com/astahmer/pastable/compare/@pastable/react@0.0.13...@pastable/react@0.0.14) (2021-05-19)
 
 ### [0.0.13](https://github.com/astahmer/pastable/compare/@pastable/react@0.0.12...@pastable/react@0.0.13) (2021-05-19)
