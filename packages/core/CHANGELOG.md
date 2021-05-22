@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.16](https://github.com/astahmer/pastable/compare/@pastable/core@0.0.15...@pastable/core@0.0.16) (2021-05-22)
+
+
+### Bug Fixes
+
+* **atomWithToggle:** rename + fix initial state ([662f21d](https://github.com/astahmer/pastable/commit/662f21d39089066f1af8d5ee5d46e426b03d50a4))
+
 ### [0.0.15](https://github.com/astahmer/pastable/compare/@pastable/core@0.0.14...@pastable/core@0.0.15) (2021-05-21)
 
 ### [0.0.14](https://github.com/astahmer/pastable/compare/@pastable/core@0.0.13...@pastable/core@0.0.14) (2021-05-19)
