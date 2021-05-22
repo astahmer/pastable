@@ -5,16 +5,18 @@ export function atomWithToggle(
     initialValue?: boolean,
     createAtom: (initialValue: boolean) => PrimitiveAtom<boolean> = atom
 ): WritableAtom<boolean, boolean | undefined> {
-    const effectAtom = createAtom(initialValue || false);
-    const anAtom: any = atom(initialValue, (get, set, state?: boolean) => {
-        const update = state ?? !get(anAtom);
-        set(anAtom, update);
-        set(effectAtom, update);
-    });
-    return anAtom;
+    const anAtom = createAtom(initialValue!);
+    const derivedAtom = atom(
+        (get) => get(anAtom),
+        (get, set, nextValue?: boolean) => {
+            const update = nextValue ?? !get(anAtom);
+            set(anAtom, update);
+        }
+    );
+    return derivedAtom as WritableAtom<boolean, boolean | undefined>;
 }
 
-export function atomWithToggleStored(
+export function atomWithToggleAndStorage(
     key: string,
     initialValue?: boolean,
     storage?: any

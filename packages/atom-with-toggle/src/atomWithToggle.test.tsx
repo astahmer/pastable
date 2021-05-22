@@ -6,7 +6,7 @@ import assert from "uvu/assert";
 
 import { setupJSDOM } from "@pastable/test-utils";
 
-import { atomWithToggle, atomWithToggleStored } from "./atomWithToggle";
+import { atomWithToggle, atomWithToggleAndStorage } from "./atomWithToggle";
 
 const Provider = process.env.PROVIDER_LESS_MODE ? Fragment : ProviderOrig;
 
@@ -69,7 +69,7 @@ const dummyStorage = {
 
 test("simple toggle with storage", async () => {
     const cleanup = setupJSDOM();
-    const activeAtom = atomWithToggleStored("isActive", false, dummyStorage);
+    const activeAtom = atomWithToggleAndStorage("isActive", false, dummyStorage);
 
     const Toggle: React.FC = () => {
         const [isActive, toggle] = useAtom(activeAtom);
