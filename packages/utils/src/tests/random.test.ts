@@ -4,7 +4,7 @@ import assert from "uvu/assert";
 import { group } from "../_uvu";
 import { getIntersection, hasAll, makeArrayOf, uniques } from "../array";
 import {
-    getRandomIntInt,
+    getRandomIntIn,
     getRandomString,
     makeArrayOfRandIn,
     pickMultipleUnique,
@@ -20,15 +20,15 @@ test("getRandomString", () => {
     assert.is(typeof getRandomString() === "string", true);
 });
 
-test("getRandomIntInt", () => {
-    assert.is(typeof getRandomIntInt(10) === "number", true);
+test("getRandomIntIn", () => {
+    assert.is(typeof getRandomIntIn(10) === "number", true);
 
-    const makeInt = () => getRandomIntInt(-5, 5);
+    const makeInt = () => getRandomIntIn(-5, 5);
     const results = makeArrayOf(100).reduce((acc) => acc.concat(makeInt()), []);
     assert.is(Math.min(...results) >= -5, true);
     assert.is(Math.max(...results) <= 5, true);
 
-    const makeIntWithJustMax = () => getRandomIntInt(10);
+    const makeIntWithJustMax = () => getRandomIntIn(10);
     const resultsWithJustMax = makeArrayOf(100).reduce((acc) => acc.concat(makeIntWithJustMax()), []);
     assert.is(Math.min(...resultsWithJustMax) >= 0, true);
     assert.is(Math.max(...resultsWithJustMax) <= 10, true);

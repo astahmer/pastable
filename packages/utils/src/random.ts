@@ -3,7 +3,7 @@ import { exclude, makeArrayOf } from "./array";
 export const getRandomString = (length = 10) =>
     [...Array(length)].map(() => (~~(Math.random() * 36)).toString(36)).join("");
 
-export function getRandomIntInt(minOrMax: number, maxOptional?: number) {
+export function getRandomIntIn(minOrMax: number, maxOptional?: number) {
     const min = maxOptional === undefined ? 0 : minOrMax;
     const max = maxOptional === undefined ? minOrMax : maxOptional;
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -44,4 +44,4 @@ export function pickOneInEnum<T>(anEnum: T, excluded?: T[keyof T][]): T[keyof T]
 }
 
 /** Make an array of [min, max] empty elements */
-export const makeArrayOfRandIn = (x: number = 5, y?: number) => makeArrayOf(getRandomIntInt(x, y));
+export const makeArrayOfRandIn = (x: number = 5, y?: number) => makeArrayOf(getRandomIntIn(x, y));

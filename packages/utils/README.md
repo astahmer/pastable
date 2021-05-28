@@ -98,7 +98,7 @@ A collection of very short utils functions for about anything, without depenenci
 ### Random
 
 -   `getRandomString`
--   `getRandomIntInt`
+-   `getRandomIntIn`
 -   `pickMultipleUnique`: Randomly pick N unique element in array while excluding some if needed
 -   `pickOne`: Returns a random element in given array
 -   `pickOneBut`: Returns a random element in given array but not of the excluded
