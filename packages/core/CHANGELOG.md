@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.17](https://github.com/astahmer/pastable/compare/@pastable/core@0.0.16...@pastable/core@0.0.17) (2021-05-28)
+
+
+### Bug Fixes
+
+* **utils:** typo for getRandomIntIn ([76409af](https://github.com/astahmer/pastable/commit/76409afc0cd2cf0c408142973df3c13f2e2c837b))
+
 ### [0.0.16](https://github.com/astahmer/pastable/compare/@pastable/core@0.0.15...@pastable/core@0.0.16) (2021-05-22)
 
 
