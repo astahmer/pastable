@@ -1,4 +1,4 @@
-# @pastable/use-force-update
+# @pastable/react
 
 One liner to force a re-render when needed
 

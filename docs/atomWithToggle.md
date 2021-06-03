@@ -1,4 +1,4 @@
-# @pastable/atom-with-toggle
+# @pastable/react
 
 Like if useToggle & useAtom & useLocalStorage had a child.
 
@@ -9,7 +9,7 @@ Like if useToggle & useAtom & useLocalStorage had a child.
 ## Install
 
 ```sh
-yarn add @pastable/atom-with-toggle
+yarn add @pastable/react
 ```
 
 or

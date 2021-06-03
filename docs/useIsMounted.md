@@ -1,4 +1,4 @@
-# @pastable/use-is-mounted
+# @pastable/react
 
 Keep track of a component mounted using ref/state.
 

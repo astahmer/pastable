@@ -1,4 +1,4 @@
-# @pastable/use-selection
+# @pastable/react
 
 Like if useState had a child with Array. Makes it easy to work with an array of objects with all the actions available.
 

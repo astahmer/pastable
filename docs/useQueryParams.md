@@ -1,7 +1,6 @@
-# @pastable/use-query-params
+# @pastable/react
 
 https://user-images.githubusercontent.com/47224540/116145173-44f7b600-a6dd-11eb-8f99-283ee7b628fe.mp4
-
 
 Hooks to handle query params state with react-router.
 Please check the tests folder if you need more detailed examples.
@@ -9,7 +8,7 @@ Please check the tests folder if you need more detailed examples.
 ## Install
 
 ```sh
-yarn add @pastable/use-query-params
+yarn add @pastable/react
 ```
 
 or

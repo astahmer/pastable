@@ -1,4 +1,4 @@
-# @pastable/use-update-effect
+# @pastable/react
 
 React effect hook that invokes only on update.
 

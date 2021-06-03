@@ -1,4 +1,4 @@
-# @pastable/use-click-away
+# @pastable/react
 
 Detect and invoke a callback when clicking away of target element.
 

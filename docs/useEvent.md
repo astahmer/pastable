@@ -1,4 +1,4 @@
-# @pastable/use-event
+# @pastable/react
 
 Define an event listener on window or a given element declaratively
 
