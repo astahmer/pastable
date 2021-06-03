@@ -22,10 +22,12 @@
         "coverage:open": "yarn scripts:openCoverageInBrowser",
         "coverage:view": "c8 --reporter=lcov --all yarn test && yarn coverage:open",
         "release": "standard-version -t @pastable/utils\\@ --path .",
+        "release:dry": "yarn release --dry-run",
+        "release:minor": "yarn release --release-as minor",
         "prebuild": "rimraf dist",
         "prepare": "yarn build",
         "prepublishOnly": "yarn test",
-        "release-publish": "npm publish && git push --follow-tags origin main"
+        "release-publish": "yarn npm publish && git push --follow-tags origin main"
     },
     "devDependencies": {
         "@swc-node/register": "^1.0.5",
