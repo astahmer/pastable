@@ -1,9 +1,10 @@
 import { SetStateAction, useEffect } from "react";
 
 import { ObjectLiteral } from "@pastable/typings";
-import { useEvent } from "@pastable/use-event";
-import { useForceUpdate } from "@pastable/use-force-update";
 import { Formater, format, getSelf, isBrowser, isDefined, isType } from "@pastable/utils";
+
+import { useEvent } from "./useEvent";
+import { useForceUpdate } from "./useForceUpdate";
 
 /** Get/set page history with query params  */
 export const useQueryParams = <QP = ObjectLiteral>(props: UseQueryParamsProps<QP> = {}) => {
@@ -157,4 +158,30 @@ function formatValueToQueryParam<Value = any, F extends Function = Formater>(
     const value = customFormater?.(rawValue, key) || rawValue;
 
     return value;
+}
+
+// Taken from https://github.com/streamich/react-use/blob/8ceb4c0f0c5625124f487b435a2fd0d3b3bc2a4f/src/useLocation.this
+// Props to him
+function patchHistoryMethod(method: "pushState" | "replaceState") {
+    const history = window.history;
+    const original = history[method];
+
+    history[method] = function (state) {
+        const result = original.apply(this, arguments);
+        const event = new Event(method.toLowerCase());
+
+        (event as any).state = state;
+
+        window.dispatchEvent(event);
+
+        return result;
+    };
+}
+
+if (isBrowser()) {
+    // if (isBrowser() && (import.meta as any).hot.data?.patchState !== "patched") {
+    // console.log("patching");
+    patchHistoryMethod("pushState");
+    patchHistoryMethod("replaceState");
+    // (import.meta as any).hot.data.patchState = "patched";
 }

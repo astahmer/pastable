@@ -2,7 +2,7 @@ import { renderHook } from "@testing-library/react-hooks";
 import { test } from "uvu";
 import assert from "uvu/assert";
 
-import { useIsMounted, useIsMountedRef } from "./useIsMounted";
+import { useIsMounted, useIsMountedRef } from "../src/useIsMounted";
 
 test("useIsMountedRef", () => {
     const { result, unmount } = renderHook(() => useIsMountedRef());

@@ -4,7 +4,7 @@ import { test } from "uvu";
 
 import { setupJSDOM } from "@pastable/test-utils";
 
-import { useUpdateEffect } from "./useUpdateEffect";
+import { useUpdateEffect } from "../src/useUpdateEffect";
 
 test("useUpdateEffect allows defining an event on window in a declarative way", async () => {
     const cleanup = setupJSDOM();

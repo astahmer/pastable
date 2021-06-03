@@ -3,9 +3,13 @@ import "./App.css";
 import React, { useEffect, useRef } from "react";
 import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 
-import { useForceUpdate } from "@pastable/use-force-update";
-import { UseQueryParamsSetState, useQueryParams, useQueryParamsState } from "@pastable/use-query-params";
-import { getRandomString } from "@pastable/utils";
+import {
+    UseQueryParamsSetState,
+    getRandomString,
+    useForceUpdate,
+    useQueryParams,
+    useQueryParamsState,
+} from "@pastable/core";
 
 const Wrapper = ({ children }: any) => <BrowserRouter>{children}</BrowserRouter>;
 

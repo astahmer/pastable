@@ -1262,7 +1262,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime-corejs3@npm:^7.10.2, @babel/runtime-corejs3@npm:^7.9.2":
+"@babel/runtime-corejs3@npm:^7.10.2":
+  version: 7.14.0
+  resolution: "@babel/runtime-corejs3@npm:7.14.0"
+  dependencies:
+    core-js-pure: ^3.0.0
+    regenerator-runtime: ^0.13.4
+  checksum: 0b3184c384f061e90c879406a072643493d9a1c7fa33bcbccf72ab0588df12ad85fb3539a3b8355f4d96934836f420c0a70d9a0848c7954f6a5ec511bb5bb2ef
+  languageName: node
+  linkType: hard
+
+"@babel/runtime-corejs3@npm:^7.9.2":
   version: 7.13.10
   resolution: "@babel/runtime-corejs3@npm:7.13.10"
   dependencies:
@@ -1272,12 +1282,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.12.1, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.8.4":
+"@babel/runtime@npm:^7.1.2, @babel/runtime@npm:^7.12.1, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.8.4":
   version: 7.13.10
   resolution: "@babel/runtime@npm:7.13.10"
   dependencies:
     regenerator-runtime: ^0.13.4
   checksum: 22014226b96a8c8e8d4e8bcdb011f317d1b32881aef424a669dc6ceaee14993d3609172967853cbf9c25c724c25145d45885b6c9df56ba241c12820776607f1f
+  languageName: node
+  linkType: hard
+
+"@babel/runtime@npm:^7.10.2":
+  version: 7.14.0
+  resolution: "@babel/runtime@npm:7.14.0"
+  dependencies:
+    regenerator-runtime: ^0.13.4
+  checksum: ab6653f2f8ecdaebf36674894cef458a9d4f881dc007fdcd50a8261f5c6d9731e03fda2c17e32ecf0e6c779d69eb6cf49d68a48c780aaf07d5b572e8b7ef0508
   languageName: node
   linkType: hard
 
@@ -1407,27 +1426,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@pastable/atom-with-toggle@workspace:packages/atom-with-toggle":
-  version: 0.0.0-use.local
-  resolution: "@pastable/atom-with-toggle@workspace:packages/atom-with-toggle"
-  dependencies:
-    "@swc-node/register": ^1.0.5
-    "@testing-library/react": ^11.2.7
-    "@types/node": ^14.14.37
-    "@types/rimraf": ^3
-    c8: ^7.7.1
-    jotai: ^0.16.5
-    microbundle: ^0.13.0
-    rimraf: ^3.0.2
-    simple-spy: ^3.0.1
-    standard-version: ^9.2.0
-    tsconfig-paths: ^3.9.0
-    typescript: ^4.2.4
-    uvu: ^0.5.1
-    watchlist: ^0.2.3
-  languageName: unknown
-  linkType: soft
-
 "@pastable/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@pastable/core@workspace:packages/core"
@@ -1457,20 +1455,20 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@pastable/react@workspace:packages/react"
   dependencies:
-    "@pastable/atom-with-toggle": "workspace:packages/atom-with-toggle"
-    "@pastable/use-click-away": "workspace:packages/use-click-away"
-    "@pastable/use-event": "workspace:packages/use-event"
-    "@pastable/use-force-update": "workspace:packages/use-force-update"
-    "@pastable/use-is-mounted": "workspace:packages/use-is-mounted"
-    "@pastable/use-query-params": "workspace:packages/use-query-params"
+    "@pastable/test-utils": "workspace:packages/test-utils"
+    "@pastable/utils": "workspace:packages/utils"
     "@swc-node/register": ^1.0.5
+    "@testing-library/react": ^11.2.7
+    "@testing-library/react-hooks": ^7.0.0
     "@types/node": ^14.14.37
     "@types/react": ^17
+    "@types/react-test-renderer": ^17.0.1
     "@types/rimraf": ^3
     c8: ^7.7.1
-    jotai: ^0.16.5
+    jotai: ^0.16.8
     microbundle: ^0.13.0
     react: ^17.0.2
+    react-test-renderer: ^17.0.2
     rimraf: ^3.0.2
     simple-spy: ^3.0.1
     standard-version: ^9.2.0
@@ -1519,181 +1517,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@pastable/typings@workspace:packages/typings"
   dependencies:
-    "@swc-node/register": ^1.0.5
-    "@types/node": ^14.14.37
-    "@types/react": ^17
-    "@types/rimraf": ^3
-    c8: ^7.7.1
-    microbundle: ^0.13.0
-    react: ^17.0.2
-    rimraf: ^3.0.2
-    simple-spy: ^3.0.1
-    standard-version: ^9.2.0
-    tsconfig-paths: ^3.9.0
-    typescript: ^4.2.4
-    uvu: ^0.5.1
-    watchlist: ^0.2.3
-  languageName: unknown
-  linkType: soft
-
-"@pastable/use-click-away@workspace:packages/use-click-away":
-  version: 0.0.0-use.local
-  resolution: "@pastable/use-click-away@workspace:packages/use-click-away"
-  dependencies:
-    "@pastable/test-utils": "workspace:packages/test-utils"
-    "@swc-node/register": ^1.0.5
-    "@testing-library/react": ^11.2.6
-    "@types/node": ^14.14.37
-    "@types/react": ^17
-    "@types/rimraf": ^3
-    c8: ^7.7.1
-    microbundle: ^0.13.0
-    react: ^17.0.2
-    rimraf: ^3.0.2
-    simple-spy: ^3.0.1
-    standard-version: ^9.2.0
-    tsconfig-paths: ^3.9.0
-    typescript: ^4.2.4
-    uvu: ^0.5.1
-    watchlist: ^0.2.3
-  languageName: unknown
-  linkType: soft
-
-"@pastable/use-event@workspace:packages/use-event":
-  version: 0.0.0-use.local
-  resolution: "@pastable/use-event@workspace:packages/use-event"
-  dependencies:
-    "@pastable/use-is-mounted": "workspace:packages/use-is-mounted"
-    "@swc-node/register": ^1.0.5
-    "@testing-library/react": ^11.2.6
-    "@types/node": ^14.14.37
-    "@types/react": ^17
-    "@types/react-dom": ^17
-    "@types/rimraf": ^3
-    c8: ^7.7.1
-    microbundle: ^0.13.0
-    react: ^17.0.2
-    react-dom: ^17.0.2
-    rimraf: ^3.0.2
-    simple-spy: ^3.0.1
-    standard-version: ^9.2.0
-    tsconfig-paths: ^3.9.0
-    typescript: ^4.2.4
-    uvu: ^0.5.1
-    watchlist: ^0.2.3
-  languageName: unknown
-  linkType: soft
-
-"@pastable/use-force-update@workspace:packages/use-force-update":
-  version: 0.0.0-use.local
-  resolution: "@pastable/use-force-update@workspace:packages/use-force-update"
-  dependencies:
-    "@swc-node/register": ^1.0.5
-    "@testing-library/react-hooks": ^5.1.1
-    "@types/node": ^14.14.37
-    "@types/react": ^17
-    "@types/react-test-renderer": ^17
-    "@types/rimraf": ^3
-    c8: ^7.7.1
-    microbundle: ^0.13.0
-    react: ^17.0.2
-    react-test-renderer: ^17.0.2
-    rimraf: ^3.0.2
-    simple-spy: ^3.0.1
-    standard-version: ^9.2.0
-    tsconfig-paths: ^3.9.0
-    typescript: ^4.2.4
-    uvu: ^0.5.1
-    watchlist: ^0.2.3
-  languageName: unknown
-  linkType: soft
-
-"@pastable/use-is-mounted@workspace:packages/use-is-mounted":
-  version: 0.0.0-use.local
-  resolution: "@pastable/use-is-mounted@workspace:packages/use-is-mounted"
-  dependencies:
-    "@swc-node/register": ^1.0.5
-    "@testing-library/react-hooks": ^5.1.1
-    "@types/node": ^14.14.37
-    "@types/react": ^17
-    "@types/react-test-renderer": ^17
-    "@types/rimraf": ^3
-    c8: ^7.7.1
-    microbundle: ^0.13.0
-    react: ^17.0.2
-    react-test-renderer: ^17.0.2
-    rimraf: ^3.0.2
-    simple-spy: ^3.0.1
-    standard-version: ^9.2.0
-    tsconfig-paths: ^3.9.0
-    typescript: ^4.2.4
-    uvu: ^0.5.1
-    watchlist: ^0.2.3
-  languageName: unknown
-  linkType: soft
-
-"@pastable/use-query-params@workspace:packages/use-query-params":
-  version: 0.0.0-use.local
-  resolution: "@pastable/use-query-params@workspace:packages/use-query-params"
-  dependencies:
-    "@pastable/test-utils": "workspace:packages/test-utils"
-    "@pastable/use-event": "workspace:packages/use-event"
-    "@pastable/use-force-update": "workspace:packages/use-force-update"
-    "@pastable/utils": "workspace:packages/utils"
-    "@swc-node/register": ^1.0.5
-    "@testing-library/react": ^11.2.6
-    "@testing-library/react-hooks": ^5.1.1
-    "@types/react": ^17
-    "@types/react-dom": ^17
-    "@types/react-test-renderer": ^17
-    "@types/rimraf": ^3
-    c8: ^7.7.1
-    microbundle: ^0.13.0
-    react: ^17.0.2
-    react-dom: ^17.0.2
-    react-test-renderer: ^17.0.2
-    rimraf: ^3.0.2
-    standard-version: ^9.2.0
-    tsconfig-paths: ^3.9.0
-    typescript: ^4.2.4
-    uvu: ^0.5.1
-    watchlist: ^0.2.3
-  languageName: unknown
-  linkType: soft
-
-"@pastable/use-selection@workspace:packages/use-selection":
-  version: 0.0.0-use.local
-  resolution: "@pastable/use-selection@workspace:packages/use-selection"
-  dependencies:
-    "@pastable/use-is-mounted": "workspace:packages/use-is-mounted"
-    "@pastable/use-update-effect": "workspace:packages/use-update-effect"
-    "@swc-node/register": ^1.0.5
-    "@testing-library/react-hooks": ^5.1.2
-    "@types/node": ^14.14.37
-    "@types/react": ^17
-    "@types/react-dom": ^17
-    "@types/react-test-renderer": ^17
-    "@types/rimraf": ^3
-    c8: ^7.7.1
-    microbundle: ^0.13.0
-    react: ^17.0.2
-    react-dom: ^17.0.2
-    react-test-renderer: ^17.0.2
-    rimraf: ^3.0.2
-    simple-spy: ^3.0.1
-    standard-version: ^9.2.0
-    tsconfig-paths: ^3.9.0
-    typescript: ^4.2.4
-    uvu: ^0.5.1
-    watchlist: ^0.2.3
-  languageName: unknown
-  linkType: soft
-
-"@pastable/use-update-effect@workspace:packages/use-update-effect":
-  version: 0.0.0-use.local
-  resolution: "@pastable/use-update-effect@workspace:packages/use-update-effect"
-  dependencies:
-    "@pastable/use-is-mounted": "workspace:packages/use-is-mounted"
     "@swc-node/register": ^1.0.5
     "@types/node": ^14.14.37
     "@types/react": ^17
@@ -1947,8 +1770,8 @@ __metadata:
   linkType: hard
 
 "@testing-library/dom@npm:^7.28.1":
-  version: 7.30.3
-  resolution: "@testing-library/dom@npm:7.30.3"
+  version: 7.31.0
+  resolution: "@testing-library/dom@npm:7.31.0"
   dependencies:
     "@babel/code-frame": ^7.10.4
     "@babel/runtime": ^7.12.5
@@ -1958,19 +1781,18 @@ __metadata:
     dom-accessibility-api: ^0.5.4
     lz-string: ^1.4.4
     pretty-format: ^26.6.2
-  checksum: 3d5ac838646e622ef10a6cdd496591a17f803df9f9acd67c81168b14092cf510b68bfc7bd188a971fe65bc18b1c259bdaac9db9ee01549ff94b1efefd8f640a1
+  checksum: 84c4bf5d33091b2eb668d8305591362bf9e3037eaca636bc97469622feaa3407ce1cc2af6d5f1a81b66b3e566cebef5b2c01d3ee47bc4c92abca38969f0f155d
   languageName: node
   linkType: hard
 
-"@testing-library/react-hooks@npm:^5.1.1":
-  version: 5.1.1
-  resolution: "@testing-library/react-hooks@npm:5.1.1"
+"@testing-library/react-hooks@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "@testing-library/react-hooks@npm:7.0.0"
   dependencies:
     "@babel/runtime": ^7.12.5
     "@types/react": ">=16.9.0"
     "@types/react-dom": ">=16.9.0"
     "@types/react-test-renderer": ">=16.9.0"
-    filter-console: ^0.1.1
     react-error-boundary: ^3.1.0
   peerDependencies:
     react: ">=16.9.0"
@@ -1981,43 +1803,7 @@ __metadata:
       optional: true
     react-test-renderer:
       optional: true
-  checksum: cae917a90b8cbb8d4e738b1df0d404a0af344dc8debf1afd5b7d6b6919287373994ace87d0d82544adc86927d783a6785a6d414b2818cb69545d6f6ce5672486
-  languageName: node
-  linkType: hard
-
-"@testing-library/react-hooks@npm:^5.1.2":
-  version: 5.1.2
-  resolution: "@testing-library/react-hooks@npm:5.1.2"
-  dependencies:
-    "@babel/runtime": ^7.12.5
-    "@types/react": ">=16.9.0"
-    "@types/react-dom": ">=16.9.0"
-    "@types/react-test-renderer": ">=16.9.0"
-    filter-console: ^0.1.1
-    react-error-boundary: ^3.1.0
-  peerDependencies:
-    react: ">=16.9.0"
-    react-dom: ">=16.9.0"
-    react-test-renderer: ">=16.9.0"
-  peerDependenciesMeta:
-    react-dom:
-      optional: true
-    react-test-renderer:
-      optional: true
-  checksum: d1a1cfeb1ca596747b53bda1124a95232f2f945a94eff275433e52825b3cc883ccd7b265d5c22d2edc2d48d7b5c5fcfa424e3ce50fc2d7d61b29a978b3bfcaf5
-  languageName: node
-  linkType: hard
-
-"@testing-library/react@npm:^11.2.6":
-  version: 11.2.6
-  resolution: "@testing-library/react@npm:11.2.6"
-  dependencies:
-    "@babel/runtime": ^7.12.5
-    "@testing-library/dom": ^7.28.1
-  peerDependencies:
-    react: "*"
-    react-dom: "*"
-  checksum: 3ad25d7b88650b83d54990665fabac4f75ff8229773ae877c18ec7a431c17773832d4c3279cecc229815660ffc8be2c86f39de9930777b4dbc1519fb7bca63a5
+  checksum: fc6b60fab0a464ab7137dc61ce0d092905dca56396e1716303ec72897d3de013d39d86ec9667508c6de603496c0719a953d34389a38cd445265d0f77483c9a5b
   languageName: node
   linkType: hard
 
@@ -2236,7 +2022,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:>=16.9.0, @types/react-dom@npm:^17, @types/react-dom@npm:^17.0.0":
+"@types/react-dom@npm:>=16.9.0":
+  version: 17.0.5
+  resolution: "@types/react-dom@npm:17.0.5"
+  dependencies:
+    "@types/react": "*"
+  checksum: b3e23acb7be9405050abb4bcd443d14b16b2f3ded2d1853528199e4307b17b25186f905ddd236c27b6ef0297e6779b7fedd11fd24ee9170771be45a7e8e70f4b
+  languageName: node
+  linkType: hard
+
+"@types/react-dom@npm:^17, @types/react-dom@npm:^17.0.0":
   version: 17.0.3
   resolution: "@types/react-dom@npm:17.0.3"
   dependencies:
@@ -2266,7 +2061,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-test-renderer@npm:>=16.9.0, @types/react-test-renderer@npm:^17":
+"@types/react-test-renderer@npm:>=16.9.0, @types/react-test-renderer@npm:^17.0.1":
   version: 17.0.1
   resolution: "@types/react-test-renderer@npm:17.0.1"
   dependencies:
@@ -2275,7 +2070,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:>=16.9.0, @types/react@npm:^17, @types/react@npm:^17.0.0":
+"@types/react@npm:*, @types/react@npm:^17, @types/react@npm:^17.0.0":
   version: 17.0.3
   resolution: "@types/react@npm:17.0.3"
   dependencies:
@@ -2283,6 +2078,17 @@ __metadata:
     "@types/scheduler": "*"
     csstype: ^3.0.2
   checksum: 5bcaabadc90a23ad9008540eae98a5819b638c4cf1b968adc67be47d6a8dc8cb100061d877dae97618fb275e405dc484b37154080c7ac0ea7df5efcdd8f98c24
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:>=16.9.0":
+  version: 17.0.8
+  resolution: "@types/react@npm:17.0.8"
+  dependencies:
+    "@types/prop-types": "*"
+    "@types/scheduler": "*"
+    csstype: ^3.0.2
+  checksum: b59a3abafd240b2880f9e6a11b2b7f75165888260c56e95a77ed10a7dd55570b307fb2356eda7fde2a8e1255d2def11797e4ae9800ae114a1f578546acabda67
   languageName: node
   linkType: hard
 
@@ -3147,7 +2953,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:^4.0.0, chalk@npm:^4.1.0":
+"chalk@npm:^4.0.0":
+  version: 4.1.1
+  resolution: "chalk@npm:4.1.1"
+  dependencies:
+    ansi-styles: ^4.1.0
+    supports-color: ^7.1.0
+  checksum: 445c12db7aeed0046500a1e4184d31209a77d165654c885a789c41c8598a6a95bd2392180987cac572c967b93a2a730dda778bb7f87fa06ca63fd8592f8cc59f
+  languageName: node
+  linkType: hard
+
+"chalk@npm:^4.1.0":
   version: 4.1.0
   resolution: "chalk@npm:4.1.0"
   dependencies:
@@ -4638,13 +4454,6 @@ __metadata:
   dependencies:
     to-regex-range: ^5.0.1
   checksum: efca43d59b487ad4bc0b2b1cb9e51617c75a7b0159db51fa190c75c3d634ea5fad1ff4750d7c14346add4cd065e3c46e8f99af333edf2b4ec2a424f87e491a85
-  languageName: node
-  linkType: hard
-
-"filter-console@npm:^0.1.1":
-  version: 0.1.1
-  resolution: "filter-console@npm:0.1.1"
-  checksum: f9def51f7ece9c9c469f78e1551ce33dfde02fd32bd70a6fbe8da4a9377ebb65a2a4fc6196ebf8e6ea8668a5465bde7fe3459101d1042e73bb9e3e1eb3f22fb6
   languageName: node
   linkType: hard
 
@@ -6183,6 +5992,31 @@ fsevents@~2.3.1:
     xstate:
       optional: true
   checksum: 0d3e99e3cb393354b33d5a553b6fbcc1cc31f848a0521a958acb5c5ad1bc5b17d957e2e4a94b4d1bc1608e971a88b283acf64aa7afe896a3a8be0054a71652f2
+  languageName: node
+  linkType: hard
+
+"jotai@npm:^0.16.8":
+  version: 0.16.8
+  resolution: "jotai@npm:0.16.8"
+  peerDependencies:
+    immer: "*"
+    optics-ts: "*"
+    react: ">=16.8"
+    react-query: "*"
+    valtio: "*"
+    xstate: "*"
+  peerDependenciesMeta:
+    immer:
+      optional: true
+    optics-ts:
+      optional: true
+    react-query:
+      optional: true
+    valtio:
+      optional: true
+    xstate:
+      optional: true
+  checksum: f3372aa403bd02d4ce1642c8b5402bd623c9b9016ea4cf1a976d833c7f32dc96430bb791a0b4464a1f35ce83736ccb0264301e5de0f731c9a3d5d93d05e14670
   languageName: node
   linkType: hard
 
@@ -8480,13 +8314,13 @@ fsevents@~2.3.1:
   linkType: hard
 
 "react-error-boundary@npm:^3.1.0":
-  version: 3.1.1
-  resolution: "react-error-boundary@npm:3.1.1"
+  version: 3.1.3
+  resolution: "react-error-boundary@npm:3.1.3"
   dependencies:
     "@babel/runtime": ^7.12.5
   peerDependencies:
     react: ">=16.13.1"
-  checksum: 8860975e5ab2cf85c50713a18cabadd862b8d9ac694f53fdff7d2f51ec92fec2a7ea839b1379cad7ad3fec8f49122dd4e4a2fc7b0fc5776671acff860dbad691
+  checksum: 8b5294dd14f8d13e430e0c15d7a8fa2eede0c4d59b499303a51645b2e29c00f1ab373de07431664fe64f08362fe2ee044757ffdbad60db1a84df151dd1d4ebaf
   languageName: node
   linkType: hard
 
@@ -10575,7 +10409,7 @@ typescript@^3.2.4:
   version: 0.0.0-use.local
   resolution: "vite@workspace:demo"
   dependencies:
-    "@pastable/use-query-params": "workspace:packages/use-query-params"
+    "@pastable/core": "workspace:packages/core"
     "@types/react": ^17.0.0
     "@types/react-dom": ^17.0.0
     "@types/react-router-dom": ^5.1.7

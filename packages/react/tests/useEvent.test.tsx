@@ -5,7 +5,7 @@ import assert from "uvu/assert";
 
 import { setupJSDOM } from "@pastable/test-utils";
 
-import { useEvent } from "./useEvent";
+import { useEvent } from "../src/useEvent";
 
 test("useEvent allows defining an event on window in a declarative way", async () => {
     const cleanup = setupJSDOM();

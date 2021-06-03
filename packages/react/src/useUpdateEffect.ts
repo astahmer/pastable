@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { useIsMountedRef } from "@pastable/use-is-mounted";
+import { useIsMountedRef } from "./useIsMounted";
 
 /**
  * React effect hook that invokes only on update.

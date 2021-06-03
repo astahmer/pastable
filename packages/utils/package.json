@@ -4,7 +4,6 @@
     "version": "0.0.10",
     "source": "src/index.ts",
     "main": "dist/index.js",
-    "exports": "./dist/index.modern.js",
     "module": "dist/index.module.js",
     "unpkg": "dist/index.umd.js",
     "types": "dist/index.d.ts",
@@ -15,7 +14,7 @@
     },
     "author": "Alexandre Stahmer <alexandre.stahmer@gmail.com>",
     "scripts": {
-        "build": "microbundle build --tsconfig tsconfig.build.json",
+        "build": "microbundle build --tsconfig tsconfig.build.json -f esm,cjs,umd ",
         "dev": "microbundle watch",
         "test": "uvu -r @swc-node/register -r tsconfig-paths/register src",
         "tw": "watchlist src -- yarn test",
@@ -61,5 +60,6 @@
         "lodash",
         "gists",
         "typescript"
-    ]
+    ],
+    "dependencies": {}
 }

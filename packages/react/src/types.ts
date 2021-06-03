@@ -1,7 +1,6 @@
 import { Dispatch, MutableRefObject, ReactNode, SetStateAction } from "react";
 
-
-import { AnyFunction } from "./common";
+import { AnyFunction } from "@pastable/typings";
 
 export interface WithChildren {
     children: ReactNode;

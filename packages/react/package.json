@@ -3,7 +3,6 @@
     "version": "0.0.16",
     "source": "src/index.ts",
     "main": "dist/index.js",
-    "exports": "./dist/index.modern.js",
     "module": "dist/index.module.js",
     "types": "dist/index.d.ts",
     "typings": "dist/index.d.ts",
@@ -13,10 +12,10 @@
     },
     "author": "Alexandre Stahmer <alexandre.stahmer@gmail.com>",
     "scripts": {
-        "build": "microbundle build --tsconfig tsconfig.build.json --external react,jotai",
+        "build": "microbundle build --tsconfig tsconfig.build.json -f esm,cjs,umd --external react,jotai",
         "dev": "microbundle watch",
-        "test": "uvu -r @swc-node/register -r tsconfig-paths/register src",
-        "tw": "yarn test && watchlist src -- yarn test",
+        "test": "uvu -r @swc-node/register -r tsconfig-paths/register tests",
+        "tw": "yarn test && watchlist tests -- yarn test",
         "coverage": "c8 --all yarn test",
         "coverage:open": "node -r @swc-node/register -r tsconfig-paths/register src/openFileInBrowser",
         "coverage:view": "c8 --reporter=lcov --all yarn test",
@@ -27,12 +26,17 @@
         "release-publish": "npm publish && git push --follow-tags origin main"
     },
     "devDependencies": {
+        "@pastable/test-utils": "workspace:packages/test-utils",
         "@swc-node/register": "^1.0.5",
+        "@testing-library/react": "^11.2.7",
+        "@testing-library/react-hooks": "^7.0.0",
         "@types/node": "^14.14.37",
         "@types/react": "^17",
+        "@types/react-test-renderer": "^17.0.1",
         "@types/rimraf": "^3",
         "c8": "^7.7.1",
         "microbundle": "^0.13.0",
+        "react-test-renderer": "^17.0.2",
         "rimraf": "^3.0.2",
         "simple-spy": "^3.0.1",
         "standard-version": "^9.2.0",
@@ -42,13 +46,8 @@
         "watchlist": "^0.2.3"
     },
     "dependencies": {
-        "@pastable/atom-with-toggle": "workspace:packages/atom-with-toggle",
-        "@pastable/use-click-away": "workspace:packages/use-click-away",
-        "@pastable/use-event": "workspace:packages/use-event",
-        "@pastable/use-force-update": "workspace:packages/use-force-update",
-        "@pastable/use-is-mounted": "workspace:packages/use-is-mounted",
-        "@pastable/use-query-params": "workspace:packages/use-query-params",
-        "jotai": "^0.16.5",
+        "@pastable/utils": "workspace:packages/utils",
+        "jotai": "^0.16.8",
         "react": "^17.0.2"
     },
     "publishConfig": {
