@@ -1,8 +1,9 @@
 import { Dispatch, SetStateAction, useCallback, useMemo, useState } from "react";
 
-import { useIsMountedRef } from "@pastable/use-is-mounted";
-import { useUpdateEffect } from "@pastable/use-update-effect";
 import { sortBy as sortByFn } from "@pastable/utils";
+
+import { useIsMountedRef } from "./useIsMounted";
+import { useUpdateEffect } from "./useUpdateEffect";
 
 export function useSelection<T = any, Id = string | number>({
     getId,

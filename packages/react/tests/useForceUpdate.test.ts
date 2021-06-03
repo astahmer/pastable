@@ -2,7 +2,7 @@ import { act, renderHook } from "@testing-library/react-hooks";
 import { test } from "uvu";
 import assert from "uvu/assert";
 
-import { useForceUpdate } from "./useForceUpdate";
+import { useForceUpdate } from "../src/useForceUpdate";
 
 test("useForceUpdate", () => {
     let rerendersCount = 0;

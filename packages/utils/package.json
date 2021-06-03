@@ -1,10 +1,9 @@
 {
     "name": "@pastable/utils",
     "description": "A collection of pastable code gathered from past projects.",
-    "version": "0.0.10",
+    "version": "0.1.1",
     "source": "src/index.ts",
     "main": "dist/index.js",
-    "exports": "./dist/index.modern.js",
     "module": "dist/index.module.js",
     "unpkg": "dist/index.umd.js",
     "types": "dist/index.d.ts",
@@ -15,7 +14,7 @@
     },
     "author": "Alexandre Stahmer <alexandre.stahmer@gmail.com>",
     "scripts": {
-        "build": "microbundle build --tsconfig tsconfig.build.json",
+        "build": "microbundle build --tsconfig tsconfig.build.json -f esm,cjs,umd ",
         "dev": "microbundle watch",
         "test": "uvu -r @swc-node/register -r tsconfig-paths/register src",
         "tw": "watchlist src -- yarn test",
@@ -23,10 +22,12 @@
         "coverage:open": "yarn scripts:openCoverageInBrowser",
         "coverage:view": "c8 --reporter=lcov --all yarn test && yarn coverage:open",
         "release": "standard-version -t @pastable/utils\\@ --path .",
+        "release:dry": "yarn release --dry-run",
+        "release:minor": "yarn release --release-as minor",
         "prebuild": "rimraf dist",
         "prepare": "yarn build",
         "prepublishOnly": "yarn test",
-        "release-publish": "npm publish && git push --follow-tags origin main"
+        "release-publish": "yarn npm publish && git push --follow-tags origin main"
     },
     "devDependencies": {
         "@swc-node/register": "^1.0.5",
@@ -61,5 +62,6 @@
         "lodash",
         "gists",
         "typescript"
-    ]
+    ],
+    "dependencies": {}
 }

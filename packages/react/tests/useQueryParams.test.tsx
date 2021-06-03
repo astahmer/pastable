@@ -11,7 +11,7 @@ import {
     useQueryParamsMerger,
     useQueryParamsState,
     useSetQueryParams,
-} from "./useQueryParams";
+} from "../src/useQueryParams";
 
 test("formatObjToQueryString", () => {
     assert.equal(formatObjToQueryString({ abc: "123", xyz: "string" }), "?abc=123&xyz=string");

@@ -5,7 +5,7 @@ import assert from "uvu/assert";
 
 import { setupJSDOM } from "@pastable/test-utils";
 
-import { useClickAway } from "./useClickAway";
+import { useClickAway } from "../src/useClickAway";
 
 test("useClickAway invokes a callback when clicking away of target element.", async () => {
     const cleanup = setupJSDOM();

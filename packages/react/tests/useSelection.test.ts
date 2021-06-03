@@ -4,7 +4,7 @@ import assert from "uvu/assert";
 
 import { setupJSDOM } from "@pastable/test-utils";
 
-import { useSelection } from "./useSelection";
+import { useSelection } from "../src/useSelection";
 
 interface Item {
     id: number;

@@ -6,7 +6,7 @@ import assert from "uvu/assert";
 
 import { setupJSDOM } from "@pastable/test-utils";
 
-import { atomWithToggle, atomWithToggleAndStorage } from "./atomWithToggle";
+import { atomWithToggle, atomWithToggleAndStorage } from "../src/atomWithToggle";
 
 const Provider = process.env.PROVIDER_LESS_MODE ? Fragment : ProviderOrig;
 

@@ -23,7 +23,7 @@
         "prebuild": "rimraf dist",
         "prepare": "yarn build",
         "prepublishOnly": "yarn test",
-        "release-publish": "npm publish && git push --follow-tags origin main"
+        "release-publish": "yarn npm publish && git push --follow-tags origin main"
     },
     "devDependencies": {
         "@swc-node/register": "^1.0.5",

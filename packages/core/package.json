@@ -1,9 +1,8 @@
 {
     "name": "@pastable/core",
-    "version": "0.0.17",
+    "version": "0.1.1",
     "source": "src/index.ts",
     "main": "dist/index.js",
-    "exports": "./dist/index.modern.js",
     "module": "dist/index.module.js",
     "types": "dist/index.d.ts",
     "typings": "dist/index.d.ts",
@@ -13,7 +12,7 @@
     },
     "author": "Alexandre Stahmer <alexandre.stahmer@gmail.com>",
     "scripts": {
-        "build": "microbundle build --tsconfig tsconfig.build.json --external react,jotai",
+        "build": "microbundle build --tsconfig tsconfig.build.json -f esm,cjs,umd --external react,jotai",
         "dev": "microbundle watch",
         "test": "uvu -r @swc-node/register -r tsconfig-paths/register src",
         "tw": "yarn test && watchlist src -- yarn test",
@@ -24,7 +23,7 @@
         "prebuild": "rimraf dist",
         "prepare": "yarn build",
         "prepublishOnly": "yarn test",
-        "release-publish": "npm publish && git push --follow-tags origin main"
+        "release-publish": "yarn npm publish && git push --follow-tags origin main"
     },
     "devDependencies": {
         "@swc-node/register": "^1.0.5",
