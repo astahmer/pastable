@@ -22,6 +22,8 @@
         "release": "standard-version -t @pastable/typings\\@ --path .",
         "prebuild": "rimraf dist",
         "prepare": "yarn build",
+        "publish:dry": "yarn prebuild && yarn test && yarn build",
+        "publish": "yarn prebuild && yarn test && yarn build && yarn npm publish --access public",
         "prepublishOnly": "yarn test",
         "release-publish": "yarn npm publish && git push --follow-tags origin main"
     },
