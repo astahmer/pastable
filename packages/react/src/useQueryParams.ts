@@ -22,7 +22,7 @@ export const useQueryParams = <QP = ObjectLiteral>(props: UseQueryParamsProps<QP
         setter({ ...props.defaultValues, ...state });
     }, []);
 
-    return [state, setter, reset];
+    return [state, setter, reset] as const;
 };
 
 export interface UseQueryParamsProps<QP = ObjectLiteral> extends Pick<UseSetQueryParamsProps, "toPath"> {
