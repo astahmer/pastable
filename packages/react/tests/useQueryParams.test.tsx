@@ -61,14 +61,22 @@ test("useSetQueryParams updates current query params with values", () => {
     const cleanup = setupJSDOM({ url: "/test?abc=123&xyz=string" });
 
     const testLocation = window.location;
-
-    const { result } = renderHook(() => useSetQueryParams());
+    const { result, rerender } = renderHook(() => useSetQueryParams());
 
     act(() => {
         result.current({ newParam: "NEW" });
     });
 
     assert.equal(testLocation.search, "?abc=123&xyz=string&newParam=NEW");
+    rerender();
+
+    act(() => {
+        result.current({ another: "value" }, "push", "/path");
+    });
+
+    assert.equal(testLocation.pathname, "/path");
+    assert.equal(testLocation.search, "?abc=123&xyz=string&newParam=NEW&another=value");
+
     restoreConsole();
     cleanup();
 });

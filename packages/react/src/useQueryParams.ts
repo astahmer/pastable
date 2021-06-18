@@ -1,7 +1,7 @@
 import { SetStateAction, useEffect } from "react";
 
 import { ObjectLiteral } from "@pastable/typings";
-import { Formater, format, getSelf, isBrowser, isDefined, isType } from "@pastable/utils";
+import { Formater, format, isBrowser, isDefined, isType } from "@pastable/utils";
 
 import { useEvent } from "./useEvent";
 import { useForceUpdate } from "./useForceUpdate";
@@ -88,17 +88,21 @@ export const getHistory = () =>
 
 export type HistoryMode = "push" | "replace";
 /** Update page history by merging current queryParams with values */
-export const useSetQueryParams = <QP = ObjectLiteral>({ toPath = getSelf, formater }: UseSetQueryParamsProps = {}) => {
+export const useSetQueryParams = <QP = ObjectLiteral>({
+    toPath: toPathProp,
+    formater,
+}: UseSetQueryParamsProps = {}) => {
     const merger = useQueryParamsMerger<typeof formater, QP>(formater);
-    const setter = (values: Partial<QP>, mode: HistoryMode = "push") => {
+    const setter = (values: Partial<QP>, mode: HistoryMode = "push", toPath?: UseSetQueryParamsProps["toPath"]) => {
         const history = getHistory();
         const location = getLocation();
 
         const pathname = location.pathname;
         const basePath = pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
 
+        const path = toPath || toPathProp;
         // Either pass a static toPath or a function that will be given basePath as argument
-        const to = typeof toPath === "string" ? toPath : toPath(basePath);
+        const to = path ? (typeof path === "string" ? path : path(basePath)) : basePath;
         const url = to + merger(values);
 
         if (mode === "push") {
