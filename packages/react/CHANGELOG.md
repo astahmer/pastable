@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/astahmer/pastable/compare/@pastable/react@0.1.1...@pastable/react@0.1.2) (2021-06-18)
+
+
+### Features
+
+* **useQueryParams:** allow overriding toPath with setter ([bac2089](https://github.com/astahmer/pastable/commit/bac20891d1656489ea2c2c6086e7ce589349496d))
+
 ### [0.1.1](https://github.com/astahmer/pastable/compare/@pastable/react@0.1.0...@pastable/react@0.1.1) (2021-06-03)
 
 ## [0.1.0](https://github.com/astahmer/pastable/compare/@pastable/react@0.0.16...@pastable/react@0.1.0) (2021-06-03)
