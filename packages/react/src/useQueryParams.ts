@@ -22,7 +22,7 @@ export const useQueryParams = <QP = ObjectLiteral>(props: UseQueryParamsProps<QP
         setter({ ...props.defaultValues, ...state });
     }, []);
 
-    return [state, setter, reset] as [Partial<QP>, UseQueryParamsSetState<Partial<QP>>, () => void];
+    return [state, setter, reset];
 };
 
 export interface UseQueryParamsProps<QP = ObjectLiteral> extends Pick<UseSetQueryParamsProps, "toPath"> {
@@ -46,7 +46,7 @@ export const useCurrentQueryParams = <QP = ObjectLiteral, F extends Formater = F
     useEvent("pushstate" as any, forceUpdate);
 
     const formated = formater ? format(parsed, formater) : parsed;
-    return formated as QP;
+    return formated as Partial<QP>;
 };
 
 /** Control a queryParam from its key like a useState  */
@@ -114,6 +114,14 @@ export const useSetQueryParams = <QP = ObjectLiteral>({
 
     return setter;
 };
+export type UseSetQueryParamsReturn<QP = ObjectLiteral> = ({
+    toPath: toPathProp,
+    formater,
+}?: UseSetQueryParamsProps) => (
+    values: Partial<QP>,
+    mode?: HistoryMode,
+    toPath?: UseSetQueryParamsProps["toPath"]
+) => void;
 
 export type UseSetQueryParamsToPathFn = (currentPathname: string) => string;
 export interface UseSetQueryParamsProps {
