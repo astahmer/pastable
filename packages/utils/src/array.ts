@@ -7,29 +7,29 @@ import { getSetDifference, getSetIntersection, getSetUnion, getSymmetricDifferen
  * Return the difference between left in right
  * @example getDiff([1, 2, 3], [1, 4, 5]) -> [2, 3]
  */
-export const getDiff = <T = any>(ding: Array<T>, dong: Array<T>) =>
-    Array.from(getSetDifference(new Set(ding), new Set(dong)));
+export const getDiff = <T = any>(left: Array<T>, right: Array<T>) =>
+    Array.from(getSetDifference(new Set(left), new Set(right)));
 
 /**
  * Return the difference between left in right / right in left
  * @example getSymmetricDiff([1, 2, 3], [1, 4, 5]) -> [2, 3, 4, 5]
  */
-export const getSymmetricDiff = <T = any>(ding: Array<T>, dong: Array<T>) =>
-    Array.from(getSymmetricDifference(new Set(ding), new Set(dong)));
+export const getSymmetricDiff = <T = any>(left: Array<T>, right: Array<T>) =>
+    Array.from(getSymmetricDifference(new Set(left), new Set(right)));
 
 /**
  * Return the union between left & right
  * @example getUnion([1, 2, 3], [1, 4, 5]) -> [1, 2, 3, 4, 5]
  */
-export const getUnion = <T = any>(ding: Array<T>, dong: Array<T>) =>
-    Array.from(getSetUnion(new Set(ding), new Set(dong)));
+export const getUnion = <T = any>(left: Array<T>, right: Array<T>) =>
+    Array.from(getSetUnion(new Set(left), new Set(right)));
 
 /**
  * Return the intersection between left & right
  * @example getUnion([1, 2, 3], [1, 4, 5]) -> [1]
  */
-export const getIntersection = <T = any>(ding: Array<T>, dong: Array<T>) =>
-    Array.from(getSetIntersection(new Set(ding), new Set(dong)));
+export const getIntersection = <T = any>(left: Array<T>, right: Array<T>) =>
+    Array.from(getSetIntersection(new Set(left), new Set(right)));
 
 /**
  * Checks that all items (right) are in left array
@@ -39,7 +39,7 @@ export const getIntersection = <T = any>(ding: Array<T>, dong: Array<T>) =>
 export const hasAll = <T = any>(inArray: Array<T>, items: Array<T>) => isSuperset(new Set(inArray), new Set(items));
 
 /** Return uniques/de-duplicated values in array */
-export const uniques = <T = any>(ding: Array<T>) => Array.from(new Set(ding));
+export const uniques = <T = any>(arr: Array<T>) => Array.from(new Set(arr));
 
 /** Return uniques/de-duplicated values in array of objects using the given propPath as unique identifier */
 export const uniquesByProp = <T = any>(arr: T[], propPath: string): T[] =>
@@ -65,10 +65,10 @@ export function sortBy<T extends ObjectLiteral, K extends keyof T & string>(
     let aProp;
     let bProp;
     const clone = [...arr];
-    clone.sort(function (ding, dong) {
-        aProp = get(ding, key) || "";
+    clone.sort(function (left, right) {
+        aProp = get(left, key) || "";
         aProp = aProp.toLowerCase ? aProp.toLowerCase() : aProp;
-        bProp = get(dong, key) || "";
+        bProp = get(right, key) || "";
         bProp = bProp.toLowerCase ? bProp.toLowerCase() : bProp;
 
         if (typeof aProp === "string" && typeof bProp === "string") {
