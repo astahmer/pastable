@@ -25,6 +25,8 @@ export const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.sli
 
 /** Limit a number between a [min,max] */
 export const limit = (nb: number, [min, max]: [number, number]) => Math.min(Math.max(nb, min), max);
+export const limitStr = (str: string, limit: number, fallback = "--") =>
+    str?.length >= limit ? fallback : str || fallback;
 
 export const areRectsIntersecting = (a: DOMRect, b: DOMRect) =>
     !(a.y + a.height < b.y || a.y > b.y + b.height || a.x + a.width < b.x || a.x > b.x + b.width);

@@ -34,10 +34,21 @@ export function fromEntries<K extends string, V>(iterable: Iterable<readonly [K,
 }
 
 /** Sort object keys alphabetically */
-export const sortObjectKeys = (obj: ObjectLiteral) =>
+export const sortObjectKeys = <T = ObjectLiteral>(obj: T) =>
     Object.keys(obj)
         .sort()
-        .reduce((acc, key) => ((acc[key] = obj[key]), acc), {} as ObjectLiteral);
+        .reduce((acc, key) => ((acc[key as keyof T] = obj[key as keyof T]), acc), {} as T);
+
+/** Sort object keys using a reference order array, sort keys not in reference order in lasts positions */
+export const sortObjKeysFromArray = <T = ObjectLiteral>(obj: T, orderedKeys: Array<keyof T>) => {
+    const entries = Object.entries(obj) as Array<[keyof T, T[keyof T]]>;
+
+    const sortedEntries = entries
+        .filter(([key]) => orderedKeys.includes(key))
+        .sort(([a], [b]) => orderedKeys.indexOf(a) - orderedKeys.indexOf(b))
+        .concat(entries.filter(([key]) => !orderedKeys.includes(key)));
+    return Object.fromEntries(sortedEntries);
+};
 
 /**
  * Hashes the value into a stable hash.
