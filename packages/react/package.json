@@ -52,6 +52,15 @@
         "jotai": "^0.16.8",
         "react": "^17.0.2"
     },
+    "peerDependencies": {
+        "jotai": "*",
+        "react": ">=17"
+    },
+    "peerDependenciesMeta": {
+        "jotai": {
+            "optional": true
+        }
+    },
     "publishConfig": {
         "access": "public"
     },
