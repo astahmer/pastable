@@ -38,6 +38,7 @@ A collection of very short utils functions for about anything, without depenenci
 -   `isBrowser`
 -   `isProd`
 -   `isDev`
+-   `isTest`
 
 ### Getters
 
@@ -94,11 +95,18 @@ A collection of very short utils functions for about anything, without depenenci
 -   `uncapitalize`
 -   `capitalize`
 -   `limit`: Limit a number between a [min,max]
+-   `areRectsIntersecting`: Returns `true` if 2 DOMRect are intersecting (= elements collision)
+-   `getSum`: Get the sum of an array of number
+-   `forceInt`: Force a string to number, handle `NaN` by fallbacking to `defaultValue` (= 1 if not provided)
+-   `getPageCount`: Returns total page count from `itemsCount` & `pageSize`
+-   `roundTo2decimals`
+-   `stringify`: JSON.stringify wrapped with try/catch
 
 ### Random
 
 -   `getRandomString`
 -   `getRandomIntIn`
+-   `getRandomFloatUpTo100`
 -   `pickMultipleUnique`: Randomly pick N unique element in array while excluding some if needed
 -   `pickOne`: Returns a random element in given array
 -   `pickOneBut`: Returns a random element in given array but not of the excluded

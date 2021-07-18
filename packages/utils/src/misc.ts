@@ -1,5 +1,7 @@
 import { AnyFunction } from "@pastable/typings";
 
+import { stringify } from "./primitives";
+
 export const getEnv = () => process.env.NODE_ENV;
 
 /** Returns a callback that will call all functions passed with the same arguments */
@@ -62,3 +64,6 @@ export const off = <K extends keyof HTMLElementEventMap | keyof WindowEventMap>(
     listener: AnyFunction,
     options?: boolean | EventListenerOptions
 ) => obj.removeEventListener(type, listener as any, options);
+
+export const getQueryParams = () => new URLSearchParams(window.location.search);
+export const getQueryString = (data: Record<string, any>) => new URLSearchParams(stringify(data)).toString();

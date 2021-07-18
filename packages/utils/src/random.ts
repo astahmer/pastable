@@ -1,4 +1,5 @@
 import { exclude, makeArrayOf } from "./array";
+import { roundTo2decimals } from "./primitives";
 
 export const getRandomString = (length = 10) =>
     [...Array(length)].map(() => (~~(Math.random() * 36)).toString(36)).join("");
@@ -8,6 +9,7 @@ export function getRandomIntIn(minOrMax: number, maxOptional?: number) {
     const max = maxOptional === undefined ? minOrMax : maxOptional;
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
+export const getRandomFloatUpTo100 = () => roundTo2decimals(Math.random() * 100);
 
 /**
  * Randomly pick N unique element in array while excluding some if needed

@@ -25,3 +25,21 @@ export const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.sli
 
 /** Limit a number between a [min,max] */
 export const limit = (nb: number, [min, max]: [number, number]) => Math.min(Math.max(nb, min), max);
+
+export const areRectsIntersecting = (a: DOMRect, b: DOMRect) =>
+    !(a.y + a.height < b.y || a.y > b.y + b.height || a.x + a.width < b.x || a.x > b.x + b.width);
+
+export const getSum = (arr: number[]) => arr.reduce((acc, item) => acc + item, 0);
+
+export const forceInt = (value: any, defaultValue: number = 1) =>
+    (value = isNaN(value) ? defaultValue : parseInt(value));
+export const getPageCount = (itemsCount: number, pageSize: number) => Math.ceil(itemsCount / pageSize);
+export const roundTo2decimals = (nb: number) => Math.round(nb * 100) / 100;
+
+export const stringify = <Data = any>(data: Data, spacing = 2, returnError = false) => {
+    try {
+        return JSON.stringify(data, null, spacing);
+    } catch (error) {
+        return returnError ? error : null;
+    }
+};
