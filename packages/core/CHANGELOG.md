@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.6](https://github.com/astahmer/pastable/compare/@pastable/core@0.1.5...@pastable/core@0.1.6) (2021-07-18)
+
+
+### Features
+
+* **react:** usePreloadImages ([31d4131](https://github.com/astahmer/pastable/commit/31d4131e2a0fefe2d2f83c73b383f8d8de17f2ab))
+* **utils:** add fns ([895ff83](https://github.com/astahmer/pastable/commit/895ff83187c00d416528e84a96787d861a863fb9))
+* **utils:** sortObjKeysFromArray/limitStr ([b4bc36b](https://github.com/astahmer/pastable/commit/b4bc36b1e4f60386ea4d07105e5a0f8d911f63f7))
+
+
+### Bug Fixes
+
+* naming ([f808182](https://github.com/astahmer/pastable/commit/f8081826ae43cb22618caa846229d99979181b45))
+
 ### [0.1.5](https://github.com/astahmer/pastable/compare/@pastable/core@0.1.4...@pastable/core@0.1.5) (2021-06-18)
 
 ### [0.1.4](https://github.com/astahmer/pastable/compare/@pastable/core@0.1.3...@pastable/core@0.1.4) (2021-06-18)
