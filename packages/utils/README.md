@@ -72,6 +72,7 @@ A collection of very short utils functions for about anything, without depenenci
 -   `makeInstance`: Make an instance of given class auto-filled with record values
 -   `fromEntries`: Polyfill Object.fromEntries
 -   `sortObjectKeys`: Sort object keys alphabetically
+-   `sortObjKeysFromArray`: Sort object keys using an order array
 
 ### Pick
 
@@ -95,6 +96,7 @@ A collection of very short utils functions for about anything, without depenenci
 -   `uncapitalize`
 -   `capitalize`
 -   `limit`: Limit a number between a [min,max]
+-   `limitStr`: Limit a string to a length
 -   `areRectsIntersecting`: Returns `true` if 2 DOMRect are intersecting (= elements collision)
 -   `getSum`: Get the sum of an array of number
 -   `forceInt`: Force a string to number, handle `NaN` by fallbacking to `defaultValue` (= 1 if not provided)
