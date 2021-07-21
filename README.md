@@ -30,8 +30,6 @@ npm i @pastable/utils @pastable/react
 
 ## 📦 Package list
 
-### Bundle packages:
-
 -   [🧰 core](./packages/core/README.md): Re-exports all `pastable` packages.
 -   [⚛️ react](./packages/react/README.md): Re-exports all `pastable` react related packages.
 -   [📜 typings](./packages/typings/README.md): A bunch of utility types.
