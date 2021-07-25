@@ -1,7 +1,7 @@
 import { test } from "uvu";
 import assert from "uvu/assert";
 
-import { fromEntries, hash, makeInstance, mapper, reverse, sortObjectKeys } from "../object";
+import { fromEntries, hash, makeInstance, mapper, reverse, sortObjKeysFromArray, sortObjectKeys } from "../object";
 
 test("mapper", () => {
     const schema = {
@@ -88,6 +88,12 @@ test("hash returns the value into a stable hash", () => {
         hash(withNested),
         `{"obj":{"nested":{"objArray":[{"aaa":222,"ccc":444,"ddd":333,"eee":555,"zzz":111},{"aaa":222,"ccc":444,"ddd":333,"eee":555,"zzz":111}],"primitivesArray":["a","b","c"]},"yyy":888},"zzz":999}`
     );
+});
+
+test("sortObjKeysFromArray", () => {
+    const base = { zzz: 111, aaa: 222, ddd: 333, ccc: 444, eee: 555 };
+    const order = ["aaa", "zzz", "ddd", "eee", "ccc"];
+    assert.equal(Object.keys(sortObjKeysFromArray(base, order as any)), order);
 });
 
 test.run();

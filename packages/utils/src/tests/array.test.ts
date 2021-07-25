@@ -3,6 +3,7 @@ import assert from "uvu/assert";
 
 import { group } from "../_uvu";
 import {
+    appendItem,
     chunk,
     combineUniqueValues,
     combineUniqueValuesByProps,
@@ -12,6 +13,9 @@ import {
     flatMap,
     getDiff,
     getIntersection,
+    getNextIndex,
+    getNextItem,
+    getPrevItem,
     getSymmetricDiff,
     getUnion,
     hasAll,
@@ -19,11 +23,19 @@ import {
     last,
     makeArrayOf,
     pluck,
+    prependItem,
+    removeAtIndex,
+    removeAtIndexMutate,
+    removeItem,
+    removeItemMutate,
+    removeValue,
+    removeValueMutate,
     sortBy,
     uniques,
     uniquesByProp,
+    updateAtIndex,
+    updateItem,
 } from "../array";
-import { get } from "../nested";
 
 test("getDiff should return the difference between 2 arrays", () => {
     const ding = [1, 2, 3, 4, 5];
@@ -266,6 +278,119 @@ test("pluck", () => {
         { id: 4, aaa: 444 },
     ];
     assert.equal(pluck(arr, "aaa"), [111, 222, 333, 444]);
+});
+
+test("appendItem", () => {
+    const arr = [111, 222, 333, 444];
+    assert.equal(appendItem(arr, 555), [111, 222, 333, 444, 555]);
+});
+
+test("prependItem", () => {
+    const arr = [111, 222, 333, 444];
+    assert.equal(prependItem(arr, 555), [555, 111, 222, 333, 444]);
+});
+
+test("updateItem", () => {
+    const arr = [
+        { id: 1, aaa: 111 },
+        { id: 2, aaa: 222 },
+        { id: 3, aaa: 333 },
+        { id: 4, aaa: 444 },
+    ];
+    assert.equal(
+        updateItem(arr, "id", { id: 3, aaa: 999 }).map((item) => item.aaa),
+        [111, 222, 999, 444]
+    );
+});
+
+test("removeValue", () => {
+    const arr = [111, 222, 333, 444];
+    assert.equal(removeValue(arr, 333), [111, 222, 444]);
+});
+
+test("removeValueMutate", () => {
+    const arr = [
+        { id: 1, aaa: 111 },
+        { id: 2, aaa: 222 },
+        { id: 3, aaa: 333 },
+        { id: 4, aaa: 444 },
+    ];
+    removeValueMutate(arr, arr[2]);
+    assert.equal(
+        arr.map((item) => item.aaa),
+        [111, 222, 444]
+    );
+});
+
+test("removeItem", () => {
+    const arr = [
+        { id: 1, aaa: 111 },
+        { id: 2, aaa: 222 },
+        { id: 3, aaa: 333 },
+        { id: 4, aaa: 444 },
+    ];
+    assert.equal(
+        removeItem(arr, "id", 3).map((item) => item.aaa),
+        [111, 222, 444]
+    );
+});
+
+test("removeItemMutate", () => {
+    const arr = [
+        { id: 1, aaa: 111 },
+        { id: 2, aaa: 222 },
+        { id: 3, aaa: 333 },
+        { id: 4, aaa: 444 },
+    ];
+    removeItemMutate(arr, "id", 3);
+    assert.equal(
+        arr.map((item) => item.aaa),
+        [111, 222, 444]
+    );
+});
+
+test("updateAtIndex", () => {
+    const arr = [111, 222, 333, 444];
+    assert.equal(updateAtIndex(arr, 2, 777), [111, 222, 777, 444]);
+});
+
+test("removeAtIndex", () => {
+    const arr = [111, 222, 333, 444];
+    assert.equal(removeAtIndex(arr, 2), [111, 222, 444]);
+});
+
+test("removeAtIndexMutate", () => {
+    const arr = [111, 222, 333, 444];
+    removeAtIndexMutate(arr, 2);
+    assert.equal(arr, [111, 222, 444]);
+});
+
+test("getPrevItem", () => {
+    const arr = [111, 222, 333, 444];
+    assert.equal(getPrevItem(arr, 2), 222);
+    assert.equal(getPrevItem(arr, 0, false), 111);
+    assert.equal(getPrevItem(arr, 0, true), 444);
+});
+
+test("getNextItem", () => {
+    const arr = [111, 222, 333, 444];
+    assert.equal(getNextItem(arr, 2), 444);
+    assert.equal(getNextItem(arr, 3, false), 444);
+    assert.equal(getNextItem(arr, 3, true), 111);
+});
+
+test("getNextIndex", () => {
+    const arr = [111, 222, 333, 444];
+    assert.equal(getNextIndex(2, arr.length), 3);
+    assert.equal(getNextIndex(3, arr.length, false), 3);
+    assert.equal(getNextIndex(3, arr.length, true), 0);
+});
+
+test("getNextIndex", () => {
+    const arr = [111, 222, 333, 444];
+    assert.equal(getNextIndex(2, arr.length), 3);
+    assert.equal(getNextIndex(3, arr.length, false), 3);
+    assert.equal(getNextIndex(3, arr.length, true), 0);
 });
 
 test.run();

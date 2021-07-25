@@ -125,3 +125,80 @@ export const chunk = <T = any>(arr: T[], size: number): Array<T[]> =>
 
 /** Array of picked property */
 export const pluck = <K extends keyof T, T extends object>(arr: T[], prop: K) => arr.map((item) => item[prop]);
+
+// https://github.com/chakra-ui/chakra-ui/blob/main/packages/utils/src/array.ts
+export const prependItem = <T>(array: T[], item: T): T[] => [item, ...array];
+export const appendItem = <T>(array: T[], item: T): T[] => [...array, item];
+export const updateItem = <T extends ObjectLiteral>(array: T[], idPath: string, update: T) => {
+    const clone = [...array];
+    const index = findBy(array, idPath, update[idPath], true) as number;
+    clone[index] = update;
+    return clone;
+};
+export const removeValue = <T>(array: T[], item: T): T[] => array.filter((eachItem) => eachItem !== item);
+export const removeValueMutate = <T>(array: T[], item: T): T[] => array.splice(array.indexOf(item), 1);
+
+export const removeItem = <T>(array: T[], idPath: string, value: any): T[] =>
+    array.filter((eachItem) => get(eachItem, idPath) !== value);
+export const removeItemMutate = <T>(array: T[], idPath: string, value: any): T[] =>
+    array.splice(findBy(array, idPath, value, true) as number, 1);
+
+export const updateAtIndex = <T>(array: T[], index: number, update: T) => {
+    const clone = [...array];
+    clone[index] = update;
+    return clone;
+};
+export const removeAtIndex = <T>(array: T[], index: number): T[] => array.filter((_, idx) => idx !== index);
+export const removeAtIndexMutate = <T>(array: T[], index: number): T[] => array.splice(index, 1);
+
+export function getPrevItem<T>(array: T[], index: number, loop = true): T {
+    const prevIndex = getPrevIndex(index, array.length, loop);
+    return array[prevIndex];
+}
+
+export function getNextItem<T>(array: T[], index: number, loop = true): T {
+    const nextIndex = getNextIndex(index, array.length, loop);
+    return array[nextIndex];
+}
+
+/**
+ * Get the next index based on the current index and step.
+ *
+ * @param currentIndex the current index
+ * @param length the total length or count of items
+ * @param step the number of steps
+ * @param loop whether to circle back once `currentIndex` is at the start/end
+ */
+export function getNextIndex(currentIndex: number, length: number, loop = true, step = 1): number {
+    const lastIndex = length - 1;
+
+    if (currentIndex === -1) {
+        return step > 0 ? 0 : lastIndex;
+    }
+
+    const nextIndex = currentIndex + step;
+
+    if (nextIndex < 0) {
+        return loop ? lastIndex : 0;
+    }
+
+    if (nextIndex >= length) {
+        if (loop) return 0;
+        return currentIndex > length ? length : currentIndex;
+    }
+
+    return nextIndex;
+}
+
+/**
+ * Get's the previous index based on the current index.
+ * Mostly used for keyboard navigation.
+ *
+ * @param index - the current index
+ * @param count - the length or total count of items in the array
+ * @param loop - whether we should circle back to the
+ * first/last once `currentIndex` is at the start/end
+ */
+export function getPrevIndex(index: number, count: number, loop = true): number {
+    return getNextIndex(index, count, loop, -1);
+}

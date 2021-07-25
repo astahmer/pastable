@@ -1,6 +1,7 @@
 # @pastable/utils
 
 A collection of very short utils functions for about anything, without depenencies. Something like a (very) tiny (incomplete) nicely typed lodash.
+Some are taken from other open-source projects, such as `Chakra-UI`.
 
 ## List of utils
 
@@ -22,6 +23,20 @@ A collection of very short utils functions for about anything, without depenenci
 -   `makeArrayOf`: Make an array of {count} empty elements
 -   `chunk`: Split an array in chunk of given size
 -   `pluck`: Array of picked property
+-   `prependItem`
+-   `appendItem`
+-   `updateItem`: Update an object item inside given array, found by passed idPath
+-   `removeValue`: Returns array without given value
+-   `removeValueMutate`: Same as `removeValue` but mutate original array (useful for Proxy states)
+-   `removeItem`: Returns array without given item object
+-   `removeItemObjectMutate`: Same as `removeItem` but mutate original array (useful for Proxy states)
+-   `updateAtIndex`
+-   `removeAtIndex`
+-   `removeAtIndexMutate`: Same as `removeAtIndex` but mutate original array (useful for Proxy states)
+-   `getPrevItem`: Returns prev item from given index, handles looping
+-   `getNextItem`: Returns next item from given index, handles looping
+-   `getNextIndex`: Returns next index from given index, handles looping
+-   `getPrevIndex`: Returns prev index from given index, handles looping
 
 ### Asserts
 
