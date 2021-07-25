@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.4](https://github.com/astahmer/pastable/compare/@pastable/utils@0.1.3...@pastable/utils@0.1.4) (2021-07-25)
+
+
+### Features
+
+* array fns + missing tests ([1a95171](https://github.com/astahmer/pastable/commit/1a95171953dfb6f019ab8599d85024eb02de5068))
+
 ### [0.1.3](https://github.com/astahmer/pastable/compare/@pastable/utils@0.1.2...@pastable/utils@0.1.3) (2021-07-18)
 
 
