@@ -64,6 +64,5 @@
         "lodash",
         "gists",
         "typescript"
-    ],
-    "dependencies": {}
+    ]
 }

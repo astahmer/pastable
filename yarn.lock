@@ -1448,6 +1448,12 @@ __metadata:
     typescript: ^4.2.4
     uvu: ^0.5.1
     watchlist: ^0.2.3
+  peerDependencies:
+    jotai: "*"
+    react: ">=17"
+  peerDependenciesMeta:
+    jotai:
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -1476,6 +1482,12 @@ __metadata:
     typescript: ^4.2.4
     uvu: ^0.5.1
     watchlist: ^0.2.3
+  peerDependencies:
+    jotai: "*"
+    react: ">=17"
+  peerDependenciesMeta:
+    jotai:
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -1519,11 +1531,9 @@ __metadata:
   dependencies:
     "@swc-node/register": ^1.0.5
     "@types/node": ^14.14.37
-    "@types/react": ^17
     "@types/rimraf": ^3
     c8: ^7.7.1
     microbundle: ^0.13.0
-    react: ^17.0.2
     rimraf: ^3.0.2
     simple-spy: ^3.0.1
     standard-version: ^9.2.0
