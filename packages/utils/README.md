@@ -116,14 +116,17 @@ Some are taken from other open-source projects, such as `Chakra-UI`.
 -   `getSum`: Get the sum of an array of number
 -   `forceInt`: Force a string to number, handle `NaN` by fallbacking to `defaultValue` (= 1 if not provided)
 -   `getPageCount`: Returns total page count from `itemsCount` & `pageSize`
--   `roundTo2decimals`
+-   `roundTo`: Returns a float rounded to `X` decimals, defaults to 2
+-   `getClosestNbIn`: Return the closest nb in array, ex: `getClosestNbIn([0, 50, 100, 200], 66); // = 50`
 -   `stringify`: JSON.stringify wrapped with try/catch
+-   `safeJSONParse`: JSON.parse wrapped with try/catch
 
 ### Random
 
--   `getRandomString`
--   `getRandomIntIn`
--   `getRandomFloatUpTo100`
+-   `getRandomString`: Return a random string of given length, can be passed a custom alphabet to pick random characters in
+-   `getRandomIntIn`: Return a random int between min/max, if only 1 arg (max) is passed then min is set to 0
+-   `getRandomFloatIn`: Return a random int between min/max, if only 1 arg (max) is passed then min is set to 0, 3rd arg rounds to X decimals
+-   `getRandomPercent`: Return a random nb between [0, 100], can be given the nb of decimals to return, defaults to 2
 -   `pickMultipleUnique`: Randomly pick N unique element in array while excluding some if needed
 -   `pickOne`: Returns a random element in given array
 -   `pickOneBut`: Returns a random element in given array but not of the excluded

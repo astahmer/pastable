@@ -7,12 +7,13 @@ import {
     camelToSnake,
     capitalize,
     forceInt,
+    getClosestNbIn,
     getPageCount,
     getSum,
     kebabToCamel,
     limit,
     parseStringAsBoolean,
-    roundTo2decimals,
+    roundTo,
     snakeToCamel,
     uncapitalize,
 } from "../primitives";
@@ -88,12 +89,25 @@ test("getPageCount", () => {
     assert.equal(getPageCount(11, 10), 2);
 });
 
-test("roundTo2decimals", () => {
-    assert.equal(roundTo2decimals(1.11), 1.11);
-    assert.equal(roundTo2decimals(1.15), 1.15);
-    assert.equal(roundTo2decimals(1.151), 1.15);
-    assert.equal(roundTo2decimals(1.155), 1.16);
-    assert.equal(roundTo2decimals(1.156), 1.16);
+test("roundTo", () => {
+    assert.equal(roundTo(1.11), 1.11);
+    assert.equal(roundTo(1.15), 1.15);
+    assert.equal(roundTo(1.151), 1.15);
+    assert.equal(roundTo(1.155), 1.16);
+    assert.equal(roundTo(1.156), 1.16);
+    assert.equal(roundTo(1.156, 3), 1.156);
+    assert.equal(roundTo(1.1564, 3), 1.156);
+    assert.equal(roundTo(1.1565, 3), 1.157);
+    assert.equal(roundTo(1.1566, 3), 1.157);
+    assert.equal(roundTo(1.15649, 4), 1.1565);
+});
+
+test("getClosestNbIn", () => {
+    assert.equal(getClosestNbIn([0, 50, 100, 200], 100), 100);
+    assert.equal(getClosestNbIn([0, 50, 100, 200], 149), 100);
+    assert.equal(getClosestNbIn([0, 50, 100, 200], 150), 100);
+    assert.equal(getClosestNbIn([0, 50, 100, 200], 151), 200);
+    assert.equal(getClosestNbIn([0, 50, 100, 200], 500), 200);
 });
 
 test.run();

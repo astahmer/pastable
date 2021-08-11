@@ -4,7 +4,9 @@ import assert from "uvu/assert";
 import { group } from "../_uvu";
 import { getIntersection, hasAll, makeArrayOf, uniques } from "../array";
 import {
+    getRandomFloatIn,
     getRandomIntIn,
+    getRandomPercent,
     getRandomString,
     makeArrayOfRandIn,
     pickMultipleUnique,
@@ -32,6 +34,33 @@ test("getRandomIntIn", () => {
     const resultsWithJustMax = makeArrayOf(100).reduce((acc) => acc.concat(makeIntWithJustMax()), []);
     assert.is(Math.min(...resultsWithJustMax) >= 0, true);
     assert.is(Math.max(...resultsWithJustMax) <= 10, true);
+});
+
+test("getRandomFloatIn", () => {
+    assert.is(typeof getRandomFloatIn(10) === "number", true);
+    assert.is(Number.isInteger(getRandomFloatIn(10)), false);
+});
+
+test("getRandomPercent", () => {
+    assert.is(typeof getRandomPercent(10) === "number", true);
+
+    const makeInt = () => getRandomPercent(0);
+    const results: number[] = makeArrayOf(100).reduce((acc) => acc.concat(makeInt()), []);
+    assert.is(Math.min(...results) >= 0, true);
+    assert.is(Math.max(...results) <= 100, true);
+    assert.is(
+        results.every((item) => Number.isInteger(item)),
+        true
+    );
+
+    const makeIntWith2Decimals = () => getRandomPercent(2);
+    const resultsWith2Decimals: number[] = makeArrayOf(100).reduce((acc) => acc.concat(makeIntWith2Decimals()), []);
+    assert.is(Math.min(...resultsWith2Decimals) >= 0, true);
+    assert.is(Math.max(...resultsWith2Decimals) <= 100, true);
+    assert.is(
+        resultsWith2Decimals.some((item) => !Number.isInteger(item)),
+        true
+    );
 });
 
 group("pickMultipleUnique", (test) => {

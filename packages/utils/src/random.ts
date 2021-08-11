@@ -1,15 +1,26 @@
 import { exclude, makeArrayOf } from "./array";
-import { roundTo2decimals } from "./primitives";
+import { roundTo } from "./primitives";
 
-export const getRandomString = (length = 10) =>
-    [...Array(length)].map(() => (~~(Math.random() * 36)).toString(36)).join("");
+const defaultCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+export const getRandomString = (length = 10, characters = defaultCharacters) => {
+    let result = "";
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
 
-export function getRandomIntIn(minOrMax: number, maxOptional?: number) {
+    return result;
+};
+
+export function getRandomFloatIn(minOrMax: number, maxOptional?: number, decimals?: number) {
     const min = maxOptional === undefined ? 0 : minOrMax;
     const max = maxOptional === undefined ? minOrMax : maxOptional;
-    return Math.floor(Math.random() * (max - min + 1) + min);
+    const float = Math.random() * (max - min + 1) + min;
+    return decimals ? roundTo(float, decimals) : float;
 }
-export const getRandomFloatUpTo100 = () => roundTo2decimals(Math.random() * 100);
+export const getRandomIntIn = (minOrMax: number, maxOptional?: number) =>
+    Math.floor(getRandomFloatIn(minOrMax, maxOptional));
+export const getRandomPercent = (decimals = 2) => roundTo(Math.random() * 100, decimals);
 
 /**
  * Randomly pick N unique element in array while excluding some if needed

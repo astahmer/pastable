@@ -32,15 +32,24 @@ export const areRectsIntersecting = (a: DOMRect, b: DOMRect) =>
     !(a.y + a.height < b.y || a.y > b.y + b.height || a.x + a.width < b.x || a.x > b.x + b.width);
 
 export const getSum = (arr: number[]) => arr.reduce((acc, item) => acc + item, 0);
+export const getClosestNbIn = (arr: number[], to: number) =>
+    arr.reduce((prev, curr) => (Math.abs(curr - to) < Math.abs(prev - to) ? curr : prev));
 
 export const forceInt = (value: any, defaultValue: number = 1) =>
     (value = isNaN(value) ? defaultValue : parseInt(value));
 export const getPageCount = (itemsCount: number, pageSize: number) => Math.ceil(itemsCount / pageSize);
-export const roundTo2decimals = (nb: number) => Math.round(nb * 100) / 100;
+export const roundTo = (nb: number, pow = 2) => Math.round(nb * Math.pow(10, pow)) / Math.pow(10, pow);
 
 export const stringify = <Data = any>(data: Data, spacing = 2, returnError = false) => {
     try {
         return JSON.stringify(data, null, spacing);
+    } catch (error) {
+        return returnError ? error : null;
+    }
+};
+export const safeJSONParse = <Data = any>(data: string, returnError = false): Data => {
+    try {
+        return JSON.parse(data);
     } catch (error) {
         return returnError ? error : null;
     }
