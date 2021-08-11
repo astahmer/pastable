@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.9](https://github.com/astahmer/pastable/compare/@pastable/core@0.1.8...@pastable/core@0.1.9) (2021-08-11)
+
+
+### Features
+
+* **utils:** add fns ([fde635d](https://github.com/astahmer/pastable/commit/fde635d5a01c95f3d461def41b56707e87693ad2))
+
 ### [0.1.8](https://github.com/astahmer/pastable/compare/@pastable/core@0.1.7...@pastable/core@0.1.8) (2021-07-27)
 
 ### [0.1.7](https://github.com/astahmer/pastable/compare/@pastable/core@0.1.6...@pastable/core@0.1.7) (2021-07-25)
