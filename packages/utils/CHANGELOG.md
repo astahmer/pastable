@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.7](https://github.com/astahmer/pastable/compare/@pastable/utils@0.1.6...@pastable/utils@0.1.7) (2021-08-12)
+
+
+### Bug Fixes
+
+* getRandomFloatIn + add tests ([4b6b6ea](https://github.com/astahmer/pastable/commit/4b6b6ea71e952d8444dd5070b7abf39e9eb464b9))
+
 ### [0.1.6](https://github.com/astahmer/pastable/compare/@pastable/utils@0.1.5...@pastable/utils@0.1.6) (2021-08-12)
 
 
