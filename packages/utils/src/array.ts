@@ -199,6 +199,6 @@ export function getNextIndex(currentIndex: number, length: number, loop = true, 
  * @param loop - whether we should circle back to the
  * first/last once `currentIndex` is at the start/end
  */
-export function getPrevIndex(index: number, count: number, loop = true): number {
-    return getNextIndex(index, count, loop, -1);
+export function getPrevIndex(index: number, length: number, loop = true, step = -1): number {
+    return getNextIndex(index, count, loop, -step);
 }
