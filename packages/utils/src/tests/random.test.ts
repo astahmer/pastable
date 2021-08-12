@@ -39,6 +39,16 @@ test("getRandomIntIn", () => {
 test("getRandomFloatIn", () => {
     assert.is(typeof getRandomFloatIn(10) === "number", true);
     assert.is(Number.isInteger(getRandomFloatIn(10)), false);
+
+    const makeInt = () => getRandomFloatIn(-5, 5);
+    const results = makeArrayOf(100).reduce((acc) => acc.concat(makeInt()), []);
+    assert.is(Math.min(...results) >= -5, true);
+    assert.is(Math.max(...results) <= 5, true);
+
+    const makeIntWithJustMax = () => getRandomFloatIn(10);
+    const resultsWithJustMax = makeArrayOf(100).reduce((acc) => acc.concat(makeIntWithJustMax()), []);
+    assert.is(Math.min(...resultsWithJustMax) >= 0, true);
+    assert.is(Math.max(...resultsWithJustMax) <= 10, true);
 });
 
 test("getRandomPercent", () => {

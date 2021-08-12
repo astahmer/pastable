@@ -15,7 +15,7 @@ export const getRandomString = (length = 10, characters = defaultCharacters) => 
 export function getRandomFloatIn(minOrMax: number, maxOptional?: number, decimals?: number) {
     const min = maxOptional === undefined ? 0 : minOrMax;
     const max = maxOptional === undefined ? minOrMax : maxOptional;
-    const float = Math.random() * (max - min + 1) + min;
+    const float = Math.random() * (max - min) + min;
     return decimals ? roundTo(float, decimals) : float;
 }
 export const getRandomIntIn = (minOrMax: number, maxOptional?: number) =>
