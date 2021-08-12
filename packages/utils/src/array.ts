@@ -151,13 +151,13 @@ export const updateAtIndex = <T>(array: T[], index: number, update: T) => {
 export const removeAtIndex = <T>(array: T[], index: number): T[] => array.filter((_, idx) => idx !== index);
 export const removeAtIndexMutate = <T>(array: T[], index: number): T[] => array.splice(index, 1);
 
-export function getPrevItem<T>(array: T[], index: number, loop = true): T {
-    const prevIndex = getPrevIndex(index, array.length, loop);
+export function getPrevItem<T>(array: T[], index: number, loop = true, step?: number): T {
+    const prevIndex = getPrevIndex(index, array.length, loop, step);
     return array[prevIndex];
 }
 
-export function getNextItem<T>(array: T[], index: number, loop = true): T {
-    const nextIndex = getNextIndex(index, array.length, loop);
+export function getNextItem<T>(array: T[], index: number, loop = true, step?: number): T {
+    const nextIndex = getNextIndex(index, array.length, loop, step);
     return array[nextIndex];
 }
 
@@ -195,10 +195,10 @@ export function getNextIndex(currentIndex: number, length: number, loop = true, 
  * Mostly used for keyboard navigation.
  *
  * @param index - the current index
- * @param count - the length or total count of items in the array
+ * @param length - the length or total length of items in the array
  * @param loop - whether we should circle back to the
  * first/last once `currentIndex` is at the start/end
  */
 export function getPrevIndex(index: number, length: number, loop = true, step = -1): number {
-    return getNextIndex(index, count, loop, -step);
+    return getNextIndex(index, length, loop, step);
 }

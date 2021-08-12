@@ -66,4 +66,4 @@ export const off = <K extends keyof HTMLElementEventMap | keyof WindowEventMap>(
 ) => obj.removeEventListener(type, listener as any, options);
 
 export const getQueryParams = () => new URLSearchParams(window.location.search);
-export const getQueryString = (data: Record<string, any>) => new URLSearchParams(stringify(data)).toString();
+export const getQueryString = (data: Record<string, any>) => new URLSearchParams(data).toString();
