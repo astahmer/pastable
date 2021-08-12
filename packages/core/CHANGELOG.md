@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.12](https://github.com/astahmer/pastable/compare/@pastable/core@0.1.11...@pastable/core@0.1.12) (2021-08-12)
+
+
+### Bug Fixes
+
+* findBy return type using generics ([d5408c8](https://github.com/astahmer/pastable/commit/d5408c876bc323e820af59f2e0d756ca18d6698e))
+
 ### [0.1.11](https://github.com/astahmer/pastable/compare/@pastable/core@0.1.10...@pastable/core@0.1.11) (2021-08-12)
 
 
