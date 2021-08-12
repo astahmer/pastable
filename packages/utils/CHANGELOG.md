@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.6](https://github.com/astahmer/pastable/compare/@pastable/utils@0.1.5...@pastable/utils@0.1.6) (2021-08-12)
+
+
+### Bug Fixes
+
+* getPrevIndex + add step to getNext/PrevItem ([c466e63](https://github.com/astahmer/pastable/commit/c466e6338f569241bf7f65ac3b5f6c1bf65f4266))
+* getPrevIndex add step parameter ([efe75cd](https://github.com/astahmer/pastable/commit/efe75cdaead4fe0ca213942464d4d5866085e231))
+
 ### [0.1.5](https://github.com/astahmer/pastable/compare/@pastable/utils@0.1.4...@pastable/utils@0.1.5) (2021-08-11)
 
 
