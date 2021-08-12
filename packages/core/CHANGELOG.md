@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.11](https://github.com/astahmer/pastable/compare/@pastable/core@0.1.10...@pastable/core@0.1.11) (2021-08-12)
+
+
+### Bug Fixes
+
+* getRandomFloatIn + add tests ([4b6b6ea](https://github.com/astahmer/pastable/commit/4b6b6ea71e952d8444dd5070b7abf39e9eb464b9))
+
 ### [0.1.10](https://github.com/astahmer/pastable/compare/@pastable/core@0.1.9...@pastable/core@0.1.10) (2021-08-12)
 
 
