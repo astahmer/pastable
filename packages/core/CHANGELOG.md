@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.13](https://github.com/astahmer/pastable/compare/@pastable/core@0.1.12...@pastable/core@0.1.13) (2021-08-15)
+
+
+### Features
+
+* sortArrayOfObjectByPropFromArray ([4201232](https://github.com/astahmer/pastable/commit/4201232ef276240d194bf519d793071f5fd1d729))
+
+
+### Bug Fixes
+
+* tsconfig.build add lib DOM ([07032c5](https://github.com/astahmer/pastable/commit/07032c5776bf038c31832495d767212a9b573c40))
+* tsconfig.build add lib DOM ([ed2b17c](https://github.com/astahmer/pastable/commit/ed2b17cec4123846108ea4c26a2a8b7f4e0f0810))
+* use lib dom.iterable ([13ac8e0](https://github.com/astahmer/pastable/commit/13ac8e011a1bf997d7fae052c4232a5ffeb5b9ae))
+
 ### [0.1.12](https://github.com/astahmer/pastable/compare/@pastable/core@0.1.11...@pastable/core@0.1.12) (2021-08-12)
 
 
