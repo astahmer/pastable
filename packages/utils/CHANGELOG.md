@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.9](https://github.com/astahmer/pastable/compare/@pastable/utils@0.1.8...@pastable/utils@0.1.9) (2021-08-15)
+
+
+### Features
+
+* sortArrayOfObjectByPropFromArray ([4201232](https://github.com/astahmer/pastable/commit/4201232ef276240d194bf519d793071f5fd1d729))
+
 ### [0.1.8](https://github.com/astahmer/pastable/compare/@pastable/utils@0.1.7...@pastable/utils@0.1.8) (2021-08-12)
 
 
