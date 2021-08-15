@@ -37,6 +37,7 @@ Some are taken from other open-source projects, such as `Chakra-UI`.
 -   `getNextItem`: Returns next item from given index, handles looping
 -   `getNextIndex`: Returns next index from given index, handles looping
 -   `getPrevIndex`: Returns prev index from given index, handles looping
+-   `sortArrayOfObjectByPropFromArray`: Sort array of object by given prop using a reference order array, sort items not in reference order in lasts positions
 
 ### Asserts
 

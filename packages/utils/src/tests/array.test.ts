@@ -30,6 +30,7 @@ import {
     removeItemMutate,
     removeValue,
     removeValueMutate,
+    sortArrayOfObjectByPropFromArray,
     sortBy,
     uniques,
     uniquesByProp,
@@ -391,6 +392,23 @@ test("getNextIndex", () => {
     assert.equal(getNextIndex(2, arr.length), 3);
     assert.equal(getNextIndex(3, arr.length, false), 3);
     assert.equal(getNextIndex(3, arr.length, true), 0);
+});
+
+test("sortArrayOfObjectByPropFromArray", () => {
+    const arr = [
+        { id: "1", aaa: 111 },
+        { id: "2", aaa: 222 },
+        { id: "3", aaa: 333 },
+        { id: "4", aaa: 444 },
+    ];
+    assert.equal(
+        sortArrayOfObjectByPropFromArray(arr, "id", ["4", "3", "2", "1"]).map((item) => item.id),
+        ["4", "3", "2", "1"]
+    );
+    assert.equal(
+        sortArrayOfObjectByPropFromArray(arr, "aaa", [222, 333, 111, 444]).map((item) => item.aaa),
+        [222, 333, 111, 444]
+    );
 });
 
 test.run();

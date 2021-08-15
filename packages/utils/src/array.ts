@@ -28,8 +28,8 @@ export const getUnion = <T = any>(left: Array<T>, right: Array<T>) =>
  * Return the intersection between left & right
  * @example getUnion([1, 2, 3], [1, 4, 5]) -> [1]
  */
-export const getIntersection = <T = any>(left: Array<T>, right: Array<T>) =>
-    Array.from(getSetIntersection(new Set(left), new Set(right)));
+export const getIntersection = <T = any>(left: Array<T>, right: Array<T>): Array<T> =>
+    Array.from(getSetIntersection(new Set(left), new Set(right))) as Array<T>;
 
 /**
  * Checks that all items (right) are in left array
@@ -207,3 +207,16 @@ export function getNextIndex(currentIndex: number, length: number, loop = true, 
 export function getPrevIndex(index: number, length: number, loop = true, step = -1): number {
     return getNextIndex(index, length, loop, step);
 }
+
+/** Sort array of object by given prop using a reference order array, sort items not in reference order in lasts positions */
+export const sortArrayOfObjectByPropFromArray = <T extends ObjectLiteral, K extends keyof T>(
+    arr: Array<T>,
+    prop: K,
+    orderedProp: Array<T[K]>
+) => {
+    const sortedEntries = arr
+        .filter((item) => orderedProp.includes(item[prop]))
+        .sort((a, b) => orderedProp.indexOf(a[prop]) - orderedProp.indexOf(b[prop]))
+        .concat(arr.filter((item) => !orderedProp.includes(item[prop])));
+    return sortedEntries;
+};
