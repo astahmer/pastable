@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.8](https://github.com/astahmer/pastable/compare/@pastable/react@0.1.7...@pastable/react@0.1.8) (2021-08-15)
+
+
+### Bug Fixes
+
+* use lib dom.iterable ([13ac8e0](https://github.com/astahmer/pastable/commit/13ac8e011a1bf997d7fae052c4232a5ffeb5b9ae))
+
 ### [0.1.7](https://github.com/astahmer/pastable/compare/@pastable/react@0.1.6...@pastable/react@0.1.7) (2021-08-15)
 
 
