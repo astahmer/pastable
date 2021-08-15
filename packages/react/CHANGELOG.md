@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.7](https://github.com/astahmer/pastable/compare/@pastable/react@0.1.6...@pastable/react@0.1.7) (2021-08-15)
+
+
+### Bug Fixes
+
+* tsconfig.build add lib DOM ([ed2b17c](https://github.com/astahmer/pastable/commit/ed2b17cec4123846108ea4c26a2a8b7f4e0f0810))
+
 ### [0.1.6](https://github.com/astahmer/pastable/compare/@pastable/react@0.1.5...@pastable/react@0.1.6) (2021-07-18)
 
 
