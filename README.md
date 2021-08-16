@@ -20,7 +20,7 @@
 </p>
 <br />
 
-## ⏩ pastable: TL;DR
+## ⏩ [pastable](http://pastable.vercel.app/): TL;DR
 
 ```sh
 npm i @pastable/utils @pastable/react

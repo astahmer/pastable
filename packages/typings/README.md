@@ -115,7 +115,7 @@ type Keys = ArrayUnion<typeof keys>;
 
 ### DeepPartial
 
-Same as Partial<T> but goes deeper and makes Partial<T> all its properties and sub-properties.
+Same as `Partial<T>` but goes deeper and makes `Partial<T>` all its properties and sub-properties.
 [https://github.com/typeorm/typeorm/blob/master/src/common/DeepPartial.ts](source)
 
 ```ts
