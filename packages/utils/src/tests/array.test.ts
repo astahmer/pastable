@@ -39,49 +39,49 @@ import {
 } from "../array";
 
 test("getDiff should return the difference between 2 arrays", () => {
-    const ding = [1, 2, 3, 4, 5];
-    const dong = [6, 7, 1, 2, 9];
-    assert.equal(getDiff(ding, dong), [3, 4, 5]);
-    assert.equal(getDiff(dong, ding), [6, 7, 9]);
+    const left = [1, 2, 3, 4, 5];
+    const right = [6, 7, 1, 2, 9];
+    assert.equal(getDiff(left, right), [3, 4, 5]);
+    assert.equal(getDiff(right, left), [6, 7, 9]);
 });
 
 test("getSymmetricDiff should return the symmetrical difference between 2 arrays", () => {
-    const ding = [1, 2, 3, 4, 5];
-    const dong = [6, 7, 1, 2, 9];
-    assert.equal(getSymmetricDiff(ding, dong), [3, 4, 5, 6, 7, 9]);
+    const left = [1, 2, 3, 4, 5];
+    const right = [6, 7, 1, 2, 9];
+    assert.equal(getSymmetricDiff(left, right), [3, 4, 5, 6, 7, 9]);
 });
 
 test("getUnion should return the union between 2 arrays", () => {
-    const ding = [1, 2, 3, 4, 5];
-    const dong = [6, 7, 1, 2, 9];
-    assert.equal(getUnion(ding, dong), [1, 2, 3, 4, 5, 6, 7, 9]);
+    const left = [1, 2, 3, 4, 5];
+    const right = [6, 7, 1, 2, 9];
+    assert.equal(getUnion(left, right), [1, 2, 3, 4, 5, 6, 7, 9]);
 });
 
 test("getIntersection should return the intersection between 2 arrays", () => {
-    const ding = [1, 2, 3, 4, 5];
-    const dong = [6, 7, 1, 2, 9];
-    assert.equal(getIntersection(ding, dong), [1, 2]);
+    const left = [1, 2, 3, 4, 5];
+    const right = [6, 7, 1, 2, 9];
+    assert.equal(getIntersection(left, right), [1, 2]);
 });
 
 group("hasAll", (test) => {
     test("should return false when every values of right are not in left", () => {
-        const ding = [1, 2, 3, 4, 5];
-        const dong = [6, 7, 1, 2, 9];
-        assert.is(hasAll(ding, dong), false);
-        assert.is(hasAll(dong, ding), false);
+        const left = [1, 2, 3, 4, 5];
+        const right = [6, 7, 1, 2, 9];
+        assert.is(hasAll(left, right), false);
+        assert.is(hasAll(right, left), false);
     });
     test("should return true when every values of right are in left", () => {
-        const ding = [1, 2, 3, 4, 5];
-        const dong = [6, 7, 1, 2, 3, 4, 5, 9];
-        assert.is(hasAll(ding, dong), false);
-        assert.is(hasAll(dong, ding), true);
+        const left = [1, 2, 3, 4, 5];
+        const right = [6, 7, 1, 2, 3, 4, 5, 9];
+        assert.is(hasAll(left, right), false);
+        assert.is(hasAll(right, left), true);
     });
 });
 
 test("uniques", () => {
-    const ding = [1, 2, 3, 4, 5];
-    const dong = [6, 7, 1, 2, 9];
-    assert.equal(uniques(ding.concat(dong)), [1, 2, 3, 4, 5, 6, 7, 9]);
+    const left = [1, 2, 3, 4, 5];
+    const right = [6, 7, 1, 2, 9];
+    assert.equal(uniques(left.concat(right)), [1, 2, 3, 4, 5, 6, 7, 9]);
 });
 
 test("uniquesByProp", () => {
@@ -198,30 +198,30 @@ group("sortBy", (test) => {
 });
 
 test("isEqualArrays should return true if both array contains the same values", () => {
-    const ding = [1, 2, 3, 4, 5];
-    const dong = [6, 7, 1, 2, 9];
-    assert.is(isEqualArrays(ding, ding), true);
-    assert.is(isEqualArrays(ding, ding.reverse()), true);
-    assert.is(isEqualArrays(ding, dong), false);
+    const left = [1, 2, 3, 4, 5];
+    const right = [6, 7, 1, 2, 9];
+    assert.is(isEqualArrays(left, left), true);
+    assert.is(isEqualArrays(left, left.reverse()), true);
+    assert.is(isEqualArrays(left, right), false);
 });
 
 test("combineUniqueValues should merge every passed array without duplicates", () => {
-    const ding = [1, 2, 3, 4, 5];
-    const dong = [6, 7, 1, 2, 9];
+    const left = [1, 2, 3, 4, 5];
+    const right = [6, 7, 1, 2, 9];
     const dang = [11, 2, 3, 1, 19, 24, 6];
-    assert.equal(combineUniqueValues(ding, ding), ding);
-    assert.equal(combineUniqueValues(ding, dong), [1, 2, 3, 4, 5, 6, 7, 9]);
-    assert.equal(combineUniqueValues(ding, dong, dang), [1, 2, 3, 4, 5, 6, 7, 9, 11, 19, 24]);
+    assert.equal(combineUniqueValues(left, left), left);
+    assert.equal(combineUniqueValues(left, right), [1, 2, 3, 4, 5, 6, 7, 9]);
+    assert.equal(combineUniqueValues(left, right, dang), [1, 2, 3, 4, 5, 6, 7, 9, 11, 19, 24]);
 });
 
 test("combineUniqueValuesByProps should merge every passed array of objects without duplicates using the given property as identifier", () => {
-    const ding = [
+    const left = [
         { id: 1, aaa: 111, bbb: { nested: "aaa" } },
         { id: 2, aaa: 222, bbb: { nested: "bbb" } },
         { id: 3, aaa: 333, bbb: { nested: "ccc" } },
         { id: 4, aaa: 444, bbb: { nested: "ddd" } },
     ];
-    const dong = [
+    const right = [
         { id: 9, aaa: 111, bbb: { nested: "zzz" } },
         { id: 2, aaa: 222, bbb: { nested: "yyy" } },
         { id: 3, aaa: 333, bbb: { nested: "ccc" } },
@@ -229,12 +229,12 @@ test("combineUniqueValuesByProps should merge every passed array of objects with
     ];
 
     // on id
-    assert.equal(combineUniqueValuesByProps([ding, ding], "id"), ding);
-    assert.equal(combineUniqueValuesByProps([ding, dong], "id"), ding.concat(dong[0], dong.slice(-1)));
+    assert.equal(combineUniqueValuesByProps([left, left], "id"), left);
+    assert.equal(combineUniqueValuesByProps([left, right], "id"), left.concat(right[0], right.slice(-1)));
 
     // on bbb.nested
-    assert.equal(combineUniqueValuesByProps([ding, ding], "bbb.nested"), ding);
-    assert.equal(combineUniqueValuesByProps([ding, dong], "bbb.nested"), ding.concat(dong[0], dong[1]));
+    assert.equal(combineUniqueValuesByProps([left, left], "bbb.nested"), left);
+    assert.equal(combineUniqueValuesByProps([left, right], "bbb.nested"), left.concat(right[0], right[1]));
 });
 
 test("first", () => {

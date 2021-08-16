@@ -38,7 +38,10 @@ export const getIntersection = <T = any>(left: Array<T>, right: Array<T>): Array
  */
 export const hasAll = <T = any>(inArray: Array<T>, items: Array<T>) => isSuperset(new Set(inArray), new Set(items));
 
-/** Return uniques/de-duplicated values in array */
+/**
+ * Return uniques/de-duplicated values in array
+ * @example uniques([1, 2, 3, 4, 5].concat([6, 7, 1, 2, 9])) // = [1, 2, 3, 4, 5, 6, 7, 9]
+ */
 export const uniques = <T = any>(arr: Array<T>) => Array.from(new Set(arr));
 
 /** Return uniques/de-duplicated values in array of objects using the given propPath as unique identifier */
