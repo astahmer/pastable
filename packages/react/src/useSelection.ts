@@ -22,7 +22,11 @@ export function useSelection<T = any, Id = string | number>({
         (value: SetStateAction<T[]>) => {
             if (!isMountedRef.current) return;
             setSelected(value);
-            onUpdate?.(value);
+
+            if (onUpdate) {
+                const current = typeof value === "function" ? value(selected) : value;
+                onUpdate(current);
+            }
         },
         [onUpdate]
     );
@@ -144,7 +148,7 @@ export type UseSelectionProps<T = any, Id = string | number> = {
     /** If true, the selection will mirror the initial property */
     updateFromInitial?: boolean;
     /** Callback invoked on any set action */
-    onUpdate?: (value: SetStateAction<T[]>) => void;
+    onUpdate?: (value: T[]) => void;
     /** Defines a maximum selection length, if trying to add items when max is always reached, they will be ignored */
     max?: number;
 };
