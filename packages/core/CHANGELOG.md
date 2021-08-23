@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.14](https://github.com/astahmer/pastable/compare/@pastable/core@0.1.13...@pastable/core@0.1.14) (2021-08-23)
+
+
+### Bug Fixes
+
+* **useSelection:** onUpdate arg ([79bac01](https://github.com/astahmer/pastable/commit/79bac01cbaaeb86a96ce1c1135aaaedd0ddfb2c8))
+
 ### [0.1.13](https://github.com/astahmer/pastable/compare/@pastable/core@0.1.12...@pastable/core@0.1.13) (2021-08-15)
 
 
