@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.9](https://github.com/astahmer/pastable/compare/@pastable/react@0.1.8...@pastable/react@0.1.9) (2021-08-23)
+
+
+### Bug Fixes
+
+* **useSelection:** onUpdate arg ([79bac01](https://github.com/astahmer/pastable/commit/79bac01cbaaeb86a96ce1c1135aaaedd0ddfb2c8))
+
 ### [0.1.8](https://github.com/astahmer/pastable/compare/@pastable/react@0.1.7...@pastable/react@0.1.8) (2021-08-15)
 
 
