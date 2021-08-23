@@ -1,17 +1,4 @@
-const buildOrder = [
-    // "test-utils",
-    "typings",
-    "utils",
-    "use-is-mounted",
-    "use-force-update",
-    "use-update-effect",
-    "use-event",
-    "use-click-away",
-    "use-selection",
-    "use-query-params",
-    "react",
-    "core",
-];
+const buildOrder = ["typings", "utils", "react", "core"];
 const runInWorkspace = (packageName: string) => `yarn workspace @pastable/${packageName} run build`;
 
 runInSeries(
