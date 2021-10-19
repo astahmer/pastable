@@ -4,7 +4,8 @@
         "build:server": "vite build && vite build --ssr",
         "build:ssg": "vite-plugin-ssr prerender",
         "build": "yarn copy && yarn build:server && yarn build:ssg",
-        "copy": "zx ./copyReadmesIntoPages.mjs"
+        "copy": "zx ./copyReadmesIntoPages.mjs",
+        "preview": "vite preview --open"
     },
     "dependencies": {
         "@chakra-ui/icons": "^1.0.15",
@@ -28,7 +29,7 @@
         "typescript": "^4.3.2",
         "vite": "^2.3.6",
         "vite-plugin-mdx": "3.5.6",
-        "vite-plugin-ssr": "0.2.9"
+        "vite-plugin-ssr": "0.3.12"
     },
     "devDependencies": {
         "@mdx-js/react": "^1.6.22",

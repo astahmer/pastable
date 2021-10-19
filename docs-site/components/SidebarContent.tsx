@@ -1,6 +1,6 @@
 import { Box, Flex, useColorModeValue } from "@chakra-ui/react";
 import { BsGearFill } from "react-icons/bs";
-import { FaAtom, FaScroll } from "react-icons/fa";
+import { FaAtom, FaGithub } from "react-icons/fa";
 import { MdHome } from "react-icons/md";
 import { SiTypescript } from "react-icons/si";
 
@@ -32,6 +32,9 @@ export const SidebarContent = (props) => {
             <Flex direction="column" as="nav" fontSize="sm" color="gray.600" aria-label="Main Navigation">
                 <NavItem href="/" icon={MdHome}>
                     Home
+                </NavItem>
+                <NavItem href="https://github.com/astahmer/pastable" target="_blank" icon={FaGithub}>
+                    Github
                 </NavItem>
                 <TreeItem href="/utils" label="utils" icon={BsGearFill} isAnchor defaultIsOpen>
                     <NavItem href="array" />

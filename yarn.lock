@@ -2543,26 +2543,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@brillout/json-s@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "@brillout/json-s@npm:0.2.0"
-  checksum: 153d8764c3e165a39b8d186dad9d87031285827e29988dd3300e46000619246bec7ee08d0c87c9189e00dfa1b531cab044dfb16e297510862c9d0d8b181aa9f1
+"@brillout/json-s@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "@brillout/json-s@npm:0.3.0"
+  checksum: c8c6357344e33cceb5e436814dcd69c31b2d97edd0ea861c45ac0f6f0629876ce73261fd84d73f6259a6957171f800b2a59bfbb1ce7b54c572af0a5af11d7c4a
   languageName: node
   linkType: hard
 
-"@brillout/libassert@npm:^0.4.2":
-  version: 0.4.2
-  resolution: "@brillout/libassert@npm:0.4.2"
-  checksum: 3158b1c5b986c97a2117be0edc2544066a64c251ee1463a0b8d2f415d8091766e8884b1b80db55d1f3f7cd3c6d9b9656a43458e7fe3373c8eb515ad7fef1188d
-  languageName: node
-  linkType: hard
-
-"@brillout/path-to-regexp@npm:^0.1.2":
-  version: 0.1.2
-  resolution: "@brillout/path-to-regexp@npm:0.1.2"
-  dependencies:
-    path-to-regexp: ^1.7.0
-  checksum: 1b1f45428a2ce26e24a8338b62c94ec05292cf3fc37e697b8840f14552224787ac17261fd991b55aa4850c9ab36c6670b5b3d3de72679be6c72d4e5b67bf4db6
+"@brillout/libassert@npm:^0.5.2":
+  version: 0.5.2
+  resolution: "@brillout/libassert@npm:0.5.2"
+  checksum: 8e9dcfbbe48fb14817348da155b050892de324c51c22b6ee27753f93fab1328c90410597cd7945cc8ca64c05d8476cc324084ed7fcc604219fc794a2833ea5da
   languageName: node
   linkType: hard
 
@@ -5738,10 +5729,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cac@npm:^6.7.3":
-  version: 6.7.3
-  resolution: "cac@npm:6.7.3"
-  checksum: 5fa95deb98467e41a5c1d84614077bc9c6dcb25caf5bdbfcbbc0a27bf9a4ba7b9505e2b22be7c755c99d70da5c4c3dbe1d2e9cc4c9035e1b752f103488f2802b
+"cac@npm:^6.7.11":
+  version: 6.7.11
+  resolution: "cac@npm:6.7.11"
+  checksum: e011efc2352cb81a50f2b44e21c6818382a439133865bdb7ed66e02e0978154dbb948cef9cf4e963dde5785df5b56e4deae3b1d5a39a3e034dfbddbec63ec585
   languageName: node
   linkType: hard
 
@@ -7321,7 +7312,7 @@ __metadata:
     vite: ^2.3.6
     vite-plugin-mdx: 3.5.6
     vite-plugin-pwa: ^0.10.0
-    vite-plugin-ssr: 0.2.9
+    vite-plugin-ssr: 0.3.12
     vite-react-jsx: ^1.1.2
     zx: ^3.0.0
   languageName: unknown
@@ -7545,6 +7536,13 @@ __metadata:
     string.prototype.trimstart: ^1.0.4
     unbox-primitive: ^1.0.0
   checksum: 6783bea97f372fd4f1fc77e4e294d024b9f40559a83b40c46b69565511cf13d462a6189b822228c6bb818bd09d2f23b33500206d39bbdc69f7cc7ffebf6640a1
+  languageName: node
+  linkType: hard
+
+"es-module-lexer@npm:^0.9.3":
+  version: 0.9.3
+  resolution: "es-module-lexer@npm:0.9.3"
+  checksum: 84bbab23c396281db2c906c766af58b1ae2a1a2599844a504df10b9e8dc77ec800b3211fdaa133ff700f5703d791198807bba25d9667392d27a5e9feda344da8
   languageName: node
   linkType: hard
 
@@ -7886,7 +7884,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-glob@npm:^3.2.5, fast-glob@npm:^3.2.7":
+"fast-glob@npm:^3.2.7":
   version: 3.2.7
   resolution: "fast-glob@npm:3.2.7"
   dependencies:
@@ -10183,7 +10181,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"kolorist@npm:^1.4.1":
+"kolorist@npm:^1.5.0":
   version: 1.5.0
   resolution: "kolorist@npm:1.5.0"
   checksum: 1eb27470f7468e2591ed60c19a292e7a3cf4f4e211ad2c14aa33c98ee6d2c8e88444c03e98fb5cb5d4ddcb8da431529599c2f187b806b019411fd7c6812c4c74
@@ -11496,7 +11494,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"p-limit@npm:^3.0.2":
+"p-limit@npm:^3.0.2, p-limit@npm:^3.1.0":
   version: 3.1.0
   resolution: "p-limit@npm:3.1.0"
   dependencies:
@@ -15563,10 +15561,10 @@ typescript@^3.2.4:
   languageName: node
   linkType: hard
 
-"vite-plugin-import-build@npm:^0.1.1":
-  version: 0.1.1
-  resolution: "vite-plugin-import-build@npm:0.1.1"
-  checksum: 7c7369aff2ec8d36525ea40776b3c141d78b3f7823c9fb46926d8bf93697e7882b6acec43e27e83a084a2c844e9c320336e93bc13d993af316eafe6fa8e96d89
+"vite-plugin-import-build@npm:^0.1.2":
+  version: 0.1.2
+  resolution: "vite-plugin-import-build@npm:0.1.2"
+  checksum: 881ced517857020c307785f11d6754912d44facc7b27395fed6fc012bec242448e022f707b6d0c85a82d03108fe3864487ed9d2b4b99011c7f7c3e2ad429ad46
   languageName: node
   linkType: hard
 
@@ -15603,23 +15601,24 @@ typescript@^3.2.4:
   languageName: node
   linkType: hard
 
-"vite-plugin-ssr@npm:0.2.9":
-  version: 0.2.9
-  resolution: "vite-plugin-ssr@npm:0.2.9"
+"vite-plugin-ssr@npm:0.3.12":
+  version: 0.3.12
+  resolution: "vite-plugin-ssr@npm:0.3.12"
   dependencies:
-    "@brillout/json-s": ^0.2.0
-    "@brillout/libassert": ^0.4.2
-    "@brillout/path-to-regexp": ^0.1.2
-    cac: ^6.7.3
+    "@brillout/json-s": ^0.3.0
+    "@brillout/libassert": ^0.5.2
+    cac: ^6.7.11
     devalue: ^2.0.1
-    fast-glob: ^3.2.5
-    kolorist: ^1.4.1
-    vite-plugin-import-build: ^0.1.1
+    es-module-lexer: ^0.9.3
+    fast-glob: ^3.2.7
+    kolorist: ^1.5.0
+    p-limit: ^3.1.0
+    vite-plugin-import-build: ^0.1.2
   peerDependencies:
     vite: ^2.2.3
   bin:
     vite-plugin-ssr: node/bin/vite-plugin-ssr.js
-  checksum: 3cb29a283a8d5878214082bdce6384e255b3bd39c9133471056a2ce955322e3b21ebc8501d768d01425b7f9d169b5fda1ce86c60e0d6dc6ec0b40df5191a19d5
+  checksum: dae87df8f3e776c69ab5e3931bf18261435b7ea156cbc1ef4e5c22cfa42ff04d4d6fe0e9928707376cb957047af4f00c2d3729e5d96580ffd327bc994fe45ca5
   languageName: node
   linkType: hard
 

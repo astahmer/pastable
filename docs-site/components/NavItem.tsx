@@ -6,11 +6,11 @@ import { MdKeyboardArrowRight } from "react-icons/md";
 import { AppLink } from "./AppLink";
 
 export const NavItem = (props) => {
-    const { icon, children, ...rest } = props;
+    const { icon, children, target, ...rest } = props;
     const { href: namespace, icon: namespaceIcon, isAnchor } = useContext(TreeItemContext);
 
     return (
-        <AppLink href={namespace ? namespace + (isAnchor ? "#" : "/") + props.href : props.href}>
+        <AppLink href={namespace ? namespace + (isAnchor ? "#" : "/") + props.href : props.href} target={target}>
             <Flex
                 align="center"
                 px="4"
