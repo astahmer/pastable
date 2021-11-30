@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.15](https://github.com/astahmer/pastable/compare/@pastable/core@0.1.14...@pastable/core@0.1.15) (2021-11-30)
+
+
+### Features
+
+* **docs-site:** add github link + fix favicon ([90122cc](https://github.com/astahmer/pastable/commit/90122cc50a78ed3605decde7f735c1f6e380e9cc))
+
 ### [0.1.14](https://github.com/astahmer/pastable/compare/@pastable/core@0.1.13...@pastable/core@0.1.14) (2021-08-23)
 
 
