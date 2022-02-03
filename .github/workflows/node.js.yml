@@ -28,7 +28,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
-      - run: pnpm install
+      - run: pnpm install --frozen-lockfile --ignore-scripts
       - run: pnpm coverage:ci
       - name: Upload coverage to Codecov
         if: ${{ matrix.node-version == '14.x' }}
