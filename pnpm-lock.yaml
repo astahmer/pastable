@@ -64,8 +64,8 @@ importers:
 
   packages/react:
     specifiers:
-      '@pastable/test-utils': workspace:^0.0.0
-      '@pastable/utils': workspace:^0.1.12
+      '@pastable/test-utils': workspace:../test-utils
+      '@pastable/utils': workspace:../utils
       '@testing-library/react': ^12.1.2
       '@testing-library/react-hooks': ^7.0.2
       '@types/react': ^17.0.39
