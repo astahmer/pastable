@@ -15,10 +15,8 @@
         "downlevelIteration": true,
         "resolveJsonModule": true,
         "declaration": true,
+        "sourceMap": true,
         "baseUrl": "./",
-        "paths": {
-            "@pastable/*": ["./packages/*/src"]
-        },
         "types": ["react", "react-dom", "node"]
     },
     "exclude": ["**/node_modules/**", "packages/*/dist"]

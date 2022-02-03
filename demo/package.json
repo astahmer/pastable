@@ -7,10 +7,10 @@
         "serve": "vite preview"
     },
     "dependencies": {
-        "@pastable/core": "workspace:packages/core",
+        "@pastable/core": "workspace:../core",
         "react": "^17.0.0",
         "react-dom": "^17.0.0",
-        "react-router-dom": "^5.2.0"
+        "react-router-dom": "^5.3.0"
     },
     "devDependencies": {
         "@types/react": "^17.0.0",
