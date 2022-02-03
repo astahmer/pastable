@@ -65,6 +65,7 @@ importers:
   packages/react:
     specifiers:
       '@pastable/test-utils': workspace:../test-utils
+      '@pastable/typings': workspace:../typings
       '@pastable/utils': workspace:../utils
       '@testing-library/react': ^12.1.2
       '@testing-library/react-hooks': ^7.0.2
@@ -78,6 +79,7 @@ importers:
       react: 17.0.2
     devDependencies:
       '@pastable/test-utils': link:../test-utils
+      '@pastable/typings': link:../typings
       '@pastable/utils': link:../utils
       '@testing-library/react': 12.1.2_react-dom@17.0.2+react@17.0.2
       '@testing-library/react-hooks': 7.0.2_fc2bb8a5b006d3f25c5f84ea777e678d

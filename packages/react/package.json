@@ -32,8 +32,9 @@
         "release-publish": "pnpm release && pnpm publish"
     },
     "devDependencies": {
-        "@pastable/utils": "workspace:../utils",
         "@pastable/test-utils": "workspace:../test-utils",
+        "@pastable/typings": "workspace:../typings",
+        "@pastable/utils": "workspace:../utils",
         "@testing-library/react": "^12.1.2",
         "@testing-library/react-hooks": "^7.0.2",
         "@types/react": "^17.0.39",
