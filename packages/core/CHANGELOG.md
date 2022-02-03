@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.17](https://github.com/astahmer/pastable/compare/@pastable/core@0.1.14...@pastable/core@0.1.17) (2022-02-03)
+
+
+### Features
+
+* **docs-site:** add github link + fix favicon ([90122cc](https://github.com/astahmer/pastable/commit/90122cc50a78ed3605decde7f735c1f6e380e9cc))
+
+
+### Bug Fixes
+
+* add typings in react ([2168297](https://github.com/astahmer/pastable/commit/2168297fd71b18ae02267f81b3da0ee2f72565dd))
+* add typings in utils ([874c102](https://github.com/astahmer/pastable/commit/874c10299644bb6134a6bb2d96b2cb28d53fe7fa))
+* lockfile ([dc3edfe](https://github.com/astahmer/pastable/commit/dc3edfedee5ce5063904cef6a3c41e2d7f4c6061))
+* replace yarn by pnpm everywhere ([2b8a31f](https://github.com/astahmer/pastable/commit/2b8a31f2026b36af1eec185f7ca307ef16496eef))
+* test:all -> test ([5121f68](https://github.com/astahmer/pastable/commit/5121f688bef77f99e0268cb6eb134396be4ca785))
+
 ### [0.1.15](https://github.com/astahmer/pastable/compare/@pastable/core@0.1.14...@pastable/core@0.1.15) (2021-11-30)
 
 
