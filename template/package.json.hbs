@@ -26,7 +26,7 @@
         "publish:dry": "pnpm prebuild && pnpm test && pnpm build",
         "publish": "pnpm prebuild && pnpm test && pnpm build && pnpm npm publish --access public",
         "prepublishOnly": "pnpm test",
-        "release-publish": "pnpm release && pnpm publish"
+        "release-publish": "pnpm run release && pnpm run publish"
     },
     "sideEffects": false,
     "publishConfig": {
