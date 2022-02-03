@@ -14,12 +14,12 @@
         "build": "microbundle",
         "dev": "microbundle watch",
         "test": "uvu -r @swc-node/register -r tsconfig-paths/register src",
-        "tw": "yarn test && watchlist src -- yarn test",
-        "coverage": "c8 --all yarn test",
+        "tw": "pnpm test && watchlist src -- pnpm test",
+        "coverage": "c8 --all pnpm test",
         "scripts:openFileInBrowser": "node -r @swc-node/register -r tsconfig-paths/register src/openFileInBrowser --",
         "scripts:openCoverageInBrowser": "node -r @swc-node/register -r tsconfig-paths/register src/openCoverageInBrowser --",
-        "coverage:open": "yarn scripts:openCoverageInBrowser",
-        "coverage:view": "c8 --reporter=lcov --all yarn test",
+        "coverage:open": "pnpm scripts:openCoverageInBrowser",
+        "coverage:view": "c8 --reporter=lcov --all pnpm test",
         "scripts:buildAll": "node -r @swc-node/register -r tsconfig-paths/register src/buildAll"
     }
 }

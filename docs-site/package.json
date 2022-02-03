@@ -3,7 +3,7 @@
         "dev": "node -r @swc-node/register -r tsconfig-paths/register ./server",
         "build:server": "vite build && vite build --ssr",
         "build:ssg": "vite-plugin-ssr prerender",
-        "build": "yarn copy && yarn build:server && yarn build:ssg",
+        "build": "pnpm copy && pnpm build:server && pnpm build:ssg",
         "copy": "zx ./copyReadmesIntoPages.mjs",
         "preview": "vite preview --open"
     },

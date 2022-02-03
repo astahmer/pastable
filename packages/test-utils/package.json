@@ -15,10 +15,10 @@
         "build": "microbundle",
         "dev": "microbundle watch",
         "test": "uvu -r @swc-node/register -r tsconfig-paths/register src",
-        "tw": "yarn test && watchlist src -- yarn test",
-        "coverage": "c8 --all yarn test",
+        "tw": "pnpm test && watchlist src -- pnpm test",
+        "coverage": "c8 --all pnpm test",
         "coverage:open": "node -r @swc-node/register -r tsconfig-paths/register src/openFileInBrowser",
-        "coverage:view": "c8 --reporter=lcov --all yarn test"
+        "coverage:view": "c8 --reporter=lcov --all pnpm test"
     },
     "dependencies": {
         "jsdom": "^16.7.0"
