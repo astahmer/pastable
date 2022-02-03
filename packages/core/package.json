@@ -28,9 +28,8 @@
         "prebuild": "rimraf dist",
         "prepare": "pnpm build",
         "publish:dry": "pnpm prebuild && pnpm test && pnpm build",
-        "publish": "pnpm prebuild && pnpm test && pnpm build && pnpm npm publish --access public",
         "prepublishOnly": "pnpm test",
-        "release-publish": "pnpm run release && pnpm run publish"
+        "release-publish": "pnpm run release && pnpm publish"
     },
     "devDependencies": {
         "@pastable/react": "workspace:../react",
