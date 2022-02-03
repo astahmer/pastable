@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.13](https://github.com/astahmer/pastable/compare/@pastable/react@0.1.10...@pastable/react@0.1.13) (2022-02-03)
+
+
+### Bug Fixes
+
+* add typings in react ([2168297](https://github.com/astahmer/pastable/commit/2168297fd71b18ae02267f81b3da0ee2f72565dd))
+* replace yarn by pnpm everywhere ([2b8a31f](https://github.com/astahmer/pastable/commit/2b8a31f2026b36af1eec185f7ca307ef16496eef))
+
 ### [0.1.11](https://github.com/astahmer/pastable/compare/@pastable/react@0.1.10...@pastable/react@0.1.11) (2021-11-30)
 
 ### [0.1.10](https://github.com/astahmer/pastable/compare/@pastable/react@0.1.9...@pastable/react@0.1.10) (2021-08-23)
