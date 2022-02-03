@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/astahmer/pastable/compare/@pastable/typings@0.0.6...@pastable/typings@0.0.7) (2022-02-03)
+
+
+### Bug Fixes
+
+* replace yarn by pnpm everywhere ([2b8a31f](https://github.com/astahmer/pastable/commit/2b8a31f2026b36af1eec185f7ca307ef16496eef))
+
 ### [0.0.6](https://github.com/astahmer/pastable/compare/@pastable/typings@0.0.5...@pastable/typings@0.0.6) (2022-02-03)
 
 ### [0.0.5](https://github.com/astahmer/pastable/compare/@pastable/typings@0.0.2...@pastable/typings@0.0.5) (2022-02-03)
