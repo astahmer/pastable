@@ -1,50 +1,40 @@
 {
     "name": "@pastable/utils",
     "description": "A collection of pastable code gathered from past projects.",
-    "version": "0.1.11",
+    "version": "0.1.12",
     "source": "src/index.ts",
     "main": "dist/index.js",
     "module": "dist/index.module.js",
-    "unpkg": "dist/index.umd.js",
     "types": "dist/index.d.ts",
     "typings": "dist/index.d.ts",
+    "exports": {
+        "require": "./dist/index.js",
+        "default": "./dist/index.modern.js"
+    },
     "repository": {
         "type": "git",
         "url": "https://github.com/astahmer/pastable.git"
     },
     "author": "Alexandre Stahmer <alexandre.stahmer@gmail.com>",
     "scripts": {
-        "build": "microbundle build --tsconfig tsconfig.build.json -f esm,cjs,umd ",
+        "build": "microbundle build --tsconfig tsconfig.build.json",
         "dev": "microbundle watch",
         "test": "uvu -r @swc-node/register -r tsconfig-paths/register src",
-        "tw": "watchlist src -- yarn test",
-        "coverage": "c8 --all yarn test",
-        "coverage:open": "yarn scripts:openCoverageInBrowser",
-        "coverage:view": "c8 --reporter=lcov --all yarn test && yarn coverage:open",
+        "tw": "watchlist src -- pnpm test",
+        "coverage": "c8 --all pnpm test",
+        "coverage:open": "pnpm scripts:openCoverageInBrowser",
+        "coverage:view": "c8 --reporter=lcov --all pnpm test && pnpm coverage:open",
         "release": "standard-version -t @pastable/utils\\@ --path .",
-        "release:dry": "yarn release --dry-run",
-        "release:minor": "yarn release --release-as minor",
+        "release:dry": "pnpm release --dry-run",
+        "release:minor": "pnpm release --release-as minor",
         "prebuild": "rimraf dist",
-        "prepare": "yarn build",
-        "publish:dry": "yarn prebuild && yarn test && yarn build",
-        "publish": "yarn prebuild && yarn test && yarn build && yarn npm publish --access public",
-        "prepublishOnly": "yarn test",
-        "release-publish": "yarn release && yarn publish"
+        "prepare": "pnpm build",
+        "publish:dry": "pnpm prebuild && pnpm test && pnpm build",
+        "publish": "pnpm prebuild && pnpm test && pnpm build && pnpm npm publish --access public",
+        "prepublishOnly": "pnpm test",
+        "release-publish": "pnpm release && pnpm publish"
     },
-    "devDependencies": {
-        "@swc-node/register": "^1.0.5",
-        "@types/node": "^14.14.37",
-        "@types/rimraf": "^3",
-        "c8": "^7.7.1",
-        "microbundle": "^0.13.0",
-        "rimraf": "^3.0.2",
-        "simple-spy": "^3.0.1",
-        "standard-version": "^9.2.0",
-        "tsconfig-paths": "^3.9.0",
-        "typescript": "^4.2.4",
-        "uvu": "^0.5.1",
-        "watchlist": "^0.2.3"
-    },
+    "sideEffects": false,
     "publishConfig": {
         "access": "public"
     },
@@ -64,5 +54,9 @@
         "lodash",
         "gists",
         "typescript"
-    ]
+    ],
+    "devDependencies": {
+        "@pastable/typings": "workspace:../typings",
+        "simple-spy": "^3.0.1"
+    }
 }

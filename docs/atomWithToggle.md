@@ -9,7 +9,7 @@ Like if useToggle & useAtom & useLocalStorage had a child.
 ## Install
 
 ```sh
-yarn add @pastable/react
+pnpm add @pastable/react
 ```
 
 or

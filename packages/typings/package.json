@@ -1,11 +1,10 @@
 {
     "name": "@pastable/typings",
-    "version": "0.0.3",
+    "version": "0.0.6",
     "source": "src/index.ts",
     "main": "dist/index.js",
     "exports": "./dist/index.modern.js",
     "module": "dist/index.module.js",
-    "unpkg": "dist/index.umd.js",
     "repository": {
         "type": "git",
         "url": "https://github.com/astahmer/pastable.git"
@@ -15,31 +14,17 @@
         "build": "microbundle",
         "dev": "microbundle watch",
         "test": "uvu -r @swc-node/register -r tsconfig-paths/register src",
-        "tw": "yarn test && watchlist src -- yarn test",
-        "coverage": "c8 --all yarn test",
+        "tw": "pnpm test && watchlist src -- pnpm test",
+        "coverage": "c8 --all pnpm test",
         "coverage:open": "node -r @swc-node/register -r tsconfig-paths/register src/openFileInBrowser",
-        "coverage:view": "c8 --reporter=lcov --all yarn test",
+        "coverage:view": "c8 --reporter=lcov --all pnpm test",
         "release": "standard-version -t @pastable/typings\\@ --path .",
         "prebuild": "rimraf dist",
-        "prepare": "yarn build",
-        "publish:dry": "yarn prebuild && yarn test && yarn build",
-        "publish": "yarn prebuild && yarn test && yarn build && yarn npm publish --access public",
-        "prepublishOnly": "yarn test",
-        "release-publish": "yarn release && yarn publish"
-    },
-    "devDependencies": {
-        "@swc-node/register": "^1.0.5",
-        "@types/node": "^14.14.37",
-        "@types/rimraf": "^3",
-        "c8": "^7.7.1",
-        "microbundle": "^0.13.0",
-        "rimraf": "^3.0.2",
-        "simple-spy": "^3.0.1",
-        "standard-version": "^9.2.0",
-        "tsconfig-paths": "^3.9.0",
-        "typescript": "^4.2.4",
-        "uvu": "^0.5.1",
-        "watchlist": "^0.2.3"
+        "prepare": "pnpm build",
+        "publish:dry": "pnpm prebuild && pnpm test && pnpm build",
+        "publish": "pnpm prebuild && pnpm test && pnpm build && pnpm npm publish --access public",
+        "prepublishOnly": "pnpm test",
+        "release-publish": "pnpm release && pnpm publish"
     },
     "publishConfig": {
         "access": "public"

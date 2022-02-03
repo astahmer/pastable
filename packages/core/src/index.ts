@@ -1,3 +1,3 @@
-export * from "@pastable/react";
-export * from "@pastable/typings";
-export * from "@pastable/utils";
+export * from "../../react";
+export * from "../../typings";
+export * from "../../utils";

@@ -8,7 +8,7 @@ Please check the tests folder if you need more detailed examples.
 ## Install
 
 ```sh
-yarn add @pastable/react
+pnpm add @pastable/react
 ```
 
 or

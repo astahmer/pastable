@@ -4,7 +4,7 @@
     "main": "dist/index.js",
     "exports": "./dist/index.modern.js",
     "module": "dist/index.module.js",
-    "unpkg": "dist/index.umd.js",
+    "private": true,
     "repository": {
         "type": "git",
         "url": "https://github.com/astahmer/pastable.git"
@@ -14,23 +14,12 @@
         "build": "microbundle",
         "dev": "microbundle watch",
         "test": "uvu -r @swc-node/register -r tsconfig-paths/register src",
-        "tw": "yarn test && watchlist src -- yarn test",
-        "coverage": "c8 --all yarn test",
+        "tw": "pnpm test && watchlist src -- pnpm test",
+        "coverage": "c8 --all pnpm test",
         "scripts:openFileInBrowser": "node -r @swc-node/register -r tsconfig-paths/register src/openFileInBrowser --",
         "scripts:openCoverageInBrowser": "node -r @swc-node/register -r tsconfig-paths/register src/openCoverageInBrowser --",
-        "coverage:open": "yarn scripts:openCoverageInBrowser",
-        "coverage:view": "c8 --reporter=lcov --all yarn test",
+        "coverage:open": "pnpm scripts:openCoverageInBrowser",
+        "coverage:view": "c8 --reporter=lcov --all pnpm test",
         "scripts:buildAll": "node -r @swc-node/register -r tsconfig-paths/register src/buildAll"
-    },
-    "devDependencies": {
-        "@swc-node/register": "^1.0.5",
-        "@types/node": "^14.14.37",
-        "c8": "^7.7.1",
-        "microbundle": "^0.13.0",
-        "simple-spy": "^3.0.1",
-        "tsconfig-paths": "^3.9.0",
-        "typescript": "^4.2.4",
-        "uvu": "^0.5.1",
-        "watchlist": "^0.2.3"
     }
 }

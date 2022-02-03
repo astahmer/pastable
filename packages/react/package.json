@@ -1,55 +1,48 @@
 {
     "name": "@pastable/react",
-    "version": "0.1.11",
+    "version": "0.1.12",
     "source": "src/index.ts",
     "main": "dist/index.js",
     "module": "dist/index.module.js",
     "types": "dist/index.d.ts",
     "typings": "dist/index.d.ts",
+    "exports": {
+        "require": "./dist/index.js",
+        "default": "./dist/index.modern.js"
+    },
     "repository": {
         "type": "git",
         "url": "https://github.com/astahmer/pastable.git"
     },
     "author": "Alexandre Stahmer <alexandre.stahmer@gmail.com>",
     "scripts": {
-        "build": "microbundle build --tsconfig tsconfig.build.json -f esm,cjs,umd --external react,jotai",
+        "build": "microbundle build --tsconfig tsconfig.build.json",
         "dev": "microbundle watch",
         "test": "uvu -r @swc-node/register -r tsconfig-paths/register tests",
-        "tw": "yarn test && watchlist tests -- yarn test",
-        "coverage": "c8 --all yarn test",
+        "tw": "pnpm test && watchlist tests -- pnpm test",
+        "coverage": "c8 --all pnpm test",
         "coverage:open": "node -r @swc-node/register -r tsconfig-paths/register src/openFileInBrowser",
-        "coverage:view": "c8 --reporter=lcov --all yarn test",
+        "coverage:view": "c8 --reporter=lcov --all pnpm test",
         "release": "standard-version -t @pastable/react\\@ --path .",
         "prebuild": "rimraf dist",
-        "prepare": "yarn build",
-        "publish:dry": "yarn prebuild && yarn test && yarn build",
-        "publish": "yarn prebuild && yarn test && yarn build && yarn npm publish --access public",
-        "prepublishOnly": "yarn test",
-        "release-publish": "yarn release && yarn publish"
+        "prepare": "pnpm build",
+        "publish:dry": "pnpm prebuild && pnpm test && pnpm build",
+        "publish": "pnpm prebuild && pnpm test && pnpm build && pnpm npm publish --access public",
+        "prepublishOnly": "pnpm test",
+        "release-publish": "pnpm release && pnpm publish"
     },
     "devDependencies": {
-        "@pastable/test-utils": "workspace:packages/test-utils",
-        "@swc-node/register": "^1.0.5",
-        "@testing-library/react": "^11.2.7",
-        "@testing-library/react-hooks": "^7.0.0",
-        "@types/node": "^14.14.37",
-        "@types/react": "^17",
+        "@pastable/test-utils": "workspace:../test-utils",
+        "@pastable/typings": "workspace:../typings",
+        "@pastable/utils": "workspace:../utils",
+        "@testing-library/react": "^12.1.2",
+        "@testing-library/react-hooks": "^7.0.2",
+        "@types/react": "^17.0.39",
         "@types/react-test-renderer": "^17.0.1",
-        "@types/rimraf": "^3",
-        "c8": "^7.7.1",
-        "microbundle": "^0.13.0",
-        "react-test-renderer": "^17.0.2",
-        "rimraf": "^3.0.2",
-        "simple-spy": "^3.0.1",
-        "standard-version": "^9.2.0",
-        "tsconfig-paths": "^3.9.0",
-        "typescript": "^4.2.4",
-        "uvu": "^0.5.1",
-        "watchlist": "^0.2.3"
+        "react-test-renderer": "^17.0.2"
     },
     "dependencies": {
-        "@pastable/utils": "workspace:packages/utils",
-        "jotai": "^0.16.8",
+        "jotai": "^1.5.3",
         "react": "^17.0.2"
     },
     "peerDependencies": {

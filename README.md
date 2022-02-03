@@ -63,6 +63,4 @@ Feel free to contribute if you think there is space for one of your previous pro
 
 ## ❤️ Built with
 
-The repo is a Yarn 2 monorepo for now, that might change since it doesn't support ESM, idk yet.
-
 Packages are built with https://github.com/developit/microbundle & tested with https://github.com/lukeed/uvu, special thanks to their authors for those priceless gems !
