@@ -102,8 +102,10 @@ importers:
 
   packages/utils:
     specifiers:
+      '@pastable/typings': workspace:../typings
       simple-spy: ^3.0.1
     devDependencies:
+      '@pastable/typings': link:../typings
       simple-spy: 3.0.1
 
 packages:
