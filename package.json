@@ -11,9 +11,9 @@
         "dev": "turbo run dev --parallel",
         "test": "turbo run test",
         "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-        "tw:all": "pnpm test:all && watchlist packages -i dist node_modules -- pnpm test:all",
-        "coverage": "c8 --include packages pnpm test:all",
-        "coverage:ci": "c8 --reporter=lcov --include packages pnpm test:all",
+        "tw:all": "pnpm test && watchlist packages -i dist node_modules -- pnpm test",
+        "coverage": "c8 --include packages pnpm test",
+        "coverage:ci": "c8 --reporter=lcov --include packages pnpm test",
         "coverage:open": "pnpm scripts:openCoverageInBrowser",
         "coverage:view": "pnpm coverage:ci && pnpm coverage:open",
         "plop": "plop"
