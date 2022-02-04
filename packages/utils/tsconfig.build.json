@@ -2,6 +2,7 @@
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "baseUrl": "./",
-        "declarationDir": "./dist"
+        "declarationDir": "./dist",
+        "lib": ["es2016", "dom"]
     }
 }
