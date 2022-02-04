@@ -1,7 +1,7 @@
 {
     "name": "@pastable/utils",
     "description": "A collection of pastable code gathered from past projects.",
-    "version": "0.1.13",
+    "version": "0.1.14",
     "source": "src/index.ts",
     "main": "dist/index.js",
     "module": "dist/index.module.js",
@@ -55,7 +55,9 @@
         "typescript"
     ],
     "devDependencies": {
-        "@pastable/typings": "workspace:../typings",
         "simple-spy": "^3.0.1"
+    },
+    "dependencies": {
+        "@pastable/typings": "workspace:../typings"
     }
 }

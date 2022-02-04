@@ -54,10 +54,11 @@ importers:
       dts-bundle-generator: ^6.5.0
       jotai: ^1.5.3
       react: ^17.0.2
-    devDependencies:
+    dependencies:
       '@pastable/react': link:../react
       '@pastable/typings': link:../typings
       '@pastable/utils': link:../utils
+    devDependencies:
       dts-bundle-generator: 6.5.0
       jotai: 1.5.3_react@17.0.2
       react: 17.0.2
@@ -75,12 +76,12 @@ importers:
       react: ^17.0.2
       react-test-renderer: ^17.0.2
     dependencies:
-      jotai: 1.5.3_react@17.0.2
-      react: 17.0.2
-    devDependencies:
       '@pastable/test-utils': link:../test-utils
       '@pastable/typings': link:../typings
       '@pastable/utils': link:../utils
+      jotai: 1.5.3_react@17.0.2
+      react: 17.0.2
+    devDependencies:
       '@testing-library/react': 12.1.2_react-dom@17.0.2+react@17.0.2
       '@testing-library/react-hooks': 7.0.2_fc2bb8a5b006d3f25c5f84ea777e678d
       '@types/react': 17.0.39
@@ -106,8 +107,9 @@ importers:
     specifiers:
       '@pastable/typings': workspace:../typings
       simple-spy: ^3.0.1
-    devDependencies:
+    dependencies:
       '@pastable/typings': link:../typings
+    devDependencies:
       simple-spy: 3.0.1
 
 packages:

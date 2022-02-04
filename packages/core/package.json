@@ -16,7 +16,7 @@
     },
     "author": "Alexandre Stahmer <alexandre.stahmer@gmail.com>",
     "scripts": {
-        "build": "microbundle build --tsconfig tsconfig.build.json && pnpm build:dts",
+        "build": "microbundle build --tsconfig tsconfig.build.json",
         "build:dts": "dts-bundle-generator -o dist/index.d.ts src/index.ts",
         "dev": "microbundle watch",
         "test": "uvu -r @swc-node/register -r tsconfig-paths/register src",
@@ -31,10 +31,12 @@
         "prepublishOnly": "pnpm test",
         "release-publish": "pnpm run release && pnpm publish"
     },
-    "devDependencies": {
+    "dependencies": {
         "@pastable/react": "workspace:../react",
         "@pastable/typings": "workspace:../typings",
-        "@pastable/utils": "workspace:../utils",
+        "@pastable/utils": "workspace:../utils"
+    },
+    "devDependencies": {
         "dts-bundle-generator": "^6.5.0",
         "jotai": "^1.5.3",
         "react": "^17.0.2"
