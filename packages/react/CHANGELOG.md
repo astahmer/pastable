@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.14](https://github.com/astahmer/pastable/compare/@pastable/react@0.1.13...@pastable/react@0.1.14) (2022-02-04)
+
+
+### Bug Fixes
+
+* deps maybe ? ([50cc977](https://github.com/astahmer/pastable/commit/50cc977a604270530d0909009d5784c32014b773))
+
 ### [0.1.13](https://github.com/astahmer/pastable/compare/@pastable/react@0.1.10...@pastable/react@0.1.13) (2022-02-03)
 
 
