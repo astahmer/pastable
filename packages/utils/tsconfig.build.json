@@ -3,6 +3,6 @@
     "compilerOptions": {
         "baseUrl": "./",
         "declarationDir": "./dist",
-        "lib": ["es2016", "dom"]
+        "lib": ["DOM", "DOM.Iterable", "ESNext"]
     }
 }
