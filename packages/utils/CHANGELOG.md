@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.16](https://github.com/astahmer/pastable/compare/@pastable/utils@0.1.15...@pastable/utils@0.1.16) (2022-02-04)
+
+
+### Bug Fixes
+
+* cannot find domrect etc ? ([ee10864](https://github.com/astahmer/pastable/commit/ee10864acd9c519c644fbd7d0614e1a8f1728867))
+
 ### [0.1.15](https://github.com/astahmer/pastable/compare/@pastable/utils@0.1.13...@pastable/utils@0.1.15) (2022-02-04)
 
 
