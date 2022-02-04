@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.18](https://github.com/astahmer/pastable/compare/@pastable/core@0.1.17...@pastable/core@0.1.18) (2022-02-04)
+
+
+### Bug Fixes
+
+* deps maybe ? ([50cc977](https://github.com/astahmer/pastable/commit/50cc977a604270530d0909009d5784c32014b773))
+
 ### [0.1.17](https://github.com/astahmer/pastable/compare/@pastable/core@0.1.14...@pastable/core@0.1.17) (2022-02-03)
 
 
