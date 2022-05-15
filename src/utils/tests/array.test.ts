@@ -1,7 +1,4 @@
-import { test } from "uvu";
-import assert from "uvu/assert";
-
-import { group } from "../_uvu";
+import { assert, describe, it } from "vitest";
 import {
     appendItem,
     chunk,
@@ -38,53 +35,53 @@ import {
     updateItem,
 } from "../array";
 
-test("getDiff should return the difference between 2 arrays", () => {
+it("getDiff should return the difference between 2 arrays", () => {
     const left = [1, 2, 3, 4, 5];
     const right = [6, 7, 1, 2, 9];
-    assert.equal(getDiff(left, right), [3, 4, 5]);
-    assert.equal(getDiff(right, left), [6, 7, 9]);
+    assert.deepEqual(getDiff(left, right), [3, 4, 5]);
+    assert.deepEqual(getDiff(right, left), [6, 7, 9]);
 });
 
-test("getSymmetricDiff should return the symmetrical difference between 2 arrays", () => {
+it("getSymmetricDiff should return the symmetrical difference between 2 arrays", () => {
     const left = [1, 2, 3, 4, 5];
     const right = [6, 7, 1, 2, 9];
-    assert.equal(getSymmetricDiff(left, right), [3, 4, 5, 6, 7, 9]);
+    assert.deepEqual(getSymmetricDiff(left, right), [3, 4, 5, 6, 7, 9]);
 });
 
-test("getUnion should return the union between 2 arrays", () => {
+it("getUnion should return the union between 2 arrays", () => {
     const left = [1, 2, 3, 4, 5];
     const right = [6, 7, 1, 2, 9];
-    assert.equal(getUnion(left, right), [1, 2, 3, 4, 5, 6, 7, 9]);
+    assert.deepEqual(getUnion(left, right), [1, 2, 3, 4, 5, 6, 7, 9]);
 });
 
-test("getIntersection should return the intersection between 2 arrays", () => {
+it("getIntersection should return the intersection between 2 arrays", () => {
     const left = [1, 2, 3, 4, 5];
     const right = [6, 7, 1, 2, 9];
-    assert.equal(getIntersection(left, right), [1, 2]);
+    assert.deepEqual(getIntersection(left, right), [1, 2]);
 });
 
-group("hasAll", (test) => {
-    test("should return false when every values of right are not in left", () => {
+describe("hasAll", (test) => {
+    it("should return false when every values of right are not in left", () => {
         const left = [1, 2, 3, 4, 5];
         const right = [6, 7, 1, 2, 9];
-        assert.is(hasAll(left, right), false);
-        assert.is(hasAll(right, left), false);
+        assert.deepEqual(hasAll(left, right), false);
+        assert.deepEqual(hasAll(right, left), false);
     });
-    test("should return true when every values of right are in left", () => {
+    it("should return true when every values of right are in left", () => {
         const left = [1, 2, 3, 4, 5];
         const right = [6, 7, 1, 2, 3, 4, 5, 9];
-        assert.is(hasAll(left, right), false);
-        assert.is(hasAll(right, left), true);
+        assert.deepEqual(hasAll(left, right), false);
+        assert.deepEqual(hasAll(right, left), true);
     });
 });
 
-test("uniques", () => {
+it("uniques", () => {
     const left = [1, 2, 3, 4, 5];
     const right = [6, 7, 1, 2, 9];
-    assert.equal(uniques(left.concat(right)), [1, 2, 3, 4, 5, 6, 7, 9]);
+    assert.deepEqual(uniques(left.concat(right)), [1, 2, 3, 4, 5, 6, 7, 9]);
 });
 
-test("uniquesByProp", () => {
+it("uniquesByProp", () => {
     const base = [
         { id: 1, aaa: 111, bbb: { nested: "aaa" } },
         { id: 2, aaa: 222, bbb: { nested: "bbb" } },
@@ -94,71 +91,71 @@ test("uniquesByProp", () => {
 
     // on id
     const firstItemVariant = { ...base[0], id: 1, aaa: 0 };
-    assert.equal(uniquesByProp(base.concat(firstItemVariant), "id"), base);
-    assert.equal(uniquesByProp([firstItemVariant].concat(base), "id"), [firstItemVariant].concat(base.slice(1)));
-    assert.equal(uniquesByProp(base.concat(base), "id"), base);
+    assert.deepEqual(uniquesByProp(base.concat(firstItemVariant), "id"), base);
+    assert.deepEqual(uniquesByProp([firstItemVariant].concat(base), "id"), [firstItemVariant].concat(base.slice(1)));
+    assert.deepEqual(uniquesByProp(base.concat(base), "id"), base);
 
     // on bbb.nested
     const secondItemVariant = { ...base[1], bbb: { nested: "eee" } };
     const secondItemVariantWithDiffId = { ...base[1], id: 999 };
-    assert.equal(uniquesByProp(base.concat(secondItemVariant), "bbb.nested"), base.concat(secondItemVariant));
-    assert.equal(uniquesByProp(base.concat(secondItemVariantWithDiffId), "bbb.nested"), base);
+    assert.deepEqual(uniquesByProp(base.concat(secondItemVariant), "bbb.nested"), base.concat(secondItemVariant));
+    assert.deepEqual(uniquesByProp(base.concat(secondItemVariantWithDiffId), "bbb.nested"), base);
 });
 
-test("exclude should return base array without excluded items", () => {
+it("exclude should return base array without excluded items", () => {
     const base = [1, 2, 3, 4, 5];
     const excluded = [3, 5];
-    assert.equal(exclude(base, excluded), [1, 2, 4]);
+    assert.deepEqual(exclude(base, excluded), [1, 2, 4]);
 });
 
-group("findBy", (test) => {
-    test("should find an object from a value and its property path", () => {
+describe("findBy", (test) => {
+    it("should find an object from a value and its property path", () => {
         const base = [
             { id: 1, aaa: 111 },
             { id: 2, aaa: 222 },
             { id: 3, aaa: 333 },
             { id: 4, aaa: 444 },
         ];
-        assert.equal(findBy(base, "aaa", 333), { id: 3, aaa: 333 });
+        assert.deepEqual(findBy(base, "aaa", 333), { id: 3, aaa: 333 });
     });
-    test("should return the index if provided bool", () => {
+    it("should return the index if provided bool", () => {
         const base = [
             { id: 1, aaa: 111 },
             { id: 2, aaa: 222 },
             { id: 3, aaa: 333 },
             { id: 4, aaa: 444 },
         ];
-        assert.equal(findBy(base, "aaa", 333, true), 2);
+        assert.deepEqual(findBy(base, "aaa", 333, true), 2);
     });
-    test("should find using a nested property path", () => {
+    it("should find using a nested property path", () => {
         const base = [
             { id: 1, aaa: 111, bbb: { nested: "aaa" } },
             { id: 2, aaa: 222, bbb: { nested: "bbb" } },
             { id: 3, aaa: 333, bbb: { nested: "ccc" } },
             { id: 4, aaa: 444, bbb: { nested: "ddd" } },
         ];
-        assert.equal(findBy(base, "bbb.nested", "ddd"), { id: 4, aaa: 444, bbb: { nested: "ddd" } });
+        assert.deepEqual(findBy(base, "bbb.nested", "ddd"), { id: 4, aaa: 444, bbb: { nested: "ddd" } });
     });
 });
 
-group("sortBy", (test) => {
-    test("should sort array of objects by provided key", () => {
+describe("sortBy", (test) => {
+    it("should sort array of objects by provided key", () => {
         const base = [
             { id: 1, aaa: 3 },
             { id: 2, aaa: 2 },
             { id: 3, aaa: 1 },
             { id: 4, aaa: 4 },
         ];
-        assert.equal(sortBy(base, "id"), base);
-        assert.equal(sortBy(base, "id", "asc"), base);
-        assert.equal(sortBy(base, "id", "desc"), base.reverse());
-        assert.equal(sortBy(base, "aaa"), [
+        assert.deepEqual(sortBy(base, "id"), base);
+        assert.deepEqual(sortBy(base, "id", "asc"), base);
+        assert.deepEqual(sortBy(base, "id", "desc"), base.reverse());
+        assert.deepEqual(sortBy(base, "aaa"), [
             { id: 3, aaa: 1 },
             { id: 2, aaa: 2 },
             { id: 1, aaa: 3 },
             { id: 4, aaa: 4 },
         ]);
-        assert.equal(sortBy(base, "aaa", "desc"), [
+        assert.deepEqual(sortBy(base, "aaa", "desc"), [
             { id: 4, aaa: 4 },
             { id: 1, aaa: 3 },
             { id: 2, aaa: 2 },
@@ -166,7 +163,7 @@ group("sortBy", (test) => {
         ]);
     });
 
-    test("should handle strings & accents", () => {
+    it("should handle strings & accents", () => {
         const base = [
             { id: 7, aaa: "ûûû" },
             { id: 1, aaa: "ccc" },
@@ -176,7 +173,7 @@ group("sortBy", (test) => {
             { id: 4, aaa: "eee" },
             { id: 6, aaa: "uuu" },
         ];
-        assert.equal(sortBy(base, "aaa"), [
+        assert.deepEqual(sortBy(base, "aaa"), [
             { id: 3, aaa: "aaa" },
             { id: 2, aaa: "bbb" },
             { id: 1, aaa: "ccc" },
@@ -185,7 +182,7 @@ group("sortBy", (test) => {
             { id: 6, aaa: "uuu" },
             { id: 7, aaa: "ûûû" },
         ]);
-        assert.equal(sortBy(base, "aaa", "desc"), [
+        assert.deepEqual(sortBy(base, "aaa", "desc"), [
             { id: 7, aaa: "ûûû" },
             { id: 6, aaa: "uuu" },
             { id: 5, aaa: "ééé" },
@@ -197,24 +194,24 @@ group("sortBy", (test) => {
     });
 });
 
-test("isEqualArrays should return true if both array contains the same values", () => {
+it("isEqualArrays should return true if both array contains the same values", () => {
     const left = [1, 2, 3, 4, 5];
     const right = [6, 7, 1, 2, 9];
-    assert.is(isEqualArrays(left, left), true);
-    assert.is(isEqualArrays(left, left.reverse()), true);
-    assert.is(isEqualArrays(left, right), false);
+    assert.deepEqual(isEqualArrays(left, left), true);
+    assert.deepEqual(isEqualArrays(left, left.reverse()), true);
+    assert.deepEqual(isEqualArrays(left, right), false);
 });
 
-test("combineUniqueValues should merge every passed array without duplicates", () => {
+it("combineUniqueValues should merge every passed array without duplicates", () => {
     const left = [1, 2, 3, 4, 5];
     const right = [6, 7, 1, 2, 9];
     const dang = [11, 2, 3, 1, 19, 24, 6];
-    assert.equal(combineUniqueValues(left, left), left);
-    assert.equal(combineUniqueValues(left, right), [1, 2, 3, 4, 5, 6, 7, 9]);
-    assert.equal(combineUniqueValues(left, right, dang), [1, 2, 3, 4, 5, 6, 7, 9, 11, 19, 24]);
+    assert.deepEqual(combineUniqueValues(left, left), left);
+    assert.deepEqual(combineUniqueValues(left, right), [1, 2, 3, 4, 5, 6, 7, 9]);
+    assert.deepEqual(combineUniqueValues(left, right, dang), [1, 2, 3, 4, 5, 6, 7, 9, 11, 19, 24]);
 });
 
-test("combineUniqueValuesByProps should merge every passed array of objects without duplicates using the given property as identifier", () => {
+it("combineUniqueValuesByProps should merge every passed array of objects without duplicates using the given property as identifier", () => {
     const left = [
         { id: 1, aaa: 111, bbb: { nested: "aaa" } },
         { id: 2, aaa: 222, bbb: { nested: "bbb" } },
@@ -229,28 +226,28 @@ test("combineUniqueValuesByProps should merge every passed array of objects with
     ];
 
     // on id
-    assert.equal(combineUniqueValuesByProps([left, left], "id"), left);
-    assert.equal(combineUniqueValuesByProps([left, right], "id"), left.concat(right[0], right.slice(-1)));
+    assert.deepEqual(combineUniqueValuesByProps([left, left], "id"), left);
+    assert.deepEqual(combineUniqueValuesByProps([left, right], "id"), left.concat(right[0], right.slice(-1)));
 
     // on bbb.nested
-    assert.equal(combineUniqueValuesByProps([left, left], "bbb.nested"), left);
-    assert.equal(combineUniqueValuesByProps([left, right], "bbb.nested"), left.concat(right[0], right[1]));
+    assert.deepEqual(combineUniqueValuesByProps([left, left], "bbb.nested"), left);
+    assert.deepEqual(combineUniqueValuesByProps([left, right], "bbb.nested"), left.concat(right[0], right[1]));
 });
 
-test("first", () => {
-    assert.is(first([111, 2, 3]), 111);
+it("first", () => {
+    assert.deepEqual(first([111, 2, 3]), 111);
 });
 
-test("last", () => {
-    assert.is(last([111, 2, 3]), 3);
+it("last", () => {
+    assert.deepEqual(last([111, 2, 3]), 3);
 });
 
-test("last", () => {
-    assert.is(last([111, 2, 3]), 3);
+it("last", () => {
+    assert.deepEqual(last([111, 2, 3]), 3);
 });
 
-test("flatMap", () => {
-    assert.equal(
+it("flatMap", () => {
+    assert.deepEqual(
         flatMap(
             [
                 [1, 2, 3],
@@ -262,54 +259,54 @@ test("flatMap", () => {
     );
 });
 
-test("makeArrayOf", () => {
-    assert.equal(makeArrayOf(5), [0, 0, 0, 0, 0]);
+it("makeArrayOf", () => {
+    assert.deepEqual(makeArrayOf(5), [0, 0, 0, 0, 0]);
 });
 
-test("chunk", () => {
+it("chunk", () => {
     const arr = [1, 2, 3, 4, 5];
-    assert.equal(chunk(arr, 2), [[1, 2], [3, 4], [5]]);
+    assert.deepEqual(chunk(arr, 2), [[1, 2], [3, 4], [5]]);
 });
 
-test("pluck", () => {
+it("pluck", () => {
     const arr = [
         { id: 1, aaa: 111 },
         { id: 2, aaa: 222 },
         { id: 3, aaa: 333 },
         { id: 4, aaa: 444 },
     ];
-    assert.equal(pluck(arr, "aaa"), [111, 222, 333, 444]);
+    assert.deepEqual(pluck(arr, "aaa"), [111, 222, 333, 444]);
 });
 
-test("appendItem", () => {
+it("appendItem", () => {
     const arr = [111, 222, 333, 444];
-    assert.equal(appendItem(arr, 555), [111, 222, 333, 444, 555]);
+    assert.deepEqual(appendItem(arr, 555), [111, 222, 333, 444, 555]);
 });
 
-test("prependItem", () => {
+it("prependItem", () => {
     const arr = [111, 222, 333, 444];
-    assert.equal(prependItem(arr, 555), [555, 111, 222, 333, 444]);
+    assert.deepEqual(prependItem(arr, 555), [555, 111, 222, 333, 444]);
 });
 
-test("updateItem", () => {
+it("updateItem", () => {
     const arr = [
         { id: 1, aaa: 111 },
         { id: 2, aaa: 222 },
         { id: 3, aaa: 333 },
         { id: 4, aaa: 444 },
     ];
-    assert.equal(
+    assert.deepEqual(
         updateItem(arr, "id", { id: 3, aaa: 999 }).map((item) => item.aaa),
         [111, 222, 999, 444]
     );
 });
 
-test("removeValue", () => {
+it("removeValue", () => {
     const arr = [111, 222, 333, 444];
-    assert.equal(removeValue(arr, 333), [111, 222, 444]);
+    assert.deepEqual(removeValue(arr, 333), [111, 222, 444]);
 });
 
-test("removeValueMutate", () => {
+it("removeValueMutate", () => {
     const arr = [
         { id: 1, aaa: 111 },
         { id: 2, aaa: 222 },
@@ -317,26 +314,26 @@ test("removeValueMutate", () => {
         { id: 4, aaa: 444 },
     ];
     removeValueMutate(arr, arr[2]);
-    assert.equal(
+    assert.deepEqual(
         arr.map((item) => item.aaa),
         [111, 222, 444]
     );
 });
 
-test("removeItem", () => {
+it("removeItem", () => {
     const arr = [
         { id: 1, aaa: 111 },
         { id: 2, aaa: 222 },
         { id: 3, aaa: 333 },
         { id: 4, aaa: 444 },
     ];
-    assert.equal(
+    assert.deepEqual(
         removeItem(arr, "id", 3).map((item) => item.aaa),
         [111, 222, 444]
     );
 });
 
-test("removeItemMutate", () => {
+it("removeItemMutate", () => {
     const arr = [
         { id: 1, aaa: 111 },
         { id: 2, aaa: 222 },
@@ -344,71 +341,69 @@ test("removeItemMutate", () => {
         { id: 4, aaa: 444 },
     ];
     removeItemMutate(arr, "id", 3);
-    assert.equal(
+    assert.deepEqual(
         arr.map((item) => item.aaa),
         [111, 222, 444]
     );
 });
 
-test("updateAtIndex", () => {
+it("updateAtIndex", () => {
     const arr = [111, 222, 333, 444];
-    assert.equal(updateAtIndex(arr, 2, 777), [111, 222, 777, 444]);
+    assert.deepEqual(updateAtIndex(arr, 2, 777), [111, 222, 777, 444]);
 });
 
-test("removeAtIndex", () => {
+it("removeAtIndex", () => {
     const arr = [111, 222, 333, 444];
-    assert.equal(removeAtIndex(arr, 2), [111, 222, 444]);
+    assert.deepEqual(removeAtIndex(arr, 2), [111, 222, 444]);
 });
 
-test("removeAtIndexMutate", () => {
+it("removeAtIndexMutate", () => {
     const arr = [111, 222, 333, 444];
     removeAtIndexMutate(arr, 2);
-    assert.equal(arr, [111, 222, 444]);
+    assert.deepEqual(arr, [111, 222, 444]);
 });
 
-test("getPrevItem", () => {
+it("getPrevItem", () => {
     const arr = [111, 222, 333, 444];
-    assert.equal(getPrevItem(arr, 2), 222);
-    assert.equal(getPrevItem(arr, 0, false), 111);
-    assert.equal(getPrevItem(arr, 0, true), 444);
+    assert.deepEqual(getPrevItem(arr, 2), 222);
+    assert.deepEqual(getPrevItem(arr, 0, false), 111);
+    assert.deepEqual(getPrevItem(arr, 0, true), 444);
 });
 
-test("getNextItem", () => {
+it("getNextItem", () => {
     const arr = [111, 222, 333, 444];
-    assert.equal(getNextItem(arr, 2), 444);
-    assert.equal(getNextItem(arr, 3, false), 444);
-    assert.equal(getNextItem(arr, 3, true), 111);
+    assert.deepEqual(getNextItem(arr, 2), 444);
+    assert.deepEqual(getNextItem(arr, 3, false), 444);
+    assert.deepEqual(getNextItem(arr, 3, true), 111);
 });
 
-test("getNextIndex", () => {
+it("getNextIndex", () => {
     const arr = [111, 222, 333, 444];
-    assert.equal(getNextIndex(2, arr.length), 3);
-    assert.equal(getNextIndex(3, arr.length, false), 3);
-    assert.equal(getNextIndex(3, arr.length, true), 0);
+    assert.deepEqual(getNextIndex(2, arr.length), 3);
+    assert.deepEqual(getNextIndex(3, arr.length, false), 3);
+    assert.deepEqual(getNextIndex(3, arr.length, true), 0);
 });
 
-test("getNextIndex", () => {
+it("getNextIndex", () => {
     const arr = [111, 222, 333, 444];
-    assert.equal(getNextIndex(2, arr.length), 3);
-    assert.equal(getNextIndex(3, arr.length, false), 3);
-    assert.equal(getNextIndex(3, arr.length, true), 0);
+    assert.deepEqual(getNextIndex(2, arr.length), 3);
+    assert.deepEqual(getNextIndex(3, arr.length, false), 3);
+    assert.deepEqual(getNextIndex(3, arr.length, true), 0);
 });
 
-test("sortArrayOfObjectByPropFromArray", () => {
+it("sortArrayOfObjectByPropFromArray", () => {
     const arr = [
         { id: "1", aaa: 111 },
         { id: "2", aaa: 222 },
         { id: "3", aaa: 333 },
         { id: "4", aaa: 444 },
     ];
-    assert.equal(
+    assert.deepEqual(
         sortArrayOfObjectByPropFromArray(arr, "id", ["4", "3", "2", "1"]).map((item) => item.id),
         ["4", "3", "2", "1"]
     );
-    assert.equal(
+    assert.deepEqual(
         sortArrayOfObjectByPropFromArray(arr, "aaa", [222, 333, 111, 444]).map((item) => item.aaa),
         [222, 333, 111, 444]
     );
 });
-
-test.run();

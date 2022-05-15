@@ -1,6 +1,4 @@
-import assert from "uvu/assert";
-
-import { group } from "../_uvu";
+import { it, assert, describe } from "vitest";
 import { exclude } from "../array";
 import { isClass, isDefined, isObject, isObjectLiteral, isPrimitive, isPromise } from "../asserts";
 
@@ -45,10 +43,10 @@ const isTrue = (assertName: string, typeKey: TypeKey) =>
     assertConfigs.find((config) => config.fn.name === assertName).truthy.includes(typeKey);
 
 assertFns.map((assertFn) => {
-    group(assertFn.name, (test) => {
+    describe(assertFn.name, () => {
         typeKeys.map((typeKey) =>
-            test(`should handle ${typeKey}`, () => {
-                assert.is(assertFn(types[typeKey as keyof typeof types]), isTrue(assertFn.name, typeKey));
+            it(`should handle ${typeKey}`, () => {
+                assert.equal(assertFn(types[typeKey as keyof typeof types]), isTrue(assertFn.name, typeKey));
             })
         );
     });

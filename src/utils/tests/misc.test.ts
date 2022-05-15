@@ -1,108 +1,102 @@
-import { spy } from "simple-spy";
-import { test } from "uvu";
-import assert from "uvu/assert";
-
-import { group } from "../_uvu";
+import { assert, describe, it, vi } from "vitest";
 import { callAll, compose, getInheritanceTree, pipe, wait } from "../misc";
 
-group("callAll", (test) => {
-    test("should return another function", () => {
+describe("callAll", (test) => {
+    it("should return another function", () => {
         assert.ok(typeof callAll() === "function");
     });
 
-    test("should call all functions provided", () => {
-        const first = spy();
-        const second = spy();
+    it("should call all functions provided", () => {
+        const first = vi.fn();
+        const second = vi.fn();
 
         callAll(first, second)();
 
-        assert.ok(first.callCount === 1);
-        assert.ok(second.callCount === 1);
+        assert.ok(first.mock.calls.length === 1);
+        assert.ok(second.mock.calls.length === 1);
     });
 
-    test("should call all functions provided", () => {
-        const first = spy();
-        const second = spy();
-        const third = spy();
+    it("should call all functions provided", () => {
+        const first = vi.fn();
+        const second = vi.fn();
+        const third = vi.fn();
 
         callAll(first, second)();
 
-        assert.ok(first.callCount === 1);
-        assert.ok(second.callCount === 1);
-        assert.ok(third.callCount === 0);
+        assert.ok(first.mock.calls.length === 1);
+        assert.ok(second.mock.calls.length === 1);
+        assert.ok(third.mock.calls.length === 0);
     });
 
-    test("should call all functions provided with the same args", () => {
+    it("should call all functions provided with the same args", () => {
         const args = { first: null, second: null, third: null } as any;
-        const first = spy((...props) => (args.first = props));
-        const second = spy((...props) => (args.second = props));
+        const first = vi.fn((...props) => (args.first = props));
+        const second = vi.fn((...props) => (args.second = props));
 
         callAll(first, second)("abc", "xyz");
 
-        assert.equal(args.first, ["abc", "xyz"]);
-        assert.equal(args.second, ["abc", "xyz"]);
+        assert.deepEqual(args.first, ["abc", "xyz"]);
+        assert.deepEqual(args.second, ["abc", "xyz"]);
     });
 
-    test("should ignore falsy values", () => {
-        const first = spy();
+    it("should ignore falsy values", () => {
+        const first = vi.fn();
         const second = undefined as any;
 
         callAll(first, second)();
 
-        assert.ok(first.callCount === 1);
+        assert.ok(first.mock.calls.length === 1);
     });
 });
 
-test("wait resolves after given delay and returns callback result if any", async () => {
+it("wait resolves after given delay and returns callback result if any", async () => {
     const ref = { done: false };
     const delay = 10;
 
     wait(delay, () => {
         ref.done = true;
         return 123;
-    }).then((value) => assert.is(value, 123));
-    assert.is(ref.done, false);
+    }).then((value) => assert.deepEqual(value, 123));
+    assert.deepEqual(ref.done, false);
     setTimeout(() => {
-        assert.is(ref.done, true);
+        assert.deepEqual(ref.done, true);
     }, delay);
 });
 
-test("compose executes in one pass multiple functions on the same arg, right-to-left", async () => {
+it("compose executes in one pass multiple functions on the same arg, right-to-left", async () => {
     const prependAbc = (value: string) => "abc" + value;
     const toUpper = (value: string) => value.toUpperCase();
     const appendXyz = (value: string) => value + "xyz";
 
     const composed = compose(prependAbc, toUpper, appendXyz);
     const result = await composed("yes");
-    assert.is(result, "abcYESXYZ");
+    assert.deepEqual(result, "abcYESXYZ" as any);
 
     const reversed = compose(...[prependAbc, toUpper, appendXyz].reverse());
     const reversedResult = await reversed("yes");
-    assert.is(reversedResult, "ABCYESxyz");
+    assert.deepEqual(reversedResult, "ABCYESxyz" as any);
 });
 
-test("pipe executes in one pass multiple functions on the same arg, left-to-right", async () => {
+it("pipe executes in one pass multiple functions on the same arg, left-to-right", async () => {
     const prependAbc = (value: string) => "abc" + value;
     const toUpper = (value: string) => value.toUpperCase();
     const appendXyz = (value: string) => value + "xyz";
 
     const piped = pipe(prependAbc, toUpper, appendXyz);
     const result = await piped("yes");
-    assert.is(result, "ABCYESxyz");
+    assert.deepEqual(result, "ABCYESxyz" as any);
 
     const reversed = pipe(...[prependAbc, toUpper, appendXyz].reverse());
     const reversedResult = await reversed("yes");
-    assert.is(reversedResult, "abcYESXYZ");
+    assert.deepEqual(reversedResult, "abcYESXYZ" as any);
 });
 
-test("getInheritanceTree", () => {
+it("getInheritanceTree", () => {
     class GrandParent {}
     class Parent extends GrandParent {}
     class Child extends Parent {}
     abstract class GrandChild extends Child {}
     class GreatGrandChild extends GrandChild {}
 
-    assert.equal(getInheritanceTree(GreatGrandChild), [GreatGrandChild, GrandChild, Child, Parent, GrandParent]);
+    assert.deepEqual(getInheritanceTree(GreatGrandChild), [GreatGrandChild, GrandChild, Child, Parent, GrandParent]);
 });
-
-test.run();

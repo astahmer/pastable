@@ -1,9 +1,7 @@
-import { test } from "uvu";
-import assert from "uvu/assert";
+import { assert, it } from "vitest";
+import { fromEntries, hash, makeInstance, mapper, reverse, sortObjectKeys, sortObjKeysFromArray } from "../object";
 
-import { fromEntries, hash, makeInstance, mapper, reverse, sortObjKeysFromArray, sortObjectKeys } from "../object";
-
-test("mapper", () => {
+it("mapper", () => {
     const schema = {
         destination: "target",
         toKey: "fromKey",
@@ -12,7 +10,7 @@ test("mapper", () => {
     };
 
     const values = { target: 111, fromKey: "aaa", snake_case: "sss", deep: { value: "yes" } };
-    assert.equal(mapper(schema, values), {
+    assert.deepEqual(mapper(schema, values), {
         destination: 111,
         toKey: "aaa",
         camelCase: "sss",
@@ -20,7 +18,7 @@ test("mapper", () => {
     });
 });
 
-test("reverse", () => {
+it("reverse", () => {
     const schema = {
         destination: "target",
         toKey: "fromKey",
@@ -32,13 +30,13 @@ test("reverse", () => {
     const mappedValues = mapper(schema, values);
     const reversedSchema = reverse(schema);
 
-    assert.equal(reversedSchema, {
+    assert.deepEqual(reversedSchema, {
         target: "destination",
         fromKey: "toKey",
         snake_case: "camelCase",
         "deep.value": "nested",
     });
-    assert.equal(mapper(reversedSchema, mappedValues), {
+    assert.deepEqual(mapper(reversedSchema, mappedValues), {
         target: 111,
         fromKey: "aaa",
         snake_case: "sss",
@@ -46,7 +44,7 @@ test("reverse", () => {
     });
 });
 
-test("makeInstance", () => {
+it("makeInstance", () => {
     class Example {
         aaa: string;
         zzz: string;
@@ -55,45 +53,43 @@ test("makeInstance", () => {
     expected.aaa = "yes";
     expected.zzz = "no";
 
-    assert.equal(makeInstance(Example, { aaa: "yes", zzz: "no" }), expected);
+    assert.deepEqual(makeInstance(Example, { aaa: "yes", zzz: "no" }), expected);
 });
 
-test("fromEntries", () => {
+it("fromEntries", () => {
     const entries = [
         ["aaa", 123],
         ["zzz", 456],
     ] as const;
 
-    assert.equal(fromEntries(entries), Object.fromEntries(entries));
+    assert.deepEqual(fromEntries(entries), Object.fromEntries(entries));
 });
 
-test("sortObjectKeys", () => {
+it("sortObjectKeys", () => {
     const base = { zzz: 111, aaa: 222, ddd: 333, ccc: 444, eee: 555 };
     const expected = { aaa: 222, ccc: 444, ddd: 333, eee: 555, zzz: 111 };
 
-    assert.equal(sortObjectKeys(base), expected);
+    assert.deepEqual(sortObjectKeys(base), expected);
 });
 
-test("hash returns the value into a stable hash", () => {
+it("hash returns the value into a stable hash", () => {
     const sorted = { aaa: 222, ccc: 444, ddd: 333, eee: 555, zzz: 111 };
     const unsorted = { zzz: 111, aaa: 222, ddd: 333, ccc: 444, eee: 555 };
 
-    assert.equal(hash(sorted), '{"aaa":222,"ccc":444,"ddd":333,"eee":555,"zzz":111}');
-    assert.equal(hash(sorted), hash(unsorted));
+    assert.deepEqual(hash(sorted), '{"aaa":222,"ccc":444,"ddd":333,"eee":555,"zzz":111}');
+    assert.deepEqual(hash(sorted), hash(unsorted));
 
     const primitivesArray = ["a", "b", "c"];
     const objArray = [sorted, unsorted];
     const withNested = { zzz: 999, obj: { yyy: 888, nested: { primitivesArray, objArray } } };
-    assert.equal(
+    assert.deepEqual(
         hash(withNested),
         `{"obj":{"nested":{"objArray":[{"aaa":222,"ccc":444,"ddd":333,"eee":555,"zzz":111},{"aaa":222,"ccc":444,"ddd":333,"eee":555,"zzz":111}],"primitivesArray":["a","b","c"]},"yyy":888},"zzz":999}`
     );
 });
 
-test("sortObjKeysFromArray", () => {
+it("sortObjKeysFromArray", () => {
     const base = { zzz: 111, aaa: 222, ddd: 333, ccc: 444, eee: 555 };
     const order = ["aaa", "zzz", "ddd", "eee", "ccc"];
-    assert.equal(Object.keys(sortObjKeysFromArray(base, order as any)), order);
+    assert.deepEqual(Object.keys(sortObjKeysFromArray(base, order as any)), order);
 });
-
-test.run();

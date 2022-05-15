@@ -1,85 +1,82 @@
-import { test } from "uvu";
-import assert from "uvu/assert";
-
-import { group } from "../_uvu";
+import { assert, describe, it } from "vitest";
 import { deepMerge, deepSort, get, remove, set } from "../nested";
 
-test("set allows setting a value on a nested property path", () => {
+it("set allows setting a value on a nested property path", () => {
     const ref = { parent: { child: { status: false } } };
-    assert.is(ref.parent.child.status, false);
+    assert.deepEqual(ref.parent.child.status, false);
 
     set(ref, "parent.another.nested", "aaa");
     set(ref, "parent.child.status", true);
     set(ref, "parent.child.newKey", "new");
-    assert.is((ref.parent as any).another.nested, "aaa");
-    assert.is((ref.parent.child as any).newKey, "new");
-    assert.is(ref.parent.child.status, true);
+    assert.deepEqual((ref.parent as any).another.nested, "aaa");
+    assert.deepEqual((ref.parent.child as any).newKey, "new");
+    assert.deepEqual(ref.parent.child.status, true);
 });
 
-test("get allows getting a value on a nested property path", () => {
+it("get allows getting a value on a nested property path", () => {
     const ref = { parent: { child: { status: false } } };
-    assert.is(ref.parent.child.status, false);
+    assert.deepEqual(ref.parent.child.status, false);
 
-    assert.is(get(ref, "parent.child.status"), false);
+    assert.deepEqual(get(ref, "parent.child.status"), false);
 });
 
-test("remove allows removing a value on a nested property path", () => {
+it("remove allows removing a value on a nested property path", () => {
     const ref = { parent: { child: { status: false } } };
-    assert.is(ref.parent.child.status, false);
+    assert.deepEqual(ref.parent.child.status, false);
 
     remove(ref, "parent.child.status");
-    assert.is(ref.parent.child.status, undefined);
-    assert.is(ref.parent.child !== undefined, true);
+    assert.deepEqual(ref.parent.child.status, undefined);
+    assert.deepEqual(ref.parent.child !== undefined, true);
 });
 
-group("deepMerge", (test) => {
-    test("should merges values deeply", () => {
+describe("deepMerge", (test) => {
+    it("should merges values deeply", () => {
         const first = { parent: { child: { status: false } } };
         const second = { parent: { child: { status: true, aaa: 123 }, bbb: 456 } };
         const third = { parent: { child: { aaa: 999, ccc: 888 }, ddd: 777 }, eee: 555 };
 
         const result = deepMerge([first, second, third]);
-        assert.equal(result, {
-            parent: { child: { status: true, aaa: 999, ccc: 888 }, bbb: 456, ddd: 777 },
+        assert.deepEqual(result, {
+            parent: { child: { status: true, aaa: 999, ccc: 888 }, bbb: 456, ddd: 777 } as any,
             eee: 555,
         });
     });
-    test("should only merge objects passed as argument", () => {
+    it("should only merge objects passed as argument", () => {
         const first = { parent: { child: { status: false } } };
         const second = { parent: { child: { status: true, aaa: 123 }, bbb: 456 } };
         const third = { parent: { child: { aaa: 999, ccc: 888 }, ddd: 777 }, eee: 555 };
 
         const result = deepMerge([first, second, third, "aaa", 111, false] as any);
-        assert.equal(result, {
+        assert.deepEqual(result, {
             parent: { child: { status: true, aaa: 999, ccc: 888 }, bbb: 456, ddd: 777 },
             eee: 555,
         });
     });
-    test("should return null if nothing to merge", () => {
+    it("should return null if nothing to merge", () => {
         const result = deepMerge(["aaa", 111, false] as any);
-        assert.is(result, null);
+        assert.deepEqual(result, null);
     });
-    test("should merge nested array with unique values only", () => {
+    it("should merge nested array with unique values only", () => {
         const first = { parent: { arr: [1, 2, 3, 4] } };
         const second = { parent: { arr: [3, 4, 5, 6] } };
 
-        assert.equal(deepMerge([first, second]), {
+        assert.deepEqual(deepMerge([first, second]), {
             parent: { arr: [1, 2, 3, 4, 3, 4, 5, 6] },
         });
-        assert.equal(deepMerge([first, second], { withUniqueArrayValues: true }), {
+        assert.deepEqual(deepMerge([first, second], { withUniqueArrayValues: true }), {
             parent: { arr: [1, 2, 3, 4, 5, 6] },
         });
     });
 });
 
-test("deepSort", () => {
+it("deepSort", () => {
     const third = {
         parent: { child: { zzz: 111, aaa: 999, ccc: 888 }, aaa: "aaa", ddd: 777, bbb: "bbb" },
         hhh: "hhh",
         eee: 555,
         jjj: "jjj",
     };
-    assert.equal(deepSort(third), {
+    assert.deepEqual(deepSort(third), {
         eee: 555,
         hhh: "hhh",
         jjj: "jjj",
@@ -91,5 +88,3 @@ test("deepSort", () => {
         },
     });
 });
-
-test.run();

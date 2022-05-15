@@ -1,7 +1,4 @@
-import { test } from "uvu";
-import assert from "uvu/assert";
-
-import { group } from "../_uvu";
+import { assert, describe, it } from "vitest";
 import {
     camelToKebab,
     camelToSnake,
@@ -18,54 +15,54 @@ import {
     uncapitalize,
 } from "../primitives";
 
-group("parseStringAsBoolean", (test) => {
-    test("should parse 1 as true", () => {
-        assert.is(parseStringAsBoolean("1"), true);
+describe("parseStringAsBoolean", (test) => {
+    it("should parse 1 as true", () => {
+        assert.equal(parseStringAsBoolean("1"), true);
     });
     test('should parse "true" as true', () => {
-        assert.is(parseStringAsBoolean("true"), true);
+        assert.equal(parseStringAsBoolean("true"), true);
     });
-    test("should parse 0 as false", () => {
-        assert.is(parseStringAsBoolean("0"), false);
+    it("should parse 0 as false", () => {
+        assert.equal(parseStringAsBoolean("0"), false);
     });
     test('should parse "false" as false', () => {
-        assert.is(parseStringAsBoolean("false"), false);
+        assert.equal(parseStringAsBoolean("false"), false);
     });
 });
 
-test("snakeToCamel", () => {
+it("snakeToCamel", () => {
     const base = "aaa_bbb_ccc-dddEeeFFF";
     assert.equal(snakeToCamel(base), "aaaBbbCcc-dddEeeFFF");
 });
 
-test("kebabToCamel", () => {
+it("kebabToCamel", () => {
     const base = "aaa-bbb-ccc_dddEeeFFF";
     assert.equal(kebabToCamel(base), "aaaBbbCcc_dddEeeFFF");
 });
 
-test("camelToSnake", () => {
+it("camelToSnake", () => {
     const base = "aaaBbbCcc-dddEeeFFF";
     assert.equal(camelToSnake(base), "aaa_bbb_ccc-ddd_eee_ff_f");
 });
 
-test("camelToKebab", () => {
+it("camelToKebab", () => {
     const base = "aaa_bbbCcc-dddEeeFFF";
     assert.equal(camelToKebab(base), "aaa_bbb-ccc-ddd-eee-ff-f");
 });
 
-test("uncapitalize", () => {
+it("uncapitalize", () => {
     assert.equal(uncapitalize("abcdef"), "abcdef");
     assert.equal(uncapitalize("Abcdef"), "abcdef");
     assert.equal(uncapitalize("ABCDEF"), "aBCDEF");
 });
 
-test("capitalize", () => {
+it("capitalize", () => {
     assert.equal(capitalize("Abcdef"), "Abcdef");
     assert.equal(capitalize("abcdef"), "Abcdef");
     assert.equal(capitalize("ABCDEF"), "ABCDEF");
 });
 
-test("limit a number between min/max", () => {
+it("limit a number between min/max", () => {
     assert.equal(limit(0, [0, 100]), 0);
     assert.equal(limit(1, [0, 100]), 1);
     assert.equal(limit(-1, [0, 100]), 0);
@@ -73,23 +70,23 @@ test("limit a number between min/max", () => {
     assert.equal(limit(101, [0, 100]), 100);
 });
 
-test("getSum", () => {
+it("getSum", () => {
     assert.equal(getSum([1, 2, 3]), 6);
 });
 
-test("forceInt", () => {
+it("forceInt", () => {
     assert.equal(forceInt("4"), 4);
     assert.equal(forceInt(NaN), 1);
     assert.equal(forceInt(NaN, 7), 7);
 });
 
-test("getPageCount", () => {
+it("getPageCount", () => {
     assert.equal(getPageCount(9, 10), 1);
     assert.equal(getPageCount(10, 10), 1);
     assert.equal(getPageCount(11, 10), 2);
 });
 
-test("roundTo", () => {
+it("roundTo", () => {
     assert.equal(roundTo(1.11), 1.11);
     assert.equal(roundTo(1.15), 1.15);
     assert.equal(roundTo(1.151), 1.15);
@@ -102,12 +99,10 @@ test("roundTo", () => {
     assert.equal(roundTo(1.15649, 4), 1.1565);
 });
 
-test("getClosestNbIn", () => {
+it("getClosestNbIn", () => {
     assert.equal(getClosestNbIn([0, 50, 100, 200], 100), 100);
     assert.equal(getClosestNbIn([0, 50, 100, 200], 149), 100);
     assert.equal(getClosestNbIn([0, 50, 100, 200], 150), 100);
     assert.equal(getClosestNbIn([0, 50, 100, 200], 151), 200);
     assert.equal(getClosestNbIn([0, 50, 100, 200], 500), 200);
 });
-
-test.run();

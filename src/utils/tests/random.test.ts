@@ -1,7 +1,4 @@
-import { test } from "uvu";
-import assert from "uvu/assert";
-
-import { group } from "../_uvu";
+import { assert, describe, it } from "vitest";
 import { getIntersection, hasAll, makeArrayOf, uniques } from "../array";
 import {
     getRandomFloatIn,
@@ -15,109 +12,109 @@ import {
     pickOneInEnum,
 } from "../random";
 
-test("getRandomString", () => {
-    assert.is(getRandomString().length === 10, true);
-    assert.is(getRandomString(5).length === 5, true);
-    assert.is(getRandomString(10).length === 10, true);
-    assert.is(typeof getRandomString() === "string", true);
+it("getRandomString", () => {
+    assert.equal(getRandomString().length === 10, true);
+    assert.equal(getRandomString(5).length === 5, true);
+    assert.equal(getRandomString(10).length === 10, true);
+    assert.equal(typeof getRandomString() === "string", true);
 });
 
-test("getRandomIntIn", () => {
-    assert.is(typeof getRandomIntIn(10) === "number", true);
+it("getRandomIntIn", () => {
+    assert.equal(typeof getRandomIntIn(10) === "number", true);
 
     const makeInt = () => getRandomIntIn(-5, 5);
     const results = makeArrayOf(100).reduce((acc) => acc.concat(makeInt()), []);
-    assert.is(Math.min(...results) >= -5, true);
-    assert.is(Math.max(...results) <= 5, true);
+    assert.equal(Math.min(...results) >= -5, true);
+    assert.equal(Math.max(...results) <= 5, true);
 
     const makeIntWithJustMax = () => getRandomIntIn(10);
     const resultsWithJustMax = makeArrayOf(100).reduce((acc) => acc.concat(makeIntWithJustMax()), []);
-    assert.is(Math.min(...resultsWithJustMax) >= 0, true);
-    assert.is(Math.max(...resultsWithJustMax) <= 10, true);
+    assert.equal(Math.min(...resultsWithJustMax) >= 0, true);
+    assert.equal(Math.max(...resultsWithJustMax) <= 10, true);
 });
 
-test("getRandomFloatIn", () => {
-    assert.is(typeof getRandomFloatIn(10) === "number", true);
-    assert.is(Number.isInteger(getRandomFloatIn(10)), false);
+it("getRandomFloatIn", () => {
+    assert.equal(typeof getRandomFloatIn(10) === "number", true);
+    assert.equal(Number.isInteger(getRandomFloatIn(10)), false);
 
     const makeInt = () => getRandomFloatIn(-5, 5);
     const results = makeArrayOf(100).reduce((acc) => acc.concat(makeInt()), []);
-    assert.is(Math.min(...results) >= -5, true);
-    assert.is(Math.max(...results) <= 5, true);
+    assert.equal(Math.min(...results) >= -5, true);
+    assert.equal(Math.max(...results) <= 5, true);
 
     const makeIntWithJustMax = () => getRandomFloatIn(10);
     const resultsWithJustMax = makeArrayOf(100).reduce((acc) => acc.concat(makeIntWithJustMax()), []);
-    assert.is(Math.min(...resultsWithJustMax) >= 0, true);
-    assert.is(Math.max(...resultsWithJustMax) <= 10, true);
+    assert.equal(Math.min(...resultsWithJustMax) >= 0, true);
+    assert.equal(Math.max(...resultsWithJustMax) <= 10, true);
 });
 
-test("getRandomPercent", () => {
-    assert.is(typeof getRandomPercent(10) === "number", true);
+it("getRandomPercent", () => {
+    assert.equal(typeof getRandomPercent(10) === "number", true);
 
     const makeInt = () => getRandomPercent(0);
     const results: number[] = makeArrayOf(100).reduce((acc) => acc.concat(makeInt()), []);
-    assert.is(Math.min(...results) >= 0, true);
-    assert.is(Math.max(...results) <= 100, true);
-    assert.is(
+    assert.equal(Math.min(...results) >= 0, true);
+    assert.equal(Math.max(...results) <= 100, true);
+    assert.equal(
         results.every((item) => Number.isInteger(item)),
         true
     );
 
     const makeIntWith2Decimals = () => getRandomPercent(2);
     const resultsWith2Decimals: number[] = makeArrayOf(100).reduce((acc) => acc.concat(makeIntWith2Decimals()), []);
-    assert.is(Math.min(...resultsWith2Decimals) >= 0, true);
-    assert.is(Math.max(...resultsWith2Decimals) <= 100, true);
-    assert.is(
+    assert.equal(Math.min(...resultsWith2Decimals) >= 0, true);
+    assert.equal(Math.max(...resultsWith2Decimals) <= 100, true);
+    assert.equal(
         resultsWith2Decimals.some((item) => !Number.isInteger(item)),
         true
     );
 });
 
-group("pickMultipleUnique", (test) => {
-    test("pick n given random", () => {
+describe("pickMultipleUnique", (test) => {
+    it("pick n given random", () => {
         const base = [1, 2, 3, 4, 5];
-        assert.is(pickMultipleUnique(base, 1).length === 1, true);
-        assert.is(pickMultipleUnique(base, 2).length === 2, true);
-        assert.is(pickMultipleUnique(base, 3).length === 3, true);
+        assert.equal(pickMultipleUnique(base, 1).length === 1, true);
+        assert.equal(pickMultipleUnique(base, 2).length === 2, true);
+        assert.equal(pickMultipleUnique(base, 3).length === 3, true);
     });
-    test("cant pick more than array length", () => {
+    it("cant pick more than array length", () => {
         const base = [1, 2, 3, 4, 5];
         assert.equal(pickMultipleUnique(base, 10).length === base.length, true);
     });
-    test("should not have duplicates", () => {
+    it("should not have duplicates", () => {
         const base = [1, 2, 3, 4, 5];
         const result = pickMultipleUnique(base, 4);
 
-        assert.is(result.length === uniques(result).length, true);
+        assert.equal(result.length === uniques(result).length, true);
     });
-    test("can exclude some", () => {
+    it("can exclude some", () => {
         const base = [1, 2, 3, 4, 5];
         const makePick = () => pickMultipleUnique(base, 3, [4, 5]);
         const results = makeArrayOf(100).reduce((acc) => acc.concat(makePick()), []);
 
-        assert.is(getIntersection(results, [4, 5]).length === 0, true);
+        assert.equal(getIntersection(results, [4, 5]).length === 0, true);
     });
 });
 
-test("pickOne", () => {
+it("pickOne", () => {
     const base = [1, 2, 3, 4, 5];
     const makePick = () => pickOne(base);
     const results = makeArrayOf(100).reduce((acc) => acc.concat(makePick()), []);
-    assert.is(hasAll(base, results), true);
+    assert.equal(hasAll(base, results), true);
 });
 
-test("pickOneBut", () => {
+it("pickOneBut", () => {
     const base = [1, 2, 3, 4, 5];
     const makePick = () => pickOneBut(base, [3, 5]);
     const results = makeArrayOf(100).reduce((acc) => acc.concat(makePick()), []);
 
-    assert.is(hasAll(base, results), true);
-    assert.is(hasAll(results, base), false);
-    assert.is(hasAll(results, [3, 5]), false);
-    assert.is(hasAll(results, [1, 2, 4]), true);
+    assert.equal(hasAll(base, results), true);
+    assert.equal(hasAll(results, base), false);
+    assert.equal(hasAll(results, [3, 5]), false);
+    assert.equal(hasAll(results, [1, 2, 4]), true);
 });
 
-test("pickOneInEnum", () => {
+it("pickOneInEnum", () => {
     enum Example {
         FIRST = "first",
         SECOND = "second",
@@ -129,15 +126,13 @@ test("pickOneInEnum", () => {
     const makePick = () => pickOneInEnum(Example, ["third", "five"] as Example[]);
     const results = makeArrayOf(100).reduce((acc) => acc.concat(makePick()), []);
 
-    assert.is(hasAll(Object.values(Example), results), true);
-    assert.is(hasAll(results, Object.values(Example)), false);
-    assert.is(hasAll(results, ["third", "five"]), false);
-    assert.is(hasAll(results, ["first", "second", "four"]), true);
+    assert.equal(hasAll(Object.values(Example), results), true);
+    assert.equal(hasAll(results, Object.values(Example)), false);
+    assert.equal(hasAll(results, ["third", "five"]), false);
+    assert.equal(hasAll(results, ["first", "second", "four"]), true);
 });
 
-test("makeArrayOf", () => {
+it("makeArrayOf", () => {
     const arr = makeArrayOfRandIn(5, 10);
-    assert.is(arr.length >= 5 && arr.length <= 10, true);
+    assert.equal(arr.length >= 5 && arr.length <= 10, true);
 });
-
-test.run();

@@ -17,7 +17,7 @@
         "declaration": true,
         "sourceMap": true,
         "isolatedModules": true,
-        "types": ["react", "react-dom", "node"]
+        "types": ["react", "react-dom", "node", "vitest/importMeta"]
     },
-    "exclude": ["**/node_modules/**", "packages/*/dist"]
+    "exclude": ["**/node_modules/**", "dist", "*/dist", "**/*.test.ts", "**/*.typegen.ts"]
 }

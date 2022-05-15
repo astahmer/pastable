@@ -22,7 +22,8 @@
 
 ## TL;DR
 
-This package is meant mostly for myself, anything should be pastable from `src` .
+Anything should be pastable from `src` to your current project.
+Disclaimer: this package is meant mostly for myself.
 
 ```sh
 pnpm i pastable
@@ -59,4 +60,10 @@ Feel free to contribute if you think there is space for one of your previous pro
 
 ## ❤️ Built with
 
-Packages are built with https://github.com/developit/microbundle & tested with https://github.com/lukeed/uvu, special thanks to their authors for those priceless gems !
+Packages are built with https://preconstruct.tools/ & tested with https://vitest.dev/, special thanks to their authors for those priceless gems !
+
+# Package History
+
+-   [v1 using yarn2 workspaces + custom build scripts](https://github.com/astahmer/pastable/commit/f0f5c0a069f15f4669b976d1f51c7ebe512426d2), had a shitload of single-file packages deployed to npm, each built with https://github.com/developit/microbundle & tested with https://github.com/lukeed/uvu, generated with [plop](https://www.npmjs.com/package/plop)
+-   [v2 using pnpm + turborepo](https://github.com/astahmer/pastable/commit/edf6904e041060084920159de04e5889eb4b5425): less packages, still too many folders / complexity, spent way too much time making it work in any env (browser, server, both like when using earlier version of NextJS..)
+-   [v3 (current) using pnpm + preconstruct](https://github.com/astahmer/pastable/commit/5542e1cd095dd26bf09aa8ef6d4f829f366db51d): flattened lots of folders, let preconstruct do the hard work, removed shitty react unit tests, deadcode, outdateds demo/docs sites, removed `@` alias to simplify the publish process, replaced uvu by vitest
