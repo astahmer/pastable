@@ -52,3 +52,6 @@ export type AwaitFn<T extends tb.Function.Function<any, P>, P = unknown> = tb.Fu
     : T;
 
 export type LiteralUnion<T extends U, U = string> = T | (U & {});
+
+export type PickKnownKeysOptional<First, Second> = Pick<First, Extract<keyof First, keyof Second>>;
+export type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
