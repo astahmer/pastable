@@ -30,7 +30,7 @@ jobs:
           cache: "pnpm"
       - run: pnpm install --frozen-lockfile --ignore-scripts
       - run: pnpm build
-      - run: pnpm coverage:ci
+      - run: pnpm coverage
       - name: Upload coverage to Codecov
         if: ${{ matrix.node-version == '14.x' }}
         uses: codecov/codecov-action@v1
