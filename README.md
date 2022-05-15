@@ -20,32 +20,28 @@
 </p>
 <br />
 
-## ⏩ [pastable](http://pastable.vercel.app/): TL;DR
+## TL;DR
+
+This package is meant mostly for myself, anything should be pastable from `src` .
 
 ```sh
-npm i @pastable/utils @pastable/react
+pnpm i pastable
 ```
 
-(or just `npm i @pastable/core` which is almost the same)
+With 1 main & 3 specific entrypoints:
 
-## 📦 Package list
+-   `"pastable"`: re-exports everything from utils/react/typings
+-   `"pastable/utils"`
+-   `"pastable/react"`
+-   `"pastable/typings"`
 
--   [🧰 core](./packages/core/README.md): Re-exports all `pastable` packages.
--   [⚛️ react](./packages/react/README.md): Re-exports all `pastable` react related packages.
--   [📜 typings](./packages/typings/README.md): A bunch of utility types.
--   [⚙️ utils](./packages/utils/README.md): A collection of very short utils functions for about anything, without dependencies. Something like a (very) tiny (incomplete) nicely typed lodash. Contains utils for : `array`, `asserts`, `getters`, `misc`, `nested`, `object`, `pick`, `primitives`, `random`, `set`
+```ts
+import { useSelection } from "pastable";
 
-### ⚛️ React package contains
+//  or
 
--   [atomWithToggle](./docs/atomWithToggle.md): [Jotai](https://github.com/pmndrs/jotai) specific. Like if useToggle & useAtom & useLocalStorage had a child.
--   [useClickAway](./docs/useClickAway.md): Detect and invoke a callback when clicking away of target element.
--   [useEvent](./docs/useEvent.md): Define an event listener on window or a given element declaratively
--   [useForceUpdate](./docs/useForceUpdate.md): One liner to force a re-render when needed
--   [useIsMounted](./docs/useIsMounted.md): Keep track of a component mounted using ref/state.
--   [useQueryParams](./docs/useQueryParams.md): Allows you to get/set page history with query params, usable like a useState.
--   [useSelection](./docs/useSelection.md): Like if useState had a child with Array. Makes it easy to work with an array of objects with all the actions available.
--   [useUpdateEffect](./docs/useUpdateEffect.md): React effect hook that invokes only on update. (taken from chakra-ui)
--   [usePreloadImages](./docs/usePreloadImages.md): Preload images urls so they can appear instantly when needed
+import { useSelection } from "pastable/react";
+```
 
 ## ⚡ Motivations
 

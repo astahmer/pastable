@@ -1,0 +1,4 @@
+{
+    "main": "dist/pastable-typings.cjs.js",
+    "module": "dist/pastable-typings.esm.js"
+}

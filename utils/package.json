@@ -1,0 +1,4 @@
+{
+    "main": "dist/pastable-utils.cjs.js",
+    "module": "dist/pastable-utils.esm.js"
+}

@@ -1,0 +1,54 @@
+import tb from "ts-toolbelt";
+
+export type PrimitiveValue = string | number | boolean;
+export type Primitive = PrimitiveValue | Array<PrimitiveValue>;
+
+export type ObjectLiteral<T = any> = Record<string, T>;
+export type JSONValue = PrimitiveValue | JSONObject | JSONArray;
+export interface JSONObject {
+    [x: string]: JSONValue;
+}
+
+export interface JSONArray extends Array<JSONValue> {}
+
+// From official doc
+export type Unpacked<T> = T extends (infer U)[]
+    ? U
+    : T extends (...args: any[]) => infer U
+    ? U
+    : T extends Promise<infer U>
+    ? U
+    : T;
+
+export type CType<T = any> = new (...args: any[]) => T;
+export type AnyFunction<Return = any, Args = any> = (...args: Args[]) => Return;
+export type FunctionArguments<T extends Function> = T extends (...args: infer R) => any ? R : never;
+export type ArrayUnion<T extends Readonly<string[]>> = T[number];
+
+/**
+ * Same as Partial<T> but goes deeper and makes Partial<T> all its properties and sub-properties.
+ `*/
+type DP<T> = {
+    [P in keyof T]?: T[P] extends Array<infer U>
+        ? Array<DeepPartial<U>>
+        : T[P] extends ReadonlyArray<infer U>
+        ? ReadonlyArray<DeepPartial<U>>
+        : DeepPartial<T[P]>;
+};
+
+export declare type DeepPartial<T> = { [P in keyof T]?: T[P] | DP<T> };
+
+export type NonUndefined<A> = A extends undefined ? never : A;
+export type NonFunctionKeys<T extends object> = {
+    [K in keyof T]-?: NonUndefined<T[K]> extends Function ? never : K;
+}[keyof T];
+
+export type StringOrNumber = string | number;
+
+export type AwaitFn<T extends tb.Function.Function<any, P>, P = unknown> = tb.Function.Return<T> extends Promise<
+    infer R
+>
+    ? R
+    : T;
+
+export type LiteralUnion<T extends U, U = string> = T | (U & {});
