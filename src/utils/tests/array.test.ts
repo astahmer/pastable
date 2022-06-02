@@ -1,4 +1,4 @@
-import { assert, describe, it } from "vitest";
+import { assert, describe, expect, it } from "vitest";
 import {
     appendItem,
     chunk,
@@ -29,6 +29,7 @@ import {
     removeValueMutate,
     sortArrayOfObjectByPropFromArray,
     sortBy,
+    sortListFromRefArray,
     uniques,
     uniquesByProp,
     updateAtIndex,
@@ -406,4 +407,9 @@ it("sortArrayOfObjectByPropFromArray", () => {
         sortArrayOfObjectByPropFromArray(arr, "aaa", [222, 333, 111, 444]).map((item) => item.aaa),
         [222, 333, 111, 444]
     );
+});
+
+it("sortListFromRefArray", () => {
+    const arr = ["1", "2", "3", "4"];
+    assert.deepEqual(sortListFromRefArray(arr, ["4", "3", "2", "1"]), ["4", "3", "2", "1"]);
 });

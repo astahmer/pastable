@@ -224,4 +224,13 @@ export const sortArrayOfObjectByPropFromArray = <T extends ObjectLiteral, K exte
     return sortedEntries;
 };
 
+/** Sort array of object by given prop using a reference order array, sort items not in reference order in lasts positions */
+export const sortListFromRefArray = <T extends string | number>(arr: Array<T>, orderedProp: Array<T>) => {
+    const sortedEntries = arr
+        .filter((item) => orderedProp.includes(item))
+        .sort((a, b) => orderedProp.indexOf(a) - orderedProp.indexOf(b))
+        .concat(arr.filter((item) => !orderedProp.includes(item)));
+    return sortedEntries;
+};
+
 export const castAsArray = (value: any) => (Array.isArray(value) ? value : [value].filter(Boolean));
