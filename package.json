@@ -15,7 +15,7 @@
         "machines",
         "typings"
     ],
-    "version": "2.0.1",
+    "version": "2.0.2",
     "preconstruct": {
         "entrypoints": [
             "index.ts",
@@ -30,7 +30,7 @@
         "format": "prettier --write \"**/*.{ts,tsx,md}\"",
         "test": "vitest",
         "coverage": "vitest run --coverage",
-        "release": "pnpm build && pnpm publish"
+        "release": "pnpm build && pnpm publish && git push"
     },
     "packageManager": "pnpm@6.24.0",
     "sideEffects": false,
