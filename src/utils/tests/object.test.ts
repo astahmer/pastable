@@ -1,5 +1,14 @@
-import { assert, it } from "vitest";
-import { fromEntries, hash, makeInstance, mapper, reverse, sortObjectKeys, sortObjKeysFromArray } from "../object";
+import { assert, expect, it, vi } from "vitest";
+import {
+    fromEntries,
+    hash,
+    makeInstance,
+    mapper,
+    mergeProps,
+    reverse,
+    sortObjectKeys,
+    sortObjKeysFromArray,
+} from "../object";
 
 it("mapper", () => {
     const schema = {
@@ -92,4 +101,20 @@ it("sortObjKeysFromArray", () => {
     const base = { zzz: 111, aaa: 222, ddd: 333, ccc: 444, eee: 555 };
     const order = ["aaa", "zzz", "ddd", "eee", "ccc"];
     assert.deepEqual(Object.keys(sortObjKeysFromArray(base, order as any)), order);
+});
+
+it("mergeProps", () => {
+    let count = 0;
+
+    const first = { onChange: vi.fn(() => count++) };
+    const second = { onChange: vi.fn(() => count++) };
+    const merged = mergeProps(first, second);
+
+    expect(Object.keys(merged)).toEqual(["onChange"]);
+
+    merged.onChange();
+
+    expect(first.onChange.mock.calls.length).toBe(1);
+    expect(second.onChange.mock.calls.length).toBe(1);
+    expect(count).toBe(2);
 });

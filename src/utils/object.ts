@@ -1,6 +1,7 @@
 import { CType, NonFunctionKeys, ObjectLiteral } from "../typings";
 
 import { isObjectLiteral } from "./asserts";
+import { callAll } from "./misc";
 import { get } from "./nested";
 import { format } from "./pick";
 
@@ -89,3 +90,13 @@ export function groupIn<Key, T>(array: T[], keyOrGetter: Key) {
         return r;
     }, {});
 }
+
+export const mergeProps = <Left extends ObjectLiteral, Right extends Partial<Left & {}>>(left: Left, right: Right) => {
+    const result = { ...left, ...right };
+    for (const key in result) {
+        if (typeof left[key] === "function" && typeof right[key] === "function") {
+            (result as any)[key] = callAll(left[key], right[key]);
+        }
+    }
+    return result;
+};
