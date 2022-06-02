@@ -45,11 +45,34 @@ export const hasAll = <T = any>(inArray: Array<T>, items: Array<T>) => isSuperse
 export const uniques = <T = any>(arr: Array<T>) => Array.from(new Set(arr));
 
 /** Return uniques/de-duplicated values in array of objects using the given propPath as unique identifier */
-export const uniquesByProp = <T = any>(arr: T[], propPath: string): T[] =>
-    arr.reduce(
-        (acc, item) => (acc.find((current) => get(current, propPath) === get(item, propPath)) ? acc : acc.concat(item)),
+export const uniquesByProp = <T = any>(arr: T[], propPathOrGetter: string | ((value: T) => any)): T[] => {
+    if (typeof propPathOrGetter === "function") {
+        return arr.reduce(
+            (acc, item) =>
+                acc.find((current) => propPathOrGetter(current) === propPathOrGetter(item)) ? acc : acc.concat(item),
+            []
+        );
+    }
+
+    if (propPathOrGetter.includes(".")) {
+        const getter = new Function("obj", "propPath", "return obj." + propPathOrGetter);
+        return arr.reduce(
+            (acc, item) =>
+                acc.find((current) => getter(current, propPathOrGetter) === getter(item, propPathOrGetter))
+                    ? acc
+                    : acc.concat(item),
+            []
+        );
+    }
+
+    return arr.reduce(
+        (acc, item) =>
+            acc.find((current) => current[propPathOrGetter] === (item as any)[propPathOrGetter])
+                ? acc
+                : acc.concat(item),
         []
     );
+};
 
 /** Exclude items in array */
 export const exclude = <T = any>(arr: T[], excluded: T[]) => arr.filter((item) => !excluded.includes(item));
