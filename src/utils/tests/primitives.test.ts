@@ -1,4 +1,4 @@
-import { assert, describe, it } from "vitest";
+import { assert, describe, expect, it } from "vitest";
 import {
     camelToKebab,
     camelToSnake,
@@ -11,6 +11,7 @@ import {
     limit,
     parseStringAsBoolean,
     roundTo,
+    slugify,
     snakeToCamel,
     uncapitalize,
 } from "../primitives";
@@ -105,4 +106,10 @@ it("getClosestNbIn", () => {
     assert.equal(getClosestNbIn([0, 50, 100, 200], 150), 100);
     assert.equal(getClosestNbIn([0, 50, 100, 200], 151), 200);
     assert.equal(getClosestNbIn([0, 50, 100, 200], 500), 200);
+});
+
+it("slugify", () => {
+    expect(slugify("Hello World")).toEqual("hello-world");
+    expect(slugify("Bonjour c'est Émilie !")).toEqual("bonjour-cest-emilie-");
+    expect(slugify("testing--Multiple-----")).toEqual("testing-multiple-");
 });
