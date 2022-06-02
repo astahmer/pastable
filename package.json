@@ -13,16 +13,18 @@
         "react",
         "utils",
         "machines",
-        "typings"
+        "typings",
+        "server"
     ],
-    "version": "2.0.3",
+    "version": "2.0.4",
     "preconstruct": {
         "entrypoints": [
             "index.ts",
             "react.ts",
             "utils.ts",
             "machines.ts",
-            "typings.ts"
+            "typings.ts",
+            "server.ts"
         ]
     },
     "scripts": {

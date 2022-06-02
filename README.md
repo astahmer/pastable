@@ -29,12 +29,14 @@ Disclaimer: this package is meant mostly for myself.
 pnpm i pastable
 ```
 
-With 1 main & 3 specific entrypoints:
+With 1 main & 5 specific entrypoints:
 
 -   `"pastable"`: re-exports everything from utils/react/typings
 -   `"pastable/utils"`
 -   `"pastable/react"`
 -   `"pastable/typings"`
+-   `"pastable/machines"`
+-   `"pastable/server"` everything that's commonly used server-side (= no browser APIs + no vendors like react/xstate)
 
 ```ts
 import { useSelection } from "pastable";
