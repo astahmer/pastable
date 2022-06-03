@@ -1,4 +1,4 @@
-import { AnyFunction } from "../typings";
+import { AnyFunction, ObjectLiteral } from "../typings";
 
 /** Returns a callback that will call all functions passed with the same arguments */
 export const callAll =
@@ -69,3 +69,6 @@ export const off = <K extends keyof HTMLElementEventMap | keyof WindowEventMap>(
 
 export const getQueryParams = () => new URLSearchParams(window.location.search);
 export const getQueryString = (data: Record<string, any>) => new URLSearchParams(data).toString();
+
+export const makeCompiledFnWith = (code: string, context: ObjectLiteral) =>
+    new Function(...Object.keys(context), code)(...Object.values(context));

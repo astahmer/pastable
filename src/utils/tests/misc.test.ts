@@ -1,5 +1,5 @@
-import { assert, describe, it, vi } from "vitest";
-import { callAll, compose, getInheritanceTree, pipe, wait } from "../misc";
+import { assert, describe, expect, it, vi } from "vitest";
+import { callAll, compose, getInheritanceTree, makeCompiledFnWith, pipe, wait } from "../misc";
 
 describe("callAll", (test) => {
     it("should return another function", () => {
@@ -99,4 +99,20 @@ it("getInheritanceTree", () => {
     class GreatGrandChild extends GrandChild {}
 
     assert.deepEqual(getInheritanceTree(GreatGrandChild), [GreatGrandChild, GrandChild, Child, Parent, GrandParent]);
+});
+
+it("makeCompiledFnWith", () => {
+    expect(
+        makeCompiledFnWith("return aaa + bbb", {
+            aaa: 111,
+            bbb: 222,
+        })
+    ).toBe(333);
+
+    const fn = makeCompiledFnWith("if (aaa > bbb) return 'yes'; return function () { return 'inner-' + bbb; };", {
+        aaa: 111,
+        bbb: 222,
+    });
+    expect(typeof fn === "function").toBe(true);
+    expect(fn()).toBe("inner-222");
 });
