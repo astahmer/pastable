@@ -16,7 +16,7 @@ importers:
       '@types/rimraf': ^3.0.2
       c8: ^7.11.2
       esno: ^0.16.3
-      mitata: ^0.1.1
+      mitata: 0.1.5
       prettier: ^2.5.1
       react: ^17.0.2
       react-dom: ^17.0.2
@@ -39,7 +39,7 @@ importers:
       '@types/rimraf': 3.0.2
       c8: 7.11.2
       esno: 0.16.3
-      mitata: 0.1.1
+      mitata: 0.1.5
       prettier: 2.5.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -3333,8 +3333,8 @@ packages:
       kind-of: 6.0.3
     dev: true
 
-  /mitata/0.1.1:
-    resolution: {integrity: sha512-W6pu29WR1hFZB5yAX9tRxBiH7MW/EKgmRSnAkUuVH6YN+Nw8EglFuUjGLoJCuEB2YTvnSlP8LbSkVUTsh1MiDQ==}
+  /mitata/0.1.5:
+    resolution: {integrity: sha512-5yQK6k7gayArKQq+tLYffRjBqIa70d5E8a/ArGzpL8l7AD1s+NzHPsah45YMNG5CyFNsNqCXWckhjw0CVozW8g==}
     dev: true
 
   /ms/2.1.2:
