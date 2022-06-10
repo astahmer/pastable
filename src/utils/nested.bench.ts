@@ -1,8 +1,37 @@
-import { bench, group, run } from "mitata";
+import { baseline, bench, group, run } from "mitata";
 import { ObjectLiteral } from "../typings";
 import { set } from "./nested";
 
 const obj = { id: 111, aaa: { bbb: { ccc: { deep: { nested: { prop: 222 } } } } } };
+
+function setV1<Value = any, From = ObjectLiteral>(
+    obj: From,
+    pathOrGetter: string | ((obj: From) => any),
+    valueOrProp: Value | string,
+    value?: Value
+): void {
+    if (typeof pathOrGetter === "function") {
+        const parent = pathOrGetter(obj);
+        if (parent) {
+            parent[valueOrProp] = value;
+        }
+        return;
+    }
+
+    let target = obj as any;
+    const props = pathOrGetter.split(".");
+    for (let i = 0, len = props.length; i < len; ++i) {
+        if (i + 1 < len) {
+            if (target[props[i]] === undefined || target[props[i]] === null) {
+                target = target[props[i]] = {};
+            } else {
+                target = target[props[i]];
+            }
+        } else {
+            target[props[i]] = valueOrProp;
+        }
+    }
+}
 
 const setWithShortcut = <Value = any, From = ObjectLiteral>(obj: From, path: string, value: Value) => {
     if (path.includes(".")) {
@@ -79,6 +108,7 @@ const val = "12345";
 group("set 1 lvl deep", () => {
     const path = "id";
 
+    // baseline("setV1", () => setV1(obj, path, val));
     bench("set using prop path string", () => set(obj, path, val));
     bench("set using prop path getter function", () => set(obj, (obj) => obj, "id", val));
     bench("setWithShortcut", () => setWithShortcut(obj, path, val));
@@ -101,6 +131,7 @@ group("set 1 lvl deep", () => {
 group("set deeply nested prop", () => {
     const path = "aaa.bbb.ccc.deep.nested.prop";
 
+    // baseline("setV1", () => setV1(obj, path, val));
     bench("set using prop path string", () => set(obj, path, val));
     bench("set using prop path getter function", () => set(obj, (obj) => obj.aaa.bbb.ccc.deep.nested, "prop", val));
     bench("setWithShortcut", () => setWithShortcut(obj, path, val));

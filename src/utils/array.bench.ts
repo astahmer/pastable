@@ -1,4 +1,4 @@
-import { bench, group, run } from "mitata";
+import { bench, group, run, baseline } from "mitata";
 import { makeArrayOf, uniquesByProp } from "./array";
 import { get } from "./nested";
 import { getRandomIntIn } from "./random";
@@ -7,6 +7,13 @@ const arr = makeArrayOf(100000).map((_, i) => ({
     id: getRandomIntIn(0, 10),
     aaa: { bbb: { ccc: { deep: { nested: { prop: getRandomIntIn(0, 10) } } } } },
 }));
+
+const uniquesByPropV1 = <T = any>(arr: T[], propPath: string): T[] =>
+    arr.reduce(
+        (acc, item) => (acc.find((current) => get(current, propPath) === get(item, propPath)) ? acc : acc.concat(item)),
+        []
+    );
+
 const uniquesByPropWithShortcut = <T = any>(arr: T[], propPath: string): T[] => {
     if (propPath.includes("."))
         return arr.reduce(
@@ -45,8 +52,8 @@ const uniquesByPropWithGetter = <T = any>(arr: T[], getter: (value: T) => any): 
 };
 
 group("uniquesByProp 1 lvl deep", () => {
-    console.log("uniquesByProp 1 lvl deep");
     const path = "id";
+    // baseline("uniquesByPropV1", () => uniquesByPropV1(arr, path));
     bench("uniquesByProp", () => uniquesByProp(arr, path));
     bench("uniquesByPropWithShortcut", () => uniquesByPropWithShortcut(arr, path));
     bench("uniquesByPropWithJIT", () => uniquesByPropWithJIT(arr, path));
@@ -55,6 +62,7 @@ group("uniquesByProp 1 lvl deep", () => {
 
 group("uniquesByProp deeply nested prop", () => {
     const path = "aaa.bbb.ccc.deep.nested.prop";
+    // baseline("uniquesByPropV1", () => uniquesByPropV1(arr, path));
     bench("uniquesByProp", () => uniquesByProp(arr, path));
     bench("uniquesByPropWithShortcut", () => uniquesByPropWithShortcut(arr, path));
     bench("uniquesByPropWithJIT", () => uniquesByPropWithJIT(arr, path));
