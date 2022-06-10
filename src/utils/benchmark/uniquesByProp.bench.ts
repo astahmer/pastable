@@ -1,7 +1,7 @@
 import { bench, group, run, baseline } from "mitata";
-import { makeArrayOf, uniquesByProp } from "./array";
-import { get } from "./nested";
-import { getRandomIntIn } from "./random";
+import { makeArrayOf, uniquesByProp } from "../array";
+import { get, makeGetter } from "../nested";
+import { getRandomIntIn } from "../random";
 
 const arr = makeArrayOf(100000).map((_, i) => ({
     id: getRandomIntIn(0, 10),
@@ -51,6 +51,35 @@ const uniquesByPropWithGetter = <T = any>(arr: T[], getter: (value: T) => any): 
     );
 };
 
+const uniquesByPropV2 = <T = any>(arr: T[], propPathOrGetter: string | ((value: T) => any)): T[] => {
+    if (typeof propPathOrGetter === "function") {
+        return arr.reduce(
+            (acc, item) =>
+                acc.find((current) => propPathOrGetter(current) === propPathOrGetter(item)) ? acc : acc.concat(item),
+            []
+        );
+    }
+
+    if (propPathOrGetter.includes(".")) {
+        const getter = new Function("obj", "propPath", "return obj." + propPathOrGetter);
+        return arr.reduce(
+            (acc, item) =>
+                acc.find((current) => getter(current, propPathOrGetter) === getter(item, propPathOrGetter))
+                    ? acc
+                    : acc.concat(item),
+            []
+        );
+    }
+
+    return arr.reduce(
+        (acc, item) =>
+            acc.find((current) => current[propPathOrGetter] === (item as any)[propPathOrGetter])
+                ? acc
+                : acc.concat(item),
+        []
+    );
+};
+
 group("uniquesByProp 1 lvl deep", () => {
     const path = "id";
     // baseline("uniquesByPropV1", () => uniquesByPropV1(arr, path));
@@ -58,6 +87,8 @@ group("uniquesByProp 1 lvl deep", () => {
     bench("uniquesByPropWithShortcut", () => uniquesByPropWithShortcut(arr, path));
     bench("uniquesByPropWithJIT", () => uniquesByPropWithJIT(arr, path));
     bench("uniquesByPropWithGetter", () => uniquesByPropWithGetter(arr, (value) => value.id));
+    bench("uniquesByPropV2 - using a getter", () => uniquesByPropV2(arr, (value) => value.id));
+    bench("uniquesByPropV2 - using JIT if propPath is a string", () => uniquesByPropV2(arr, path));
 });
 
 group("uniquesByProp deeply nested prop", () => {
@@ -72,6 +103,10 @@ group("uniquesByProp deeply nested prop", () => {
             return value.aaa.bbb.ccc.deep.nested.prop;
         })
     );
+    bench("uniquesByPropV2 - using a getter", () =>
+        uniquesByPropV2(arr, (value) => value.aaa.bbb.ccc.deep.nested.prop)
+    );
+    bench("uniquesByPropV2 - using JIT if propPath is a string", () => uniquesByPropV2(arr, path));
 });
 
 run();

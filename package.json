@@ -16,7 +16,7 @@
         "typings",
         "server"
     ],
-    "version": "2.0.4",
+    "version": "2.0.5",
     "preconstruct": {
         "entrypoints": [
             "index.ts",

@@ -1,4 +1,4 @@
-import { ObjectLiteral } from "../typings";
+import type { AnyFunction, ObjectLiteral } from "../typings";
 
 import { isDate, isObject, isObjectLiteral } from "./asserts";
 import { getSetUnion } from "./set";
@@ -26,20 +26,33 @@ export function set<Value = any, From = ObjectLiteral>(
         return;
     }
 
-    let target = obj as any;
-    const props = pathOrGetter.split(".");
-    for (let i = 0, len = props.length; i < len; ++i) {
-        if (i + 1 < len) {
-            if (target[props[i]] === undefined || target[props[i]] === null) {
-                target = target[props[i]] = {};
+    if (pathOrGetter.includes(".")) {
+        let target = obj as any;
+        const props = pathOrGetter.split(".");
+        for (let i = 0, len = props.length; i < len; ++i) {
+            if (i + 1 < len) {
+                if (target[props[i]] === undefined || target[props[i]] === null) {
+                    target = target[props[i]] = {};
+                } else {
+                    target = target[props[i]];
+                }
             } else {
-                target = target[props[i]];
+                target[props[i]] = valueOrProp;
             }
-        } else {
-            target[props[i]] = valueOrProp;
         }
+        return;
     }
+
+    (obj as any)[pathOrGetter] = value;
 }
+
+export const makeGetter = <Return = any, From = ObjectLiteral>(path: string): ((obj: From) => Return) => {
+    if (path.includes(".")) {
+        return new Function("obj", "propPath", "value", "return obj." + path) as AnyFunction<Return, From>;
+    }
+
+    return (obj: From) => (obj as any)[path] as Return;
+};
 
 /** Get a nested property value from a dot-delimited path. */
 export function get<Return = any, From = ObjectLiteral>(obj: From, path: string): Return {
