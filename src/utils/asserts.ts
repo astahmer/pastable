@@ -1,3 +1,4 @@
+import { F } from "ts-toolbelt";
 import { CType, ObjectLiteral, PrimitiveValue } from "../typings";
 
 export const isDefined = (value: any) =>
@@ -18,6 +19,12 @@ export const isPromise = <T = any>(p: any): p is Promise<T> =>
 
 /** Can be used as type guard  */
 export const isType = <T>(_value: any, condition?: boolean): _value is T => condition;
+
+/** @see https://twitter.com/mattpocockuk/status/1536301151691366406 */
+export const satisfies =
+    <TWide>() =>
+    <TNarrow extends TWide>(narrow: F.Narrow<TNarrow>) =>
+        narrow;
 
 export const isClassRegex = /^\s*class\s+/;
 export const isClass = <T>(value: any): value is CType<T> =>
