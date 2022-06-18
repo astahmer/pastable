@@ -3,6 +3,8 @@
 export interface Typegen0 {
     "@@xstate/typegen": true;
     eventsCausingActions: {
+        addRunning: "task.started";
+        onStart: "task.started";
         addSuccess: "task.resolved";
         onSuccess: "task.resolved";
         addError: "task.rejected";

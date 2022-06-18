@@ -13,12 +13,19 @@ export const makePoolMachine = <Return = any>(params: MakePoolMachineParams<Retu
                 context: {} as Context<Return>,
                 events: {} as
                     | { type: "START" }
+                    | { type: "task.started"; index: number }
                     | { type: "task.resolved"; index: number; result: Return }
                     | { type: "task.rejected"; index: number; error: any }
                     | { type: "UPDATE_CONCURRENCY"; concurrency: number }
                     | { type: "DONE" },
             },
-            context: { concurrency: params.concurrency, resolvedList: [], rejectedList: [] },
+            context: {
+                concurrency: params.concurrency,
+                delayInMs: params.delayInMs,
+                runningList: [],
+                resolvedList: [],
+                rejectedList: [],
+            },
             states: {
                 idle: {
                     on: {
@@ -43,9 +50,12 @@ export const makePoolMachine = <Return = any>(params: MakePoolMachineParams<Retu
                             function invokeTask() {
                                 const index = pool.pendingList.shift()!;
                                 const task = params.taskList[index];
-                                if (!task) return;
+                                if (!task || !isMounted) return;
 
-                                task()
+                                const promise = task();
+                                sender({ type: `task.started`, index });
+
+                                promise
                                     .then((result) => {
                                         if (!isMounted) return;
                                         sender({ type: `task.resolved`, index, result });
@@ -76,7 +86,13 @@ export const makePoolMachine = <Return = any>(params: MakePoolMachineParams<Retu
                                 );
                                 if (emptySlotCount <= 0) return;
 
-                                makeArrayOf(emptySlotCount).forEach(invokeTask);
+                                if (ctx.delayInMs) {
+                                    setTimeout(() => {
+                                        makeArrayOf(emptySlotCount).forEach(invokeTask);
+                                    }, ctx.delayInMs);
+                                } else {
+                                    makeArrayOf(emptySlotCount).forEach(invokeTask);
+                                }
                             };
 
                             makeArrayOf(ctx.concurrency).forEach(invokeTask);
@@ -85,6 +101,7 @@ export const makePoolMachine = <Return = any>(params: MakePoolMachineParams<Retu
                         },
                     },
                     on: {
+                        "task.started": { actions: ["addRunning", "onStart"] },
                         "task.resolved": { actions: ["addSuccess", "onSuccess"] },
                         "task.rejected": { actions: ["addError", "onError"] },
                         DONE: { target: "done", actions: "onDone" },
@@ -96,12 +113,18 @@ export const makePoolMachine = <Return = any>(params: MakePoolMachineParams<Retu
         },
         {
             actions: {
+                addRunning: assign({
+                    runningList: (ctx, event) => [...ctx.runningList, event.index],
+                }),
                 addSuccess: assign({
                     resolvedList: (ctx, event) => [...ctx.resolvedList, { index: event.index, result: event.result }],
+                    runningList: (ctx, event) => ctx.runningList.filter((i) => i !== event.index),
                 }),
                 addError: assign({
                     rejectedList: (ctx, event) => [...ctx.rejectedList, { index: event.index, error: event.error }],
+                    runningList: (ctx, event) => ctx.runningList.filter((i) => i !== event.index),
                 }),
+                onStart: (_ctx, event) => params.onStart?.(event.index),
                 onSuccess: (_ctx, event) => params.onSuccess?.(event.result, event.index),
                 onError: (_ctx, event) => params.onError?.(event.error, event.index),
                 onDone: (ctx) => params.onDone?.(ctx),
@@ -111,7 +134,8 @@ export const makePoolMachine = <Return = any>(params: MakePoolMachineParams<Retu
         }
     );
 
-interface Context<Return> extends Pick<MakePoolMachineParams<Return>, "concurrency"> {
+interface Context<Return> extends Pick<MakePoolMachineParams<Return>, "concurrency" | "delayInMs"> {
+    runningList: number[];
     resolvedList: Array<{
         index: number;
         result: Return;
@@ -127,6 +151,8 @@ type Thunk<Return = any> = () => Promise<Return>;
 interface MakePoolMachineParams<Return = any> {
     taskList: Array<Thunk<Return>>;
     concurrency: number;
+    delayInMs?: number;
+    onStart?: (index: number) => void;
     onSuccess?: (result: Return, index: number) => void;
     onError?: (error: any, index: number) => void;
     onDone?: (ctx: Context<Return>) => void;
@@ -162,7 +188,7 @@ export const createAsyncPool = <Return = any>(
 };
 
 interface CreatePoolParams<Return = any>
-    extends Omit<PartialBy<MakePoolMachineParams<Return>, "concurrency">, "taskList"> {
+    extends Omit<PartialBy<MakePoolMachineParams<Return>, "concurrency" | "delayInMs">, "taskList"> {
     autoStart?: boolean;
 }
 
@@ -271,5 +297,50 @@ if (import.meta.vitest) {
                 1, 2, 4, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
             ]);
         });
+    });
+
+    it("should wait given delayInMs between tasks", async () => {
+        const taskList = makeArrayOf(4).map((_, i) => async () => {
+            await wait(10);
+            return Promise.resolve(i + 1);
+        });
+        const service = createPool(taskList, { concurrency: 2 });
+
+        expect(service.state.context.resolvedList.map((r) => r.result)).toEqual([]);
+        expect(service.state.context.runningList.map((i) => i)).toEqual([0, 1]);
+        await wait(10);
+        expect(service.state.context.resolvedList.map((r) => r.result)).toEqual([1, 2]);
+        expect(service.state.context.runningList.map((i) => i)).toEqual([2, 3]);
+        await wait(10);
+        expect(service.state.context.resolvedList.map((r) => r.result)).toEqual([1, 2, 3, 4]);
+        expect(service.state.context.runningList.map((i) => i)).toEqual([]);
+
+        const serviceWithDelayInBetween = createPool(taskList, { concurrency: 2, delayInMs: 50 });
+
+        expect(serviceWithDelayInBetween.state.context.resolvedList.map((r) => r.result)).toEqual([]);
+        expect(serviceWithDelayInBetween.state.context.runningList.map((i) => i)).toEqual([0, 1]);
+        await wait(10);
+        expect(serviceWithDelayInBetween.state.context.resolvedList.map((r) => r.result)).toEqual([1, 2]);
+        expect(serviceWithDelayInBetween.state.context.runningList.map((i) => i)).toEqual([]);
+
+        // waiting 50ms (delayInMs before starting)
+        await wait(10);
+        expect(serviceWithDelayInBetween.state.context.resolvedList.map((r) => r.result)).toEqual([1, 2]);
+        await wait(10);
+        expect(serviceWithDelayInBetween.state.context.resolvedList.map((r) => r.result)).toEqual([1, 2]);
+        await wait(10);
+        expect(serviceWithDelayInBetween.state.context.resolvedList.map((r) => r.result)).toEqual([1, 2]);
+        await wait(10);
+        expect(serviceWithDelayInBetween.state.context.resolvedList.map((r) => r.result)).toEqual([1, 2]);
+        await wait(10);
+
+        // we waited the 50ms additional time from delayInMs so we will start the next tasks
+        expect(serviceWithDelayInBetween.state.context.resolvedList.map((r) => r.result)).toEqual([1, 2]);
+        expect(serviceWithDelayInBetween.state.context.runningList.map((i) => i)).toEqual([2, 3]);
+
+        await wait(10);
+        // we should now have the tasks result
+        expect(serviceWithDelayInBetween.state.context.resolvedList.map((r) => r.result)).toEqual([1, 2, 3, 4]);
+        expect(serviceWithDelayInBetween.state.context.runningList.map((i) => i)).toEqual([]);
     });
 }
