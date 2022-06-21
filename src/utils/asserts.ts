@@ -1,7 +1,9 @@
 import { F } from "ts-toolbelt";
 import { CType, ObjectLiteral, PrimitiveValue } from "../typings";
 
-export const isDefined = (value: any) =>
+export const isDefined = <T = any>(
+    value: T
+): value is typeof value extends undefined ? never : typeof value extends null ? never : T =>
     value !== undefined && value !== null && (typeof value === "string" ? value.trim() !== "" : true);
 
 /** Returns true if value is a string|number|boolean */
