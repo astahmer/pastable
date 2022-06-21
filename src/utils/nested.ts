@@ -48,7 +48,7 @@ export function set<Value = any, From = ObjectLiteral>(
 
 export const makeGetter = <Return = any, From = ObjectLiteral>(path: string): ((obj: From) => Return) => {
     if (path.includes(".")) {
-        return new Function("obj", "propPath", "value", "return obj." + path) as AnyFunction<Return, From>;
+        return new Function("obj", "return obj." + path) as AnyFunction<Return, From>;
     }
 
     return (obj: From) => (obj as any)[path] as Return;
