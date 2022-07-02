@@ -78,13 +78,20 @@ export const uniquesByProp = <T = any>(arr: T[], propPathOrGetter: string | ((va
 export const exclude = <T = any>(arr: T[], excluded: T[]) => arr.filter((item) => !excluded.includes(item));
 
 /** Find an item/index from its value using a property path in the array (can be nested using a dot delimited syntax) */
-export const findBy = <T = any, V = any, B extends true | false = undefined>(
-    arr: T[],
-    path: string,
-    value: V,
-    index?: B
-): B extends undefined ? T : B extends true ? number : T =>
-    arr[index ? "findIndex" : "find"]((item) => get(item, path) === value) as any;
+export const findBy = <
+    K extends keyof Item | (string & {}),
+    Item = any,
+    ValueEqualsTo = any,
+    ByIndex extends true | false = undefined
+>(
+    arr: Item[],
+    path: K,
+    value: ValueEqualsTo,
+    index?: ByIndex
+): ByIndex extends undefined ? Item : ByIndex extends true ? number : Item => {
+    const getter = makeGetter(path as string);
+    return arr[index ? "findIndex" : "find"]((item) => getter(item) === value) as any;
+};
 
 export type SortDirection = "asc" | "desc";
 export const compareBasic = (a: number, b: number) => (a === b ? 0 : a > b ? 1 : -1);
