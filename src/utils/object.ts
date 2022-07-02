@@ -100,3 +100,8 @@ export const mergeProps = <Left extends ObjectLiteral, Right extends Partial<Lef
     }
     return result;
 };
+
+// https://github.dev/statelyai/xstate/blob/144131beda5c00a15fbe0f58a3309eac81d940eb/packages/core/src/utils.ts#L39
+export function keys<T extends object>(value: T): Array<keyof T & string> {
+    return Object.keys(value) as Array<keyof T & string>;
+}
