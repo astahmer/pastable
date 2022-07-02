@@ -1,6 +1,6 @@
 import { ObjectLiteral, PrimitiveValue } from "../typings";
 
-import { get } from "./nested";
+import { get, makeGetter } from "./nested";
 import { getSetDifference, getSetIntersection, getSetUnion, getSymmetricDifference, isSuperset } from "./set";
 
 /**
@@ -87,8 +87,10 @@ export const findBy = <T = any, V = any, B extends true | false = undefined>(
     arr[index ? "findIndex" : "find"]((item) => get(item, path) === value) as any;
 
 export type SortDirection = "asc" | "desc";
-/** Sort an array of objects by a common key in given direction (asc|desc, defaults to asc) */
-export function sortBy<T extends ObjectLiteral, K extends keyof T & string>(
+export const compareBasic = (a: number, b: number) => (a === b ? 0 : a > b ? 1 : -1);
+
+/** Sort an array of objects by a common prop key (or dot-delimited path) in given direction (asc|desc, defaults to asc) */
+export function sortBy<T extends ObjectLiteral, K extends keyof T | (string & {})>(
     arr: T[],
     key: K,
     dir: SortDirection = "asc"
@@ -96,23 +98,37 @@ export function sortBy<T extends ObjectLiteral, K extends keyof T & string>(
     let aProp;
     let bProp;
     const clone = [...arr];
+    const getter = makeGetter(key as string);
+
     clone.sort(function (left, right) {
-        aProp = get(left, key) || "";
+        aProp = getter(left) || "";
         aProp = aProp.toLowerCase ? aProp.toLowerCase() : aProp;
-        bProp = get(right, key) || "";
+        bProp = getter(right) || "";
         bProp = bProp.toLowerCase ? bProp.toLowerCase() : bProp;
+
+        if (!aProp && !bProp) return 0;
+        if (!aProp) return -1;
+        if (!bProp) return 1;
 
         if (typeof aProp === "string" && typeof bProp === "string") {
             return dir === "asc" ? aProp.localeCompare(bProp) : bProp.localeCompare(aProp);
         }
 
+        if (aProp instanceof Date && bProp instanceof Date) {
+            return dir === "asc"
+                ? compareBasic(aProp.getTime(), bProp.getTime())
+                : compareBasic(bProp.getTime(), aProp.getTime());
+        }
+
         if (aProp === bProp) {
             return 0;
-        } else if (aProp < bProp) {
-            return dir === "asc" ? -1 : 1;
-        } else if (aProp > bProp) {
-            return dir === "asc" ? 1 : -1;
         }
+
+        if (aProp < bProp) {
+            return dir === "asc" ? -1 : 1;
+        }
+
+        return dir === "asc" ? 1 : -1;
     });
 
     return clone;
