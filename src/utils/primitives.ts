@@ -35,8 +35,8 @@ export const getSum = (arr: number[]) => arr.reduce((acc, item) => acc + item, 0
 export const getClosestNbIn = (arr: number[], to: number) =>
     arr.reduce((prev, curr) => (Math.abs(curr - to) < Math.abs(prev - to) ? curr : prev));
 
-export const forceInt = (value: any, defaultValue: number = 1) =>
-    (value = isNaN(value) ? defaultValue : parseInt(value));
+export const forceInt = (value: string | number, defaultValue: number = 1) =>
+    (value = isNaN(value as number) ? defaultValue : parseInt(value as string));
 export const getPageCount = (itemsCount: number, pageSize: number) => Math.ceil(itemsCount / pageSize);
 export const roundTo = (nb: number, pow = 2) => Math.round(nb * Math.pow(10, pow)) / Math.pow(10, pow);
 
