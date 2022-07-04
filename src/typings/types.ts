@@ -1,4 +1,6 @@
 import tb from "ts-toolbelt";
+import { Length } from "ts-toolbelt/out/List/Length";
+import { Split } from "type-fest";
 
 export type PrimitiveValue = string | number | boolean;
 export type Primitive = PrimitiveValue | Array<PrimitiveValue>;
@@ -55,3 +57,5 @@ export type LiteralUnion<T extends U, U = string> = T | (U & {});
 
 export type PickKnownKeysOptional<First, Second> = Pick<First, Extract<keyof First, keyof Second>>;
 export type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
+
+export type HasNestedPath<Path extends string> = Length<Split<Path, ".">> extends 1 ? false : true;

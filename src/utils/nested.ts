@@ -1,6 +1,8 @@
-import type { AnyFunction, ObjectLiteral } from "../typings";
+import { Length } from "ts-toolbelt/out/List/Length";
+import { Get, Includes, Split } from "type-fest";
+import type { AnyFunction, HasNestedPath, ObjectLiteral } from "../typings";
 
-import { isDate, isObject, isObjectLiteral } from "./asserts";
+import { isDate, isObject, isObjectLiteral, isType } from "./asserts";
 import { getSetUnion } from "./set";
 
 /** Sets a nested property value from a dot-delimited path */
@@ -46,16 +48,26 @@ export function set<Value = any, From = ObjectLiteral>(
     (obj as any)[pathOrGetter] = value;
 }
 
-export const makeGetter = <Return = any, From = ObjectLiteral>(path: string): ((obj: From) => Return) => {
+export const makeGetter = <Path extends string>(
+    path: Path
+): HasNestedPath<Path> extends 1
+    ? <From extends ObjectLiteral, Return = From[Path]>(obj: From) => Return
+    : <From extends ObjectLiteral, Return = Get<From, Path>>(obj: From) => Return => {
     if (path.includes(".")) {
-        return new Function("obj", "return obj." + path) as AnyFunction<Return, From>;
+        return new Function("obj", "return obj." + path) as <From extends ObjectLiteral, Return = Get<From, Path>>(
+            obj: From
+        ) => Return;
     }
 
-    return (obj: From) => (obj as any)[path] as Return;
+    return <From extends ObjectLiteral>(obj: From) => obj[path];
 };
 
 /** Get a nested property value from a dot-delimited path. */
-export function get<Return = any, From = ObjectLiteral>(obj: From, path: string): Return {
+export function get<
+    Path extends string,
+    From extends ObjectLiteral,
+    Return = HasNestedPath<Path> extends 1 ? From[Path] : Get<From, Path>
+>(obj: From, path: Path): Return {
     let target = obj || {};
     const props = path.split(".");
     for (let i = 0, len = props.length; i < len; ++i) {

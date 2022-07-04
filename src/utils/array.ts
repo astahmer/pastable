@@ -108,9 +108,9 @@ export function sortBy<T extends ObjectLiteral, K extends keyof T | (string & {}
     const getter = makeGetter(key as string);
 
     clone.sort(function (left, right) {
-        aProp = getter(left) || "";
+        aProp = (getter(left) || "") as any;
         aProp = aProp.toLowerCase ? aProp.toLowerCase() : aProp;
-        bProp = getter(right) || "";
+        bProp = (getter(right) || "") as any;
         bProp = bProp.toLowerCase ? bProp.toLowerCase() : bProp;
 
         if (!aProp && !bProp) return 0;

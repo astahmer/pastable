@@ -20,8 +20,10 @@ function sortByV1<T extends ObjectLiteral, K extends keyof T | (string & {})>(
     const clone = [...arr];
     clone.sort(function (left, right) {
         aProp = get(left, key as string) || "";
+        // @ts-ignore
         aProp = aProp.toLowerCase ? aProp.toLowerCase() : aProp;
         bProp = get(right, key as string) || "";
+        // @ts-ignore
         bProp = bProp.toLowerCase ? bProp.toLowerCase() : bProp;
 
         if (typeof aProp === "string" && typeof bProp === "string") {
@@ -52,8 +54,10 @@ function sortByV2<T extends ObjectLiteral, K extends keyof T | (string & {})>(
 
     clone.sort(function (left, right) {
         aProp = getter(left) || "";
+        // @ts-ignore
         aProp = aProp.toLowerCase ? aProp.toLowerCase() : aProp;
         bProp = getter(right) || "";
+        // @ts-ignore
         bProp = bProp.toLowerCase ? bProp.toLowerCase() : bProp;
 
         if (!aProp && !bProp) return 0;
