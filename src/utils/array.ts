@@ -280,4 +280,4 @@ export const sortListFromRefArray = <T extends string | number>(arr: Array<T>, o
     return sortedEntries;
 };
 
-export const castAsArray = (value: any) => (Array.isArray(value) ? value : [value].filter(Boolean));
+export const castAsArray = <T>(value: T | T[]) => (Array.isArray(value) ? value : [value].filter(Boolean));
