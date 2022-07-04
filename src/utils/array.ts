@@ -258,15 +258,16 @@ export function getPrevIndex(index: number, length: number, loop = true, step = 
 }
 
 /** Sort array of object by given prop using a reference order array, sort items not in reference order in lasts positions */
-export const sortArrayOfObjectByPropFromArray = <T extends ObjectLiteral, K extends keyof T>(
+export const sortArrayOfObjectByPropFromArray = <T extends ObjectLiteral, K extends keyof T | (string & {})>(
     arr: Array<T>,
     prop: K,
     orderedProp: Array<T[K]>
 ) => {
+    const getter = makeGetter(prop as string);
     const sortedEntries = arr
-        .filter((item) => orderedProp.includes(item[prop]))
-        .sort((a, b) => orderedProp.indexOf(a[prop]) - orderedProp.indexOf(b[prop]))
-        .concat(arr.filter((item) => !orderedProp.includes(item[prop])));
+        .filter((item) => orderedProp.includes(getter(item)))
+        .sort((a, b) => orderedProp.indexOf(getter(a)) - orderedProp.indexOf(getter(b)))
+        .concat(arr.filter((item) => !orderedProp.includes(getter(item))));
     return sortedEntries;
 };
 
