@@ -13,6 +13,9 @@ export interface WithClassName {
 }
 
 export type SetState<T = any> = Dispatch<SetStateAction<T>>;
+export type UseStateProps<Name extends string, T> = { [key in Name]: T } & {
+    [key in `set${Capitalize<Name>}`]: SetState<T>;
+};
 
 export type OnSubmit<Values = any, Return = void> = (values: Values) => Return;
 export interface WithOnSubmit<Values = any, Return = void> {
