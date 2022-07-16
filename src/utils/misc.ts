@@ -8,14 +8,26 @@ export const callAll =
 
 export type Composable<T = any, R = any> = (item: T) => R;
 
+/** Compose left-to-right, most commonly used direction */
+export const pipe =
+    <T>(...fns: Array<(arg: T) => T>) =>
+    (value: T) =>
+        fns.reduce((acc, fn) => fn(acc), value);
+
 /** Compose right-to-left */
 export const compose =
+    <T>(...fns: Array<(arg: T) => T>) =>
+    (value: T) =>
+        fns.reduceRight((acc, fn) => fn(acc), value);
+
+/** Compose right-to-left using async fn */
+export const composeAsync =
     <T = any, R = any>(...functions: Composable<T, R>[]) =>
     (item: T) =>
         functions.reduceRight((chain, func) => chain.then(func), Promise.resolve(item));
 
-/** Compose left-to-right, most commonly used */
-export const pipe =
+/** Compose left-to-right, most commonly used direction, using async fn */
+export const pipeAsync =
     <T = any, R = any>(...functions: Composable<T, R>[]) =>
     (item: T) =>
         functions.reduce((chain, func) => chain.then(func), Promise.resolve(item));

@@ -1,5 +1,5 @@
 import { assert, describe, expect, it, vi } from "vitest";
-import { callAll, compose, getInheritanceTree, makeCompiledFnWith, pipe, wait } from "../misc";
+import { callAll, compose, composeAsync, getInheritanceTree, makeCompiledFnWith, pipe, pipeAsync, wait } from "../misc";
 
 describe("callAll", (test) => {
     it("should return another function", () => {
@@ -63,30 +63,58 @@ it("wait resolves after given delay and returns callback result if any", async (
     }, delay);
 });
 
-it("compose executes in one pass multiple functions on the same arg, right-to-left", async () => {
+it("compose executes in one pass multiple functions on the same arg, right-to-left", () => {
     const prependAbc = (value: string) => "abc" + value;
     const toUpper = (value: string) => value.toUpperCase();
     const appendXyz = (value: string) => value + "xyz";
 
     const composed = compose(prependAbc, toUpper, appendXyz);
-    const result = await composed("yes");
+    const result = composed("yes");
     assert.deepEqual(result, "abcYESXYZ" as any);
 
     const reversed = compose(...[prependAbc, toUpper, appendXyz].reverse());
-    const reversedResult = await reversed("yes");
+    const reversedResult = reversed("yes");
     assert.deepEqual(reversedResult, "ABCYESxyz" as any);
 });
 
-it("pipe executes in one pass multiple functions on the same arg, left-to-right", async () => {
+it("pipe executes in one pass multiple functions on the same arg, left-to-right", () => {
     const prependAbc = (value: string) => "abc" + value;
     const toUpper = (value: string) => value.toUpperCase();
     const appendXyz = (value: string) => value + "xyz";
 
     const piped = pipe(prependAbc, toUpper, appendXyz);
-    const result = await piped("yes");
+    const result = piped("yes");
     assert.deepEqual(result, "ABCYESxyz" as any);
 
     const reversed = pipe(...[prependAbc, toUpper, appendXyz].reverse());
+    const reversedResult = reversed("yes");
+    assert.deepEqual(reversedResult, "abcYESXYZ" as any);
+});
+
+it("compose async executes in one pass multiple functions on the same arg, right-to-left", async () => {
+    const prependAbc = (value: string) => "abc" + value;
+    const toUpper = (value: string) => value.toUpperCase();
+    const appendXyz = (value: string) => value + "xyz";
+
+    const composed = composeAsync(prependAbc, toUpper, appendXyz);
+    const result = await composed("yes");
+    assert.deepEqual(result, "abcYESXYZ" as any);
+
+    const reversed = composeAsync(...[prependAbc, toUpper, appendXyz].reverse());
+    const reversedResult = await reversed("yes");
+    assert.deepEqual(reversedResult, "ABCYESxyz" as any);
+});
+
+it("pipe async executes in one pass multiple functions on the same arg, left-to-right", async () => {
+    const prependAbc = (value: string) => "abc" + value;
+    const toUpper = (value: string) => value.toUpperCase();
+    const appendXyz = (value: string) => value + "xyz";
+
+    const piped = pipeAsync(prependAbc, toUpper, appendXyz);
+    const result = await piped("yes");
+    assert.deepEqual(result, "ABCYESxyz" as any);
+
+    const reversed = pipeAsync(...[prependAbc, toUpper, appendXyz].reverse());
     const reversedResult = await reversed("yes");
     assert.deepEqual(reversedResult, "abcYESXYZ" as any);
 });
