@@ -6,6 +6,18 @@ export const callAll =
     (...args: Args[]) =>
         fns.forEach((fn) => fn?.(...args));
 
+/** Returns a callback that will return true if all functions passed with the same arguments returns true */
+export const needsAll =
+    <Args = any, Fns extends Function = AnyFunction<Args>>(...fns: Fns[]) =>
+    (...args: Args[]) => {
+        for (const fn of fns) {
+            if (!fn?.(...args)) {
+                return false;
+            }
+        }
+        return true;
+    };
+
 export type Composable<T = any, R = any> = (item: T) => R;
 
 /** Compose left-to-right, most commonly used direction */
@@ -84,3 +96,59 @@ export const getQueryString = (data: Record<string, any>) => new URLSearchParams
 
 export const makeCompiledFnWith = (code: string, context: ObjectLiteral) =>
     new Function(...Object.keys(context), code)(...Object.values(context));
+
+/** @see Adapted from https://github.com/devld/go-drive/blob/6a126a6daa92af871ae5233306a808c81c749e70/web/src/utils/index.ts */
+export const debounce = <Fn extends AnyFunction, THIS>(func: Fn, wait: number): ((...args: Parameters<Fn>) => void) => {
+    let timeout: number | undefined;
+    return function (this: THIS, ...params) {
+        const later = () => {
+            timeout = undefined;
+            func.apply(this, params);
+        };
+        clearTimeout(timeout!);
+        timeout = setTimeout(later, wait) as unknown as number;
+    };
+};
+export interface ThrottleOptions {
+    leading?: boolean;
+    trailing?: boolean;
+}
+
+/** @see Adapted from https://github.com/devld/go-drive/blob/6a126a6daa92af871ae5233306a808c81c749e70/web/src/utils/index.ts */
+export function throttle<Fn extends AnyFunction, THIS>(
+    func: Fn,
+    wait: number,
+    options?: ThrottleOptions
+): (...args: Parameters<Fn>) => ReturnType<Fn> {
+    let context: THIS | null, args: Parameters<Fn> | null, result: ReturnType<Fn> | null;
+    let timeout: number | undefined;
+    let previous = 0;
+    if (!options) options = {};
+    const later = function () {
+        previous = options?.leading === false ? 0 : Date.now();
+        timeout = undefined;
+        result = func.apply(context, args as Parameters<Fn>);
+        if (!timeout) {
+            context = null;
+            args = null;
+        }
+    };
+    return function (this: THIS, ...params): ReturnType<Fn> {
+        const now = Date.now();
+        if (!previous && options?.leading === false) previous = now;
+        const remaining = wait - (now - previous);
+        args = params;
+        if (remaining <= 0 || remaining > wait) {
+            if (timeout) {
+                clearTimeout(timeout);
+                timeout = undefined;
+            }
+            previous = now;
+            result = func.apply(context, args);
+            if (!timeout) context = args = null;
+        } else if (!timeout && options?.trailing !== false) {
+            timeout = setTimeout(later, remaining) as unknown as number;
+        }
+        return result as any;
+    };
+}

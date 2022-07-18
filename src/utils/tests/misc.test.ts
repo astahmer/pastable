@@ -1,5 +1,17 @@
 import { assert, describe, expect, it, vi } from "vitest";
-import { callAll, compose, composeAsync, getInheritanceTree, makeCompiledFnWith, pipe, pipeAsync, wait } from "../misc";
+import {
+    callAll,
+    compose,
+    composeAsync,
+    debounce,
+    getInheritanceTree,
+    makeCompiledFnWith,
+    needsAll,
+    pipe,
+    pipeAsync,
+    throttle,
+    wait,
+} from "../misc";
 
 describe("callAll", (test) => {
     it("should return another function", () => {
@@ -47,6 +59,22 @@ describe("callAll", (test) => {
 
         assert.ok(first.mock.calls.length === 1);
     });
+});
+
+it("needs all", () => {
+    const array = [
+        { a: 1, b: 2, c: 3, word: "aaa" },
+        { a: 1, b: 2, c: 3, word: "bbb" },
+        { a: 9, b: 8, c: 7, word: "ccc" },
+        { a: 9, b: 2, c: 3, word: "aaa" },
+    ];
+
+    const withC3 = (obj) => obj.c === 3;
+    const withWordAaa = (obj) => obj.word === "aaa";
+
+    expect(array.filter(needsAll(withC3)).length).toBe(3);
+    expect(array.filter(needsAll(withWordAaa)).length).toBe(2);
+    expect(array.filter(needsAll(withC3, withWordAaa)).length).toBe(2);
 });
 
 it("wait resolves after given delay and returns callback result if any", async () => {
@@ -143,4 +171,15 @@ it("makeCompiledFnWith", () => {
     });
     expect(typeof fn === "function").toBe(true);
     expect(fn()).toBe("inner-222");
+});
+
+it("debounce", () => {
+    const fn = debounce((aaa: "aaa") => 123 as const, 1000);
+    const oui = fn("aaa");
+    expect(oui).toBe(undefined);
+});
+it("throttle", () => {
+    const fn = throttle((aaa: "aaa") => 123 as const, 1000);
+    const non = fn("aaa");
+    expect(non).toBe(123);
 });
