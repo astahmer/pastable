@@ -1,5 +1,5 @@
 import * as React from "react";
-
+import { createIsomorphicDestructurable } from "../utils/createIsomorphicDestructurable";
 // Adapted from https://github.com/chakra-ui/chakra-ui/blob/27eec8de744d05eef5bcbd2de651f3a37370ff2c/packages/react-utils/src/context.ts
 
 export interface CreateContextOptions<Value, Initial extends Value = Value> {
@@ -22,7 +22,12 @@ export interface CreateContextOptions<Value, Initial extends Value = Value> {
     initialValue?: Initial | undefined;
 }
 
-type CreateContextReturn<T> = [React.Provider<T>, () => T, React.Context<T>];
+type CreateContextReturn<T> = [React.Provider<T>, () => T, React.Context<T>] & {
+    Provider: React.Provider<T>;
+    hook: () => T;
+    Context: React.Context<T>;
+    Consumer: React.Consumer<T>;
+};
 
 /**
  * Creates a named context, provider, and hook.
@@ -67,5 +72,13 @@ export function createContextWithHook<ContextType>(
         return context;
     }
 
-    return [Context.Provider, useContext, Context];
+    return createIsomorphicDestructurable(
+        {
+            Consumer: Context.Consumer,
+            hook: useContext,
+            Context: Context,
+            Provider: Context.Provider,
+        },
+        [Context.Provider, useContext, Context]
+    ) as CreateContextReturn<ContextType>;
 }
