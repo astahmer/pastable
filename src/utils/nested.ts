@@ -1,8 +1,7 @@
-import { Length } from "ts-toolbelt/out/List/Length";
-import { Get, Includes, Split } from "type-fest";
-import type { AnyFunction, HasNestedPath, ObjectLiteral } from "../typings";
+import { Get } from "type-fest";
+import type { HasNestedPath, ObjectLiteral } from "../typings";
 
-import { isDate, isObject, isObjectLiteral, isType } from "./asserts";
+import { isDate, isObject, isObjectLiteral } from "./asserts";
 import { getSetUnion } from "./set";
 
 /** Sets a nested property value from a dot-delimited path */
