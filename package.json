@@ -61,6 +61,14 @@
         "react": ">=17",
         "xstate": ">=4.32.1"
     },
+    "peerDependenciesMeta": {
+        "react": {
+            "optional": true
+        },
+        "xstate": {
+            "optional": true
+        }
+    },
     "engines": {
         "node": ">=14.x"
     },
