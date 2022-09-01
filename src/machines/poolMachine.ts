@@ -110,6 +110,7 @@ export const makePoolMachine = <Return = any>(params: MakePoolMachineParams<Retu
                 },
                 done: { type: "final" },
             },
+            predictableActionArguments: true,
         },
         {
             actions: {

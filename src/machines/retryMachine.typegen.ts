@@ -2,14 +2,9 @@
 
 export interface Typegen0 {
     "@@xstate/typegen": true;
-    eventsCausingActions: {
-        setPauseDuration: "xstate.after(RETRY)#retry.rejected";
-        incrementAttempt: "xstate.after(RETRY)#retry.rejected";
-        onRejected: "error.platform.callback";
-    };
     internalEvents: {
-        "xstate.after(RETRY)#retry.rejected": { type: "xstate.after(RETRY)#retry.rejected" };
         "error.platform.callback": { type: "error.platform.callback"; data: unknown };
+        "xstate.after(RETRY)#retry.rejected": { type: "xstate.after(RETRY)#retry.rejected" };
         "xstate.init": { type: "xstate.init" };
     };
     invokeSrcNameMap: {};
@@ -19,13 +14,18 @@ export interface Typegen0 {
         guards: never;
         delays: never;
     };
+    eventsCausingActions: {
+        incrementAttempt: "xstate.after(RETRY)#retry.rejected";
+        onRejected: "error.platform.callback";
+        setPauseDuration: "xstate.after(RETRY)#retry.rejected";
+    };
     eventsCausingServices: {};
     eventsCausingGuards: {
         hasReachedMaxAttempts: "error.platform.callback";
     };
     eventsCausingDelays: {
-        RETRY: "xstate.init";
+        RETRY: "error.platform.callback";
     };
-    matchesStates: "pending" | "rejected" | "error" | "success";
+    matchesStates: "error" | "pending" | "rejected" | "success";
     tags: never;
 }

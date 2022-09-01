@@ -2,17 +2,6 @@
 
 export interface Typegen0 {
     "@@xstate/typegen": true;
-    eventsCausingActions: {
-        addRunning: "task.started";
-        onStart: "task.started";
-        addSuccess: "task.resolved";
-        onSuccess: "task.resolved";
-        addError: "task.rejected";
-        onError: "task.rejected";
-        onDone: "DONE";
-        updateConcurrency: "UPDATE_CONCURRENCY";
-        forwardToScheduler: "UPDATE_CONCURRENCY";
-    };
     internalEvents: {
         "xstate.init": { type: "xstate.init" };
     };
@@ -23,9 +12,20 @@ export interface Typegen0 {
         guards: never;
         delays: never;
     };
+    eventsCausingActions: {
+        addError: "task.rejected";
+        addRunning: "task.started";
+        addSuccess: "task.resolved";
+        forwardToScheduler: "UPDATE_CONCURRENCY";
+        onDone: "DONE";
+        onError: "task.rejected";
+        onStart: "task.started";
+        onSuccess: "task.resolved";
+        updateConcurrency: "UPDATE_CONCURRENCY";
+    };
     eventsCausingServices: {};
     eventsCausingGuards: {};
     eventsCausingDelays: {};
-    matchesStates: "idle" | "started" | "done";
+    matchesStates: "done" | "idle" | "started";
     tags: never;
 }
