@@ -1,6 +1,6 @@
-import { bench, group, run, baseline } from "mitata";
-import { makeArrayOf, uniquesByProp } from "../array";
-import { get, makeGetter } from "../nested";
+import { bench, group, run } from "mitata";
+import { makeArrayOf, uniques, uniquesByProp } from "../array";
+import { get } from "../nested";
 import { getRandomIntIn } from "../random";
 
 const arr = makeArrayOf(100000).map((_, i) => ({
@@ -89,6 +89,7 @@ group("uniquesByProp 1 lvl deep", () => {
     bench("uniquesByPropWithGetter", () => uniquesByPropWithGetter(arr, (value) => value.id));
     bench("uniquesByPropV2 - using a getter", () => uniquesByPropV2(arr, (value) => value.id));
     bench("uniquesByPropV2 - using JIT if propPath is a string", () => uniquesByPropV2(arr, path));
+    bench("uniques with map", () => uniques(arr.map((value) => value.id)));
 });
 
 group("uniquesByProp deeply nested prop", () => {
@@ -107,6 +108,7 @@ group("uniquesByProp deeply nested prop", () => {
         uniquesByPropV2(arr, (value) => value.aaa.bbb.ccc.deep.nested.prop)
     );
     bench("uniquesByPropV2 - using JIT if propPath is a string", () => uniquesByPropV2(arr, path));
+    bench("uniques with map", () => uniques(arr.map((value) => value.aaa.bbb.ccc.deep.nested.prop)));
 });
 
 run();

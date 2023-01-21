@@ -15,7 +15,9 @@
         "downlevelIteration": true,
         "resolveJsonModule": true,
         "declaration": true,
+        "declarationMap": true,
         "sourceMap": true,
+        // "inlineSources": true,
         "isolatedModules": true,
         "types": ["react", "react-dom", "node", "vitest/importMeta"]
     },

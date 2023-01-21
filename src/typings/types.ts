@@ -59,3 +59,22 @@ export type PickKnownKeysOptional<First, Second> = Pick<First, Extract<keyof Fir
 export type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 
 export type HasNestedPath<Path extends string> = Length<Split<Path, ".">> extends 1 ? false : true;
+
+export type ToString<T extends string | number | symbol> = T extends string ? T : `${Extract<T, number>}`;
+export type ToStringArray<T extends any[]> = T extends [infer F, ...infer R]
+    ? F extends string | number | symbol
+        ? [ToString<F>, ...ToStringArray<R>]
+        : never
+    : [];
+
+export type MergeBy<T extends unknown[], Key extends keyof T[number]> = T extends [infer F, ...infer R]
+    ? F[Key] extends string | number | symbol
+        ? { [K in F[Key]]: F } & MergeBy<R, Key>
+        : never
+    : {};
+
+export type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (k: infer I) => void ? I : never;
+
+export type DeepRequired<T> = {
+    [K in keyof T]-?: NonNullable<DeepRequired<T[K]>>;
+};

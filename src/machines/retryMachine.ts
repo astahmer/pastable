@@ -53,7 +53,6 @@ const makeRetryMachine = <Result = any>({ callback, onRejected, ...ctx }: MakeRe
                     data: (_ctx, event) => ({ data: (event as DoneInvokeEvent<Result>).data, status: "success" }),
                 },
             },
-            predictableActionArguments: true,
         },
         {
             actions: {

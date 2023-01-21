@@ -22,8 +22,9 @@
 
 ## TL;DR
 
-Anything should be pastable from `src` to your current project.
-Disclaimer: this package is meant mostly for myself.
+this package is meant mostly for myself.
+
+[API]https://paka.dev/npm/pastable@2.0.13/api
 
 ```sh
 pnpm i pastable
@@ -31,7 +32,7 @@ pnpm i pastable
 
 With 1 main & 5 specific entrypoints:
 
--   `"pastable"`: re-exports everything from utils/react/typings
+-   `"pastable"`: re-exports everything from utils+typings
 -   `"pastable/utils"`
 -   `"pastable/react"`
 -   `"pastable/typings"`
