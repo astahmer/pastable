@@ -60,7 +60,7 @@
         "format": "prettier --write \"**/*.{ts,tsx,md}\"",
         "test": "vitest",
         "coverage": "vitest run --coverage",
-        "release": "pnpm publint && pnpm build && pnpm publish && git push"
+        "release": "pnpm publint && pnpm build && pnpm publish && git push --follow-tags"
     },
     "packageManager": "pnpm@6.24.0",
     "sideEffects": false,
