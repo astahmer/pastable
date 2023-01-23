@@ -54,7 +54,7 @@ export function createContextWithHook<ContextType>(
         }" is undefined. Seems you forgot to wrap component within the Provider`,
     } = options;
 
-    const Context = React.createContext<ContextType | undefined>(undefined);
+    const Context = React.createContext<ContextType | undefined>(options.initialValue);
 
     Context.displayName = name;
 
