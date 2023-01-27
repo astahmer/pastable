@@ -1,10 +1,13 @@
-import { F } from "ts-toolbelt";
 import { CType, ObjectLiteral, PrimitiveValue } from "../typings";
 
 export const isDefined = <T = any>(
     value: T
 ): value is typeof value extends undefined ? never : typeof value extends null ? never : T =>
     value !== undefined && value !== null && (typeof value === "string" ? value.trim() !== "" : true);
+
+type Nullable<T> = T | null | undefined;
+
+export const isNotNullish = <T>(element: Nullable<T>): element is T => element != null;
 
 /** Returns true if value is a string|number|boolean */
 export const isPrimitive = (value: any): value is PrimitiveValue =>
@@ -21,12 +24,6 @@ export const isPromise = <T = any>(p: any): p is Promise<T> =>
 
 /** Can be used as type guard  */
 export const isType = <T>(_value: any, condition?: boolean): _value is T => condition;
-
-/** @see https://twitter.com/mattpocockuk/status/1536301151691366406 */
-export const satisfies =
-    <TWide>() =>
-    <TNarrow extends TWide>(narrow: F.Narrow<TNarrow>) =>
-        narrow;
 
 export const isClassRegex = /^\s*class\s+/;
 export const isClass = <T>(value: any): value is CType<T> =>
