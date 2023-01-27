@@ -5,7 +5,15 @@ import { getSelf } from "./getters";
 
 /** Pick given properties in object */
 export function pick<T, K extends keyof T>(obj: T, paths: K[]): Pick<T, K> {
-    return { ...paths.reduce((mem, key) => ({ ...mem, [key]: obj[key] }), {}) } as Pick<T, K>;
+    const result = {} as Pick<T, K>;
+
+    Object.keys(obj).forEach((key) => {
+        if (!paths.includes(key as K)) return;
+        // @ts-expect-error
+        result[key] = obj[key];
+    });
+
+    return result as Pick<T, K>;
 }
 /** Creates an object composed of the picked object properties that satisfies the condition for each value */
 export function pickBy<T, K extends keyof T>(
@@ -13,9 +21,17 @@ export function pickBy<T, K extends keyof T>(
     paths: K[],
     fn: (key: keyof T, value: T[keyof T]) => boolean
 ): Partial<Pick<T, K>> {
-    return {
-        ...paths.reduce((mem, key) => ({ ...mem, ...(fn(key, obj[key]) ? { [key]: obj[key] } : {}) }), {}),
-    } as Pick<T, K>;
+    const result = {} as Pick<T, K>;
+
+    Object.keys(obj).forEach((key) => {
+        if (!paths.includes(key as K)) return;
+        // @ts-expect-error
+        if (!fn(key, obj[key])) return;
+        // @ts-expect-error
+        result[key] = obj[key];
+    });
+
+    return result as Pick<T, K>;
 }
 
 /** Only pick given properties that are defined in object */
