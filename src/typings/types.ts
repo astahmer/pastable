@@ -78,3 +78,7 @@ export type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) ex
 export type DeepRequired<T> = {
     [K in keyof T]-?: NonNullable<DeepRequired<T[K]>>;
 };
+
+export type Prettify<T> = {
+    [K in keyof T]: T[K];
+} & {};
