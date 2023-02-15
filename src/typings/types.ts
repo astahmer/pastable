@@ -82,3 +82,6 @@ export type DeepRequired<T> = {
 export type Prettify<T> = {
     [K in keyof T]: T[K];
 } & {};
+
+export type IsDefined<T> = [T] extends [never] ? false : true;
+export type PickDefined<T> = Pick<T, { [K in keyof T]: T[K] extends never ? never : K }[keyof T]>;
