@@ -93,6 +93,14 @@ export const findBy = <
     return arr[index ? "findIndex" : "find"]((item) => getter(item) === value) as any;
 };
 
+export function findRight<Item, As extends Item>(arr: Item[] = [], predicate: (item: Item) => item is As) {
+    for (let i = arr.length - 1; i >= 0; i--) {
+        if (predicate(arr[i]!)) {
+            return arr[i] as As;
+        }
+    }
+}
+
 export type SortDirection = "asc" | "desc";
 export const compareBasic = (a: number, b: number) => (a === b ? 0 : a > b ? 1 : -1);
 
