@@ -5,6 +5,7 @@
         "type": "git",
         "url": "https://github.com/astahmer/pastable.git"
     },
+    "license": "MIT",
     "author": "Alexandre Stahmer <alexandre.stahmer@gmail.com>",
     "main": "dist/pastable.cjs.js",
     "module": "dist/pastable.esm.js",
